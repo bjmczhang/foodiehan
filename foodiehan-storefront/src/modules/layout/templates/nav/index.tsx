@@ -18,7 +18,7 @@ export default async function Nav() {
 
   return (
     <div className="sticky inset-x-0 top-0 z-50 group">
-      <header className="relative h-auto mx-auto duration-200 bg-[var(--color-bg-darkest)] ">
+      <header className="relative h-auto mx-auto duration-200 bg-[var(--color-bg-darkest)]">
         <nav className="grid grid-cols-[40%_20%_40%] items-center w-full h-full text-xs uppercase content-container">
           <div className="flex items-center justify-end gap-x-4">
             <div className="small:hidden">
@@ -57,7 +57,7 @@ export default async function Nav() {
               <img
                 src="/logo.svg"
                 alt="FoodieHan"
-                className="w-auto h-20 m-5"
+                className="w-auto h-24 m-5"
               />
             </LocalizedClientLink>
           </div>
