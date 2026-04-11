@@ -1,5 +1,6 @@
 import { listProducts } from "@lib/data/products"
 import { HttpTypes } from "@medusajs/types"
+import { getPricesForVariant } from "@lib/util/get-product-price"
 
 export default async function PricingList({
   region,
@@ -38,9 +39,8 @@ export default async function PricingList({
                 </div>
               </div>
               <div className="text-lg font-semibold text-[var(--color-brand)] whitespace-nowrap">
-                {p.variants && p.variants.length > 0
-                  ? `$${(p.variants[0].calculated_price / 100).toFixed(2)}`
-                  : "—"}
+                {getPricesForVariant((p as any).variants?.[0])
+                  ?.calculated_price ?? "—"}
               </div>
             </div>
           ))}
