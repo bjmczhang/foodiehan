@@ -1,0 +1,35 @@
+@media only screen and (max-width: 1280px){
+}
+
+@media only screen and (max-width: 1024px){
+/* generated in /home/qodeinteractive/baker/public_html/wp-content/themes/baker/assets/custom-styles/general-custom-styles-responsive.php baker_edge_content_responsive_styles function */
+.edgtf-content .edgtf-content-inner > .edgtf-container > .edgtf-container-inner, .edgtf-content .edgtf-content-inner > .edgtf-full-width > .edgtf-full-width-inner { padding-top: 40px!important;}
+
+}
+
+@media only screen and (min-width: 769px) and (max-width: 1024px){
+}
+
+@media only screen and (min-width: 481px) and (max-width: 768px){
+}
+
+@media only screen and (max-width: 480px){
+/* generated in /home/qodeinteractive/baker/public_html/wp-content/themes/baker/assets/custom-styles/general-custom-styles-responsive.php baker_edge_h1_responsive_styles2 function */
+h1 { font-size: 37px;}
+
+/* generated in /home/qodeinteractive/baker/public_html/wp-content/themes/baker/assets/custom-styles/general-custom-styles-responsive.php baker_edge_h2_responsive_styles2 function */
+h2 { font-size: 34px;}
+
+/* generated in /home/qodeinteractive/baker/public_html/wp-content/themes/baker/assets/custom-styles/general-custom-styles-responsive.php baker_edge_h3_responsive_styles2 function */
+h3 { font-size: 28px;}
+
+/* generated in /home/qodeinteractive/baker/public_html/wp-content/themes/baker/assets/custom-styles/general-custom-styles-responsive.php baker_edge_h4_responsive_styles2 function */
+h4 { font-size: 22px;}
+
+/* generated in /home/qodeinteractive/baker/public_html/wp-content/themes/baker/assets/custom-styles/general-custom-styles-responsive.php baker_edge_h5_responsive_styles2 function */
+h5 { font-size: 18px;}
+
+/* generated in /home/qodeinteractive/baker/public_html/wp-content/themes/baker/assets/custom-styles/general-custom-styles-responsive.php baker_edge_h6_responsive_styles2 function */
+h6 { font-size: 16px;}
+
+}
