@@ -1,6 +1,6 @@
 {
   "compilerOptions": {
-    "target": "es5",
+    "target": "es6",
     "lib": ["dom", "dom.iterable", "esnext"],
     "allowJs": true,
     "skipLibCheck": true,
@@ -8,17 +8,17 @@
     "forceConsistentCasingInFileNames": true,
     "noEmit": true,
     "esModuleInterop": true,
-    "module": "esnext",
-    "moduleResolution": "node",
+    "module": "node16",
+    "moduleResolution": "node16",
     "resolveJsonModule": true,
     "isolatedModules": true,
     "jsx": "preserve",
     "incremental": true,
-    "baseUrl": "./src",
     "paths": {
-      "@lib/*": ["lib/*"],
-      "@modules/*": ["modules/*"],
-      "@pages/*": ["pages/*"]
+      "@lib/*": ["./src/lib/*"],
+      "@modules/*": ["./src/modules/*"],
+      "@pages/*": ["./src/pages/*"],
+      "types/*": ["./src/types/*"]
     },
     "plugins": [
       {

@@ -18,7 +18,9 @@ const PICKUP_OPTION_OFF = "__PICKUP_OFF"
 
 type ShippingProps = {
   cart: HttpTypes.StoreCart
-  availableShippingMethods: HttpTypes.StoreCartShippingOption[] | null
+  availableShippingMethods:
+    | HttpTypes.StoreCartShippingOptionWithServiceZone[]
+    | null
 }
 
 function formatAddress(address: HttpTypes.StoreCartAddress) {
@@ -193,7 +195,7 @@ const Shipping: React.FC<ShippingProps> = ({
               </span>
             </div>
             <div data-testid="delivery-options-container">
-              <div className="pb-8 md:pt-0 pt-2">
+              <div className="pt-2 pb-8 md:pt-0">
                 {hasPickupOptions && (
                   <RadioGroup
                     value={showPickupOptions}
@@ -306,7 +308,7 @@ const Shipping: React.FC<ShippingProps> = ({
                 </span>
               </div>
               <div data-testid="delivery-options-container">
-                <div className="pb-8 md:pt-0 pt-2">
+                <div className="pt-2 pb-8 md:pt-0">
                   <RadioGroup
                     value={shippingMethodId}
                     onChange={(v) => {
@@ -343,7 +345,7 @@ const Shipping: React.FC<ShippingProps> = ({
                               <span className="text-base-regular text-ui-fg-muted">
                                 {formatAddress(
                                   option.service_zone?.fulfillment_set?.location
-                                    ?.address
+                                    ?.address as unknown as HttpTypes.StoreCartAddress
                                 )}
                               </span>
                             </div>
@@ -385,7 +387,7 @@ const Shipping: React.FC<ShippingProps> = ({
           <div className="text-small-regular">
             {cart && (cart.shipping_methods?.length ?? 0) > 0 && (
               <div className="flex flex-col w-1/3">
-                <Text className="txt-medium-plus text-ui-fg-base mb-1">
+                <Text className="mb-1 txt-medium-plus text-ui-fg-base">
                   Method
                 </Text>
                 <Text className="txt-medium text-ui-fg-subtle">

@@ -27,10 +27,7 @@ type CountrySelectProps = {
 }
 
 const CountrySelect = ({ toggleState, regions }: CountrySelectProps) => {
-  const [current, setCurrent] = useState<
-    | { country: string | undefined; region: string; label: string | undefined }
-    | undefined
-  >(undefined)
+  const [current, setCurrent] = useState<CountryOption | undefined>(undefined)
 
   const { countryCode } = useParams()
   const currentPath = usePathname().split(`/${countryCode}`)[1]
@@ -38,22 +35,25 @@ const CountrySelect = ({ toggleState, regions }: CountrySelectProps) => {
   const { state, close } = toggleState
 
   const options = useMemo(() => {
-    return regions
-      ?.map((r) => {
-        return r.countries?.map((c) => ({
-          country: c.iso_2,
-          region: r.id,
-          label: c.display_name,
-        }))
-      })
-      .flat()
-      .sort((a, b) => (a?.label ?? "").localeCompare(b?.label ?? ""))
+    return (
+      regions
+        ?.map((r) => {
+          return (
+            r.countries?.map((c) => ({
+              country: c.iso_2,
+              region: r.id,
+              label: c.display_name ?? c.iso_2,
+            })) || []
+          )
+        })
+        .flat() || []
+    ).sort((a, b) => (a.label ?? "").localeCompare(b.label ?? ""))
   }, [regions])
 
   useEffect(() => {
     if (countryCode) {
-      const option = options?.find((o) => o?.country === countryCode)
-      setCurrent(option)
+      const option = options?.find((o) => o.country === countryCode)
+      setCurrent(option as CountryOption | undefined)
     }
   }, [options, countryCode])
 
@@ -69,15 +69,17 @@ const CountrySelect = ({ toggleState, regions }: CountrySelectProps) => {
         onChange={handleChange}
         defaultValue={
           countryCode
-            ? options?.find((o) => o?.country === countryCode)
+            ? (options?.find((o) => o?.country === countryCode) as
+                | CountryOption
+                | undefined)
             : undefined
         }
       >
-        <ListboxButton className="py-1 w-full">
-          <div className="txt-compact-small flex items-start gap-x-2">
+        <ListboxButton className="w-full py-1">
+          <div className="flex items-start txt-compact-small gap-x-2">
             <span>Shipping to:</span>
             {current && (
-              <span className="txt-compact-small flex items-center gap-x-2">
+              <span className="flex items-center txt-compact-small gap-x-2">
                 {/* @ts-ignore */}
                 <ReactCountryFlag
                   svg
@@ -109,7 +111,7 @@ const CountrySelect = ({ toggleState, regions }: CountrySelectProps) => {
                   <ListboxOption
                     key={index}
                     value={o}
-                    className="py-2 hover:bg-gray-200 px-3 cursor-pointer flex items-center gap-x-2"
+                    className="flex items-center px-3 py-2 cursor-pointer hover:bg-gray-200 gap-x-2"
                   >
                     {/* @ts-ignore */}
                     <ReactCountryFlag
