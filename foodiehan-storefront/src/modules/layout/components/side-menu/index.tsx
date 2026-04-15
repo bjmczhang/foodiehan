@@ -31,13 +31,13 @@ const SideMenu = ({ regions, locales, currentLocale }: SideMenuProps) => {
   return (
     <div className="h-full">
       <div className="flex items-center h-full">
-        <Popover className="h-full flex">
+        <Popover className="flex h-full">
           {({ open, close }) => (
             <>
               <div className="relative flex h-full">
                 <Popover.Button
                   data-testid="nav-menu-button"
-                  className="relative h-full flex items-center transition-all ease-out duration-200 focus:outline-none hover:text-ui-fg-base"
+                  className="relative h-full flex items-center transition-all ease-out duration-200 focus:outline-none text-[var(--color-text-primary)] hover:text-[var(--color-brand)]"
                 >
                   Menu
                 </Popover.Button>
@@ -71,7 +71,7 @@ const SideMenu = ({ regions, locales, currentLocale }: SideMenuProps) => {
                         <XMark />
                       </button>
                     </div>
-                    <ul className="flex flex-col gap-6 items-start justify-start">
+                    <ul className="flex flex-col items-start justify-start gap-6">
                       {Object.entries(SideMenuItems).map(([name, href]) => {
                         return (
                           <li key={name}>
