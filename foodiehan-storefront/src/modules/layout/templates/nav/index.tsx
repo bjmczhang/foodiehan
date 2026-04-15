@@ -19,7 +19,7 @@ export default async function Nav() {
 
   return (
     <NavClient>
-      <nav className="flex items-center justify-between w-full h-full py-8 text-xs uppercase content-container">
+      <nav className="flex items-center justify-between w-full h-full py-5 text-xs uppercase content-container">
         {/* Logo - 最左边 */}
         <div className="flex items-center">
           <LocalizedClientLink
@@ -27,7 +27,7 @@ export default async function Nav() {
             className="flex items-center"
             data-testid="nav-store-link"
           >
-            <img src="/logo.svg" alt="FoodieHan" className="w-auto h-20" />
+            <img src="/logo.svg" alt="FoodieHan" className="w-auto h-14" />
           </LocalizedClientLink>
         </div>
 
@@ -44,17 +44,16 @@ export default async function Nav() {
           <div className="items-center hidden text-sm font-medium small:flex gap-x-8">
             <LocalizedClientLink
               showHoverUnderline={true}
-              underlineColor="red"
+              underlineColor={"var(--color-brand)"}
               href="/"
               data-testid="nav-home-link"
-              className="leading-7"
             >
               Home
             </LocalizedClientLink>
 
             <LocalizedClientLink
               showHoverUnderline={true}
-              underlineColor="red"
+              underlineColor={"var(--color-brand)"}
               href="/about"
               data-testid="nav-about-link"
             >
@@ -63,7 +62,7 @@ export default async function Nav() {
 
             <LocalizedClientLink
               showHoverUnderline={true}
-              underlineColor="red"
+              underlineColor={"var(--color-brand)"}
               href="/online-order"
               data-testid="nav-online-order-link"
             >
@@ -72,6 +71,7 @@ export default async function Nav() {
 
             <LocalizedClientLink
               showHoverUnderline={true}
+              underlineColor={"var(--color-brand)"}
               href="/contact"
               data-testid="nav-contact-link"
             >
