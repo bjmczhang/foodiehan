@@ -19,7 +19,7 @@ export default async function Nav() {
 
   return (
     <NavClient>
-      <nav className="flex items-center justify-between w-full h-full py-2 text-xs uppercase content-container">
+      <nav className="flex items-center justify-between w-full h-full py-8 text-xs uppercase content-container">
         {/* Logo - 最左边 */}
         <div className="flex items-center">
           <LocalizedClientLink
@@ -41,17 +41,20 @@ export default async function Nav() {
             />
           </div>
 
-          <div className="items-center hidden small:flex gap-x-8">
+          <div className="items-center hidden text-sm font-medium small:flex gap-x-8">
             <LocalizedClientLink
-              className="text-[var(--color-text-primary)] hover:text-[var(--color-brand)] transition-colors duration-200"
+              showHoverUnderline={true}
+              underlineColor="red"
               href="/"
               data-testid="nav-home-link"
+              className="leading-7"
             >
               Home
             </LocalizedClientLink>
 
             <LocalizedClientLink
-              className="text-[var(--color-text-primary)] hover:text-[var(--color-brand)] transition-colors duration-200"
+              showHoverUnderline={true}
+              underlineColor="red"
               href="/about"
               data-testid="nav-about-link"
             >
@@ -59,7 +62,8 @@ export default async function Nav() {
             </LocalizedClientLink>
 
             <LocalizedClientLink
-              className="text-[var(--color-text-primary)] hover:text-[var(--color-brand)] transition-colors duration-200"
+              showHoverUnderline={true}
+              underlineColor="red"
               href="/online-order"
               data-testid="nav-online-order-link"
             >
@@ -67,7 +71,7 @@ export default async function Nav() {
             </LocalizedClientLink>
 
             <LocalizedClientLink
-              className="text-[var(--color-text-primary)] hover:text-[var(--color-brand)] transition-colors duration-200"
+              showHoverUnderline={true}
               href="/contact"
               data-testid="nav-contact-link"
             >
