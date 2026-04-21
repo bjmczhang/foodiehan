@@ -6,7 +6,8 @@ import LocalizedClientLink from "../../../common/components/localized-client-lin
 
 const slides = [
   {
-    src: "/images/hero-1.jpg",
+    // video background from public/images
+    video: "/images/hero-video.mp4",
     subtitle: "Artisan Collection",
     title: "Moon Bread",
   },
@@ -181,29 +182,42 @@ const Hero = () => {
         onPointerCancel={pointerUp}
       >
         {extendedSlides.map((slide, i) => (
-          <div
-            key={i}
-            className="relative flex flex-shrink-0 w-full h-full"
-            style={{
-              backgroundImage: `url(${slide.src})`,
-              backgroundSize: "cover",
-              backgroundPosition: "center",
-              backgroundRepeat: "no-repeat",
-            }}
-          >
+          <div key={i} className="relative flex flex-shrink-0 w-full h-full overflow-hidden">
+            {slide.video && (
+              <div className="absolute inset-0 z-0">
+                <video
+                  src={slide.video}
+                  className="absolute inset-0 object-cover w-full h-full pointer-events-none"
+                  autoPlay
+                  loop
+                  muted
+                  playsInline
+                  preload="auto"
+                  style={{ objectPosition: "50% 25%" }}
+                />
+                <div
+                  className="absolute inset-0 pointer-events-none"
+                  style={{ backgroundColor: "rgba(0,0,0,0.4)" }}
+                />
+              </div>
+            )}
+
             {/* Constrain left-side content while background covers full slide */}
-            <div className="w-full h-full content-container">
+            <div className="relative z-20 w-full h-full content-container">
               <div className="flex items-center h-full">
-                <div className="flex flex-col justify-center w-1/2 px-16 gap-y-6 small:px-24">
+                <div className="flex flex-col justify-center w-1/2 gap-y-6">
                   <span className="text-sm uppercase tracking-[0.2em] text-[var(--color-brand)]">
                     {slide.subtitle}
                   </span>
-                  <h1 className="text-5xl font-bold leading-tight text-white small:text-6xl">
+                  <h1
+                    className="text-6xl font-medium leading-tight text-white small:text-7xl"
+                    style={{ fontFamily: "Playfair Display, serif" }}
+                  >
                     {slide.title}
                   </h1>
                   <LocalizedClientLink
                     href="/store"
-                    className="inline-flex items-center justify-center w-fit px-8 py-3 border border-[var(--color-brand)] text-[var(--color-brand)] text-sm uppercase tracking-wider hover:bg-[var(--color-brand)] hover:text-white transition-colors duration-300"
+                    className="inline-flex items-center justify-center w-fit px-8 py-3 bg-[var(--color-brand)] text-white text-sm uppercase tracking-wider rounded-full shadow-sm hover:bg-[var(--color-brand-hover)] transition duration-300 ease-in-out"
                   >
                     Order Now
                   </LocalizedClientLink>
@@ -215,7 +229,7 @@ const Hero = () => {
       </div>
 
       {/* Prev arrow */}
-      <button
+      {/* <button
         onClick={goPrev}
         aria-label="Previous slide"
         className="absolute left-6 top-1/2 -translate-y-1/2 z-10 w-12 h-12 rounded-full border-2 border-[var(--color-brand)] text-[var(--color-brand)] flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity duration-300 hover:bg-[var(--color-brand)] hover:text-white bg-transparent"
@@ -232,10 +246,10 @@ const Hero = () => {
         >
           <polyline points="15 18 9 12 15 6" />
         </svg>
-      </button>
+      </button> */}
 
       {/* Next arrow */}
-      <button
+      {/* <button
         onClick={goNext}
         aria-label="Next slide"
         className="absolute right-6 top-1/2 -translate-y-1/2 z-10 w-12 h-12 rounded-full border-2 border-[var(--color-brand)] text-[var(--color-brand)] flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity duration-300 hover:bg-[var(--color-brand)] hover:text-white bg-transparent"
@@ -252,7 +266,7 @@ const Hero = () => {
         >
           <polyline points="9 6 15 12 9 18" />
         </svg>
-      </button>
+      </button> */}
     </SectionWrapper>
   )
 }
