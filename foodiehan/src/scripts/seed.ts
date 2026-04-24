@@ -193,7 +193,12 @@ export default async function seedDemoData({ container }: ExecArgs) {
     shippingProfile = shippingProfileResult[0];
   }
 
-  const fulfillmentSet = await fulfillmentModuleService.createFulfillmentSets({
+  const existingFulfillmentSets = await fulfillmentModuleService.listFulfillmentSets({
+    name: "European Warehouse delivery",
+  });
+  const fulfillmentSet = existingFulfillmentSets.length
+    ? existingFulfillmentSets[0]
+    : await fulfillmentModuleService.createFulfillmentSets({
     name: "European Warehouse delivery",
     type: "shipping",
     service_zones: [
