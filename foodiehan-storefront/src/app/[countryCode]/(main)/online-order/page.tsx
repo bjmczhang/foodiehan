@@ -49,7 +49,6 @@ export default async function OnlineOrderPage(props: Props) {
   // Fetch products — filtered by category if one is selected
   const queryParams: Record<string, any> = {
     limit: 100,
-    fields: "id,title,description,handle,thumbnail,variants,categories",
   }
   if (categoryId) {
     queryParams.category_id = [categoryId]
