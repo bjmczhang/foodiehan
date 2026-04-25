@@ -34,7 +34,7 @@ export default function NavClient({ children }: NavClientProps) {
   return (
     <div className="sticky inset-x-0 top-0 z-50">
       <header
-        className={`relative h-auto mx-auto transition-transform duration-300 bg-[var(--color-surface)] shadow-sm ${
+        className={`relative h-auto mx-auto transition-transform duration-300 bg-white tracking-wider ${
           isVisible ? "translate-y-0" : "-translate-y-full"
         }`}
       >

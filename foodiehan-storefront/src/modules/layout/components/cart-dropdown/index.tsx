@@ -16,7 +16,7 @@ import LocalizedClientLink from "@modules/common/components/localized-client-lin
 import Thumbnail from "@modules/products/components/thumbnail"
 import { usePathname } from "next/navigation"
 import { Fragment, useEffect, useRef, useState } from "react"
-import { ShoppingCart } from "@medusajs/icons"
+import { ShoppingBag, ShoppingCart } from "@medusajs/icons"
 
 const CartDropdown = ({
   cart: cartState,
@@ -83,13 +83,21 @@ const CartDropdown = ({
       <Popover className="relative h-full">
         <PopoverButton className="h-full">
           <LocalizedClientLink
-            className="flex items-center gap-1 p-2 text-[var(--color-text-primary)] hover:text-[var(--color-brand)] transition-colors duration-200"
+            className="relative flex items-center gap-1 p-2 text-[var(--color-text-primary)] hover:text-[var(--color-brand)] transition-colors duration-200"
             href="/cart"
             data-testid="nav-cart-link"
-            aria-label="Cart"
+            aria-label={`Cart (${totalItems})`}
           >
             <ShoppingCart className="w-5 h-5" />
-            <span className="text-sm">{`(${totalItems})`}</span>
+            {totalItems > 0 ? (
+              <span
+                data-testid="nav-cart-count"
+                className="absolute -top-1 -right-1 inline-flex items-center justify-center w-5 h-5 text-[10px] font-semibold text-white bg-[var(--color-brand)] rounded-full border-2 border-white"
+              >
+                {totalItems}
+              </span>
+            ) : null}
+            <span className="sr-only">{`${totalItems} items in cart`}</span>
           </LocalizedClientLink>
         </PopoverButton>
         <Transition

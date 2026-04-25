@@ -6,8 +6,8 @@ import LocalizedClientLink from "../../../common/components/localized-client-lin
 
 const slides = [
   {
-    // video background from public/images
-    video: "/images/hero-video.mp4",
+    // image background from public/images
+    image: "/images/hero.png",
     subtitle: "Artisan Collection",
     title: "Moon Bread",
   },
@@ -126,7 +126,7 @@ const Hero = () => {
     }
   }, [])
 
-  const wrapperClass = `group relative h-[70vh] w-full border-b border-ui-border-base overflow-hidden bg-[var(--color-bg-darkest)] ${
+  const wrapperClass = `group relative h-[70vh] w-full overflow-hidden bg-white mt-20 ${
     isDragEnabled ? "cursor-grab active:cursor-grabbing" : ""
   }`
 
@@ -183,27 +183,36 @@ const Hero = () => {
       >
         {extendedSlides.map((slide, i) => (
           <div key={i} className="relative flex flex-shrink-0 w-full h-full overflow-hidden">
-            {slide.video && (
-              <div className="absolute inset-0 z-0">
-                <video
-                  src={slide.video}
-                  className="absolute inset-0 object-cover w-full h-full pointer-events-none"
-                  autoPlay
-                  loop
-                  muted
-                  playsInline
-                  preload="auto"
-                  style={{ objectPosition: "50% 25%" }}
-                />
+            {(slide.image ) && (
+              <div className="absolute inset-0 z-0 container-lg">
+            
+                  <img
+                    src={slide.image}
+                    alt={slide.title ?? "Hero"}
+                    className="absolute inset-0 object-cover w-full h-full pointer-events-none"
+                    style={{ objectPosition: "50% 25%" }}
+                  />
+                
+                {/* <video
+                    src={slide.video}
+                    className="absolute inset-0 object-cover w-full h-full pointer-events-none"
+                    autoPlay
+                    loop
+                    muted
+                    playsInline
+                    preload="auto"
+                    style={{ objectPosition: "50% 25%" }}
+                  />
                 <div
                   className="absolute inset-0 pointer-events-none"
                   style={{ backgroundColor: "rgba(0,0,0,0.4)" }}
-                />
+                /> */}
+                
               </div>
             )}
 
             {/* Constrain left-side content while background covers full slide */}
-            <div className="relative z-20 w-full h-full content-container">
+            {/* <div className="relative z-20 w-full h-full content-container">
               <div className="flex items-center h-full">
                 <div className="flex flex-col justify-center w-1/2 gap-y-6">
                   <span className="text-sm uppercase tracking-[0.2em] text-[var(--color-brand)]">
@@ -223,7 +232,7 @@ const Hero = () => {
                   </LocalizedClientLink>
                 </div>
               </div>
-            </div>
+            </div> */}
           </div>
         ))}
       </div>

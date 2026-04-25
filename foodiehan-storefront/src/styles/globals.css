@@ -89,6 +89,54 @@
   .content-container {
     @apply max-w-[1440px] w-full mx-auto px-6;
   }
+  /* Container utilities: multiple sizes and a fluid option */
+  .container {
+    width: 100%;
+    margin-left: auto;
+    margin-right: auto;
+    padding-left: var(--container-padding);
+    padding-right: var(--container-padding);
+    max-width: var(--max-width);
+  }
+
+  .container-sm {
+    @apply w-full px-4 mx-auto;
+    max-width: 640px;
+  }
+
+  .container-md {
+    @apply w-full px-6 mx-auto;
+    max-width: 880px;
+  }
+
+  .container-lg {
+    @apply w-full px-6 mx-auto;
+    max-width: 1200px;
+  }
+
+  .container-xl {
+    @apply w-full px-6 mx-auto;
+    max-width: 1440px;
+  }
+
+  .container-2xl {
+    @apply w-full px-6 mx-auto;
+    max-width: 1536px;
+  }
+
+    .container-3xl {
+    @apply w-full px-6 mx-auto;
+    max-width: 1600px;
+  }
+
+  .container-fluid {
+    @apply w-full;
+    max-width: 100%;
+    margin-left: 0;
+    margin-right: 0;
+    padding-left: 0;
+    padding-right: 0;
+  }
 
   .contrast-btn {
     @apply px-4 py-2 transition-colors duration-200 ease-in border border-black rounded-full hover:bg-black hover:text-white;
