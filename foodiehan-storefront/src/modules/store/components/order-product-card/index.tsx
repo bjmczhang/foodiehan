@@ -151,14 +151,13 @@ export default function OrderProductCard({
         <div className="absolute flex flex-col gap-1 pointer-events-none top-3 left-3">
           {price.isSoldOut && (
             <span
-              className="px-2 py-0.5 text-white"
+              className="px-2 py-0.5 text-white rounded-full"
               style={{
                 fontSize: 10,
                 fontWeight: 700,
                 letterSpacing: "0.12em",
                 textTransform: "uppercase",
                 background: "#333333",
-                borderRadius: 0,
               }}
             >
               Sold out
@@ -282,12 +281,11 @@ export default function OrderProductCard({
         {price.isSoldOut ? (
           <button
             disabled
-            className="w-full mt-2 py-2.5 text-xs font-semibold uppercase tracking-widest"
+            className="w-full mt-2 py-2.5 text-xs font-semibold uppercase tracking-widest rounded-full"
             style={{
               background: "#e5e5e5",
               color: "#999999",
               border: "none",
-              borderRadius: 0,
               cursor: "not-allowed",
               letterSpacing: "0.1em",
             }}
@@ -297,11 +295,9 @@ export default function OrderProductCard({
         ) : hasMultipleVariants ? (
           <a
             href={`/${countryCode}/products/${product.handle}`}
-            className="block w-full mt-2 py-2.5 text-center text-xs font-semibold uppercase tracking-widest text-white transition-colors duration-200"
+            className="block w-full mt-2 py-2.5 text-center text-xs font-semibold uppercase tracking-widest text-white transition-colors duration-200 rounded-full"
             style={{
-              background: "var(--color-brand)",
-              borderRadius: 0,
-              letterSpacing: "0.1em",
+              background: "var(--color-brand)",              letterSpacing: "0.1em",
             }}
             onMouseEnter={(e) =>
               ((e.currentTarget as HTMLElement).style.background = "var(--color-brand-hover)")

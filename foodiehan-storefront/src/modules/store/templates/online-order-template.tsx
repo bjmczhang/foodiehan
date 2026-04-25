@@ -78,7 +78,7 @@ export default function OnlineOrderTemplate({
           padding: "28px 40px 24px",
         }}
       >
-        <div style={{ maxWidth: "var(--max-width, 1100px)", margin: "0 auto" }}>
+        <div className="py-12 small:py-24 content-container">
           {/* Breadcrumb */}
           <nav aria-label="breadcrumbs" style={{ marginBottom: 10 }}>
             <ol className="flex items-center gap-x-2" style={{ listStyle: "none", padding: 0, margin: 0 }}>
@@ -130,11 +130,8 @@ export default function OnlineOrderTemplate({
         style={{ background: "#ffffff", borderColor: "#e5e5e5" }}
       >
         <div
-          className="flex items-center justify-between"
+          className="flex items-center justify-between content-container"
           style={{
-            maxWidth: "var(--max-width, 1100px)",
-            margin: "0 auto",
-            padding: "0 40px",
             height: 52,
           }}
         >
@@ -234,11 +231,8 @@ export default function OnlineOrderTemplate({
 
       {/* ── Main content: sidebar + grid ──────────────────── */}
       <div
-        className="flex gap-8"
+        className="flex gap-8 py-12 small:py-24 content-container"
         style={{
-          maxWidth: "var(--max-width, 1100px)",
-          margin: "0 auto",
-          padding: "40px 40px 80px",
           alignItems: "flex-start",
         }}
       >
