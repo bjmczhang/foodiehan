@@ -220,7 +220,7 @@ const Hero = () => {
                   </span>
                   <h1
                     className="text-6xl font-medium leading-tight text-white small:text-7xl"
-                    style={{ fontFamily: "Playfair Display, serif" }}
+                    style={{ fontFamily: "Rubik, sans-serif" }}
                   >
                     {slide.title}
                   </h1>

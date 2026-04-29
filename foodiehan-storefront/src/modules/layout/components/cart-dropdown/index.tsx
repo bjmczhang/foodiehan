@@ -92,7 +92,7 @@ const CartDropdown = ({
             {totalItems > 0 ? (
               <span
                 data-testid="nav-cart-count"
-                className="absolute -top-1 -right-1 inline-flex items-center justify-center w-5 h-5 text-[10px] font-semibold text-white bg-[var(--color-brand)] rounded-full border-2 border-white"
+                className="absolute -top-3 -right-3 inline-flex items-center justify-center w-7 h-7 text-[0.8rem] font-semibold text-white bg-[var(--color-text-primary)] rounded-full border-2 border-white"
               >
                 {totalItems}
               </span>

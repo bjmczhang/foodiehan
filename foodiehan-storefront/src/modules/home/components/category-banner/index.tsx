@@ -53,7 +53,7 @@ export default function CategoryBanner() {
                 </p>
                 <h3
                   className="text-3xl font-medium leading-tight"
-                  style={{ fontFamily: "'Playfair Display', serif" }}
+                  style={{ fontFamily: "'Rubik', sans-serif" }}
                 >
                   {cat.title}
                 </h3>

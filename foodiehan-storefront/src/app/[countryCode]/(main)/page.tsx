@@ -3,6 +3,7 @@ import { Metadata } from "next"
 import FeaturedProducts from "@modules/home/components/featured-products"
 import Hero from "@modules/home/components/hero"
 import CategoryBanner from "@modules/home/components/category-banner"
+import BrandIntro from "@modules/home/components/brand-intro"
 import BestSellingProducts from "@modules/home/components/best-selling-products"
 import PricingList from "@modules/home/components/pricing-list"
 import { listCollections } from "@lib/data/collections"
@@ -34,6 +35,7 @@ export default async function Home(props: {
   return (
     <>
       <Hero />
+      <BrandIntro />
       <CategoryBanner />
       <BestSellingProducts region={region} />
       <div className="py-12">

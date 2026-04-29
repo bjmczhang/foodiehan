@@ -1,4 +1,4 @@
-@import url('https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400..900;1,400..900&display=swap');
+@import url("https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400..900;1,400..900&display=swap");
 @import "tailwindcss/base";
 @import "tailwindcss/components";
 @import "tailwindcss/utilities";
@@ -25,8 +25,8 @@
   --color-text-faint: #999999;
 
   /* Borders */
-  --color-border: #cccccc;
-  --color-border-dark: #4e4e4e;
+  --color-border: #4e4e4e;
+  --color-border-dark: #1d1d1d;
 
   /* Layout */
   --max-width: 1100px;
@@ -124,7 +124,7 @@
     max-width: 1536px;
   }
 
-    .container-3xl {
+  .container-3xl {
     @apply w-full px-6 mx-auto;
     max-width: 1600px;
   }
