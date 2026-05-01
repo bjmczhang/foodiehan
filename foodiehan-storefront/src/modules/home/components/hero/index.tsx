@@ -7,7 +7,7 @@ import LocalizedClientLink from "../../../common/components/localized-client-lin
 const slides = [
   {
     // image background from public/images
-    image: "/images/hero.png",
+    image: "/images/hero.jpg",
     subtitle: "Artisan Collection",
     title: "Moon Bread",
   },
@@ -182,17 +182,19 @@ const Hero = () => {
         onPointerCancel={pointerUp}
       >
         {extendedSlides.map((slide, i) => (
-          <div key={i} className="relative flex flex-shrink-0 w-full h-full overflow-hidden">
-            {(slide.image ) && (
+          <div
+            key={i}
+            className="relative flex flex-shrink-0 w-full h-full overflow-hidden"
+          >
+            {slide.image && (
               <div className="absolute inset-0 z-0 container-lg">
-            
-                  <img
-                    src={slide.image}
-                    alt={slide.title ?? "Hero"}
-                    className="absolute inset-0 object-cover w-full h-full pointer-events-none"
-                    style={{ objectPosition: "50% 25%" }}
-                  />
-                
+                <img
+                  src={slide.image}
+                  alt={slide.title ?? "Hero"}
+                  className="absolute inset-0 object-cover w-full h-full pointer-events-none"
+                  style={{ objectPosition: "50% 25%" }}
+                />
+
                 {/* <video
                     src={slide.video}
                     className="absolute inset-0 object-cover w-full h-full pointer-events-none"
@@ -207,7 +209,6 @@ const Hero = () => {
                   className="absolute inset-0 pointer-events-none"
                   style={{ backgroundColor: "rgba(0,0,0,0.4)" }}
                 /> */}
-                
               </div>
             )}
 

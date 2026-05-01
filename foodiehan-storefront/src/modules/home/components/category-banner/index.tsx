@@ -16,7 +16,7 @@ const categories = [
   },
   {
     subtitle: "Morning Favourites",
-    title: "Croissants",
+    title: "Korean kimchi",
     image: "/images/category-kimchi.jpeg",
     href: "/categories/croissants",
   },
@@ -34,7 +34,7 @@ export default function CategoryBanner() {
       <div className="grid grid-cols-2 gap-6 small:grid-cols-4">
         {categories.map((cat) => (
           <LocalizedClientLink key={cat.title} href={cat.href}>
-            <div className="relative overflow-hidden rounded cursor-pointer group aspect-square ">
+            <div className="relative overflow-hidden cursor-pointer group aspect-square ">
               {/* Image — scales on hover, clipped by parent overflow-hidden */}
               <Image
                 src={cat.image}
