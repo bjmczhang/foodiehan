@@ -57,7 +57,7 @@ export default function CategoryBanner() {
                 >
                   {cat.title}
                 </h3>
-                <button className="inline-block px-6 py-3 text-xs tracking-wider uppercase bg-[var(--color-brand)] text-white rounded-full mt-4 hover:bg-[var(--color-brand-hover)] transition-colors duration-300">
+                <button className="inline-block px-6 py-3 text-xs tracking-widest uppercase bg-[var(--color-surface)] text-[var(--color-text-primary)] mt-4 hover:bg-[var(--color-surface-off)] transition-colors duration-300">
                   Shop Now
                 </button>
               </div>
