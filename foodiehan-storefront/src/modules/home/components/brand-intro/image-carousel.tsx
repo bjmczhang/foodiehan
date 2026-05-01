@@ -26,10 +26,8 @@ export default function ImageCarousel({ images }: ImageCarouselProps) {
   ]
 
   const [slideWidth, setSlideWidth] = useState(0)
-  const [centerOffset, setCenterOffset] = useState(0)
 
   const currentIndex = useRef(0)
-  const isResetting = useRef(false)
 
   useEffect(() => {
     const calc = () => {
@@ -38,9 +36,7 @@ export default function ImageCarousel({ images }: ImageCarouselProps) {
       const w = el.offsetWidth
       const v = w < 1024 ? 2 : 3
       const totalGap = (v - 1) * GAP
-      const sw = (w - totalGap) / v
-      setSlideWidth(sw)
-      setCenterOffset((w - sw) / 2)
+      setSlideWidth((w - totalGap) / v)
     }
     calc()
     window.addEventListener("resize", calc)
@@ -48,36 +44,34 @@ export default function ImageCarousel({ images }: ImageCarouselProps) {
   }, [])
 
   useEffect(() => {
-    currentTranslate.current = centerOffset
-    prevTranslate.current = centerOffset
+    currentTranslate.current = 0
+    prevTranslate.current = 0
     currentIndex.current = 0
     if (trackRef.current) {
       trackRef.current.style.transition = "none"
-      trackRef.current.style.transform = `translate3d(${centerOffset}px, 0, 0)`
+      trackRef.current.style.transform = "translate3d(0px, 0, 0)"
     }
-  }, [slideWidth, centerOffset])
+  }, [slideWidth])
 
   // ---- infinite-loop reset after transition ----
   useEffect(() => {
     const track = trackRef.current
     if (!track) return
 
+    const unit = slideWidth + GAP
+
     const onTransitionEnd = () => {
       const idx = currentIndex.current
       const len = images.length
       if (idx < 0) {
-        isResetting.current = true
         currentIndex.current = idx + len
-        currentTranslate.current =
-          centerOffset - currentIndex.current * (slideWidth + GAP)
+        currentTranslate.current = -currentIndex.current * unit
         track.style.transition = "none"
         track.style.transform = `translate3d(${currentTranslate.current}px, 0, 0)`
         prevTranslate.current = currentTranslate.current
       } else if (idx >= len) {
-        isResetting.current = true
         currentIndex.current = idx - len
-        currentTranslate.current =
-          centerOffset - currentIndex.current * (slideWidth + GAP)
+        currentTranslate.current = -currentIndex.current * unit
         track.style.transition = "none"
         track.style.transform = `translate3d(${currentTranslate.current}px, 0, 0)`
         prevTranslate.current = currentTranslate.current
@@ -86,7 +80,7 @@ export default function ImageCarousel({ images }: ImageCarouselProps) {
 
     track.addEventListener("transitionend", onTransitionEnd)
     return () => track.removeEventListener("transitionend", onTransitionEnd)
-  }, [images.length, slideWidth, centerOffset, GAP])
+  }, [images.length, slideWidth, GAP])
 
   const setTransform = (x: number, animate: boolean) => {
     if (!trackRef.current) return
@@ -127,7 +121,7 @@ export default function ImageCarousel({ images }: ImageCarouselProps) {
     }
 
     const unit = slideWidth + GAP
-    const rawIdx = (centerOffset - currentTranslate.current) / unit
+    const rawIdx = -currentTranslate.current / unit
     let idx = Math.round(rawIdx)
 
     const minIdx = -clones
@@ -135,7 +129,7 @@ export default function ImageCarousel({ images }: ImageCarouselProps) {
     idx = Math.max(minIdx, Math.min(maxIdx, idx))
 
     currentIndex.current = idx
-    currentTranslate.current = centerOffset - idx * unit
+    currentTranslate.current = -idx * unit
     setTransform(currentTranslate.current, true)
 
     try {
