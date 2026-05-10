@@ -5,6 +5,7 @@ import Hero from "@modules/home/components/hero"
 import CategoryBanner from "@modules/home/components/category-banner"
 import BrandIntro from "@modules/home/components/brand-intro"
 import BestSellingProducts from "@modules/home/components/best-selling-products"
+import BrandFeatures from "@modules/home/components/brand-features"
 import PricingList from "@modules/home/components/pricing-list"
 import { listCollections } from "@lib/data/collections"
 import { getRegion } from "@lib/data/regions"
@@ -43,6 +44,7 @@ export default async function Home(props: {
           <FeaturedProducts collections={collections} region={region} />
         </ul>
       </div>
+      <BrandFeatures />
       <PricingList region={region} />
     </>
   )

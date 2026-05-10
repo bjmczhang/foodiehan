@@ -25,11 +25,19 @@ function getFirstVariantPrice(product: HttpTypes.StoreProduct): {
 
   const variant = variants[0] as any
   if (!variant?.calculated_price?.calculated_amount) {
-    return { calculated: null, original: null, isOnSale: false, isSoldOut: !inStock }
+    return {
+      calculated: null,
+      original: null,
+      isOnSale: false,
+      isSoldOut: !inStock,
+    }
   }
   const code = variant.calculated_price.currency_code?.toUpperCase() ?? "AUD"
   const fmt = (n: number) =>
-    new Intl.NumberFormat("en-AU", { style: "currency", currency: code }).format(n / 100)
+    new Intl.NumberFormat("en-AU", {
+      style: "currency",
+      currency: code,
+    }).format(n / 100)
   const calc = variant.calculated_price.calculated_amount
   const orig = variant.calculated_price.original_amount
   return {
@@ -41,9 +49,18 @@ function getFirstVariantPrice(product: HttpTypes.StoreProduct): {
 }
 
 /** Five-star display — static placeholder since we have no ratings data yet */
-function StarRating({ count = 5, filled = 5 }: { count?: number; filled?: number }) {
+function StarRating({
+  count = 5,
+  filled = 5,
+}: {
+  count?: number
+  filled?: number
+}) {
   return (
-    <div className="flex items-center gap-x-0.5" aria-label={`${filled} out of ${count} stars`}>
+    <div
+      className="flex items-center gap-x-0.5"
+      aria-label={`${filled} out of ${count} stars`}
+    >
       {Array.from({ length: count }).map((_, i) => (
         <svg
           key={i}
@@ -95,23 +112,17 @@ export default function OrderProductCard({
   }
 
   return (
-    <article
+    <section
       className="flex flex-col overflow-hidden bg-white group"
       style={{
         borderRadius: "var(--product-card-corner-radius, 0)",
-        boxShadow: "0 1px 3px rgba(0,0,0,0.07)",
-        transition: "box-shadow 0.2s ease",
       }}
-      onMouseEnter={(e) =>
-        ((e.currentTarget as HTMLElement).style.boxShadow = "0 4px 16px rgba(0,0,0,0.12)")
-      }
-      onMouseLeave={(e) =>
-        ((e.currentTarget as HTMLElement).style.boxShadow = "0 1px 3px rgba(0,0,0,0.07)")
-      }
     >
       {/* ── Image area (1:1 square like ChaTime) ── */}
-      <div className="relative overflow-hidden" style={{ paddingBottom: "100%", height: 0 }}>
-
+      <div
+        className="relative overflow-hidden"
+        style={{ paddingBottom: "100%", height: 0 }}
+      >
         {/* Link wrapper fills the padded box */}
         <a
           href={`/${countryCode}/products/${product.handle}`}
@@ -205,8 +216,7 @@ export default function OrderProductCard({
       </div>
 
       {/* ── Card content ── */}
-      <div className="flex flex-col flex-1 p-4 gap-y-1.5">
-
+      <div className="flex flex-col flex-1 py-4 gap-y-1.5">
         {/* Star rating */}
         <div className="flex items-center gap-x-1.5">
           <StarRating filled={5} />
@@ -281,30 +291,14 @@ export default function OrderProductCard({
         {price.isSoldOut ? (
           <button
             disabled
-            className="w-full mt-2 py-2.5 text-xs font-semibold uppercase tracking-widest rounded-full"
-            style={{
-              background: "#e5e5e5",
-              color: "#999999",
-              border: "none",
-              cursor: "not-allowed",
-              letterSpacing: "0.1em",
-            }}
+            className="w-full mt-2 py-4 text-xs font-semibold uppercase tracking-widest border border-[var(--color-text-faint)] text-[var(--color-text-faint)] bg-transparent cursor-not-allowed"
           >
             Sold Out
           </button>
         ) : hasMultipleVariants ? (
           <a
             href={`/${countryCode}/products/${product.handle}`}
-            className="block w-full mt-2 py-2.5 text-center text-xs font-semibold uppercase tracking-widest text-white transition-colors duration-200 rounded-full"
-            style={{
-              background: "var(--color-brand)",              letterSpacing: "0.1em",
-            }}
-            onMouseEnter={(e) =>
-              ((e.currentTarget as HTMLElement).style.background = "var(--color-brand-hover)")
-            }
-            onMouseLeave={(e) =>
-              ((e.currentTarget as HTMLElement).style.background = "var(--color-brand)")
-            }
+            className="block w-full mt-2 py-4 text-center text-xs font-semibold uppercase tracking-widest border border-[var(--color-text-primary)] text-[var(--color-text-primary)] bg-transparent hover:bg-[var(--color-text-primary)] hover:text-white transition-colors duration-200 cursor-pointer"
           >
             Select Options
           </a>
@@ -312,26 +306,14 @@ export default function OrderProductCard({
           <button
             onClick={handleAddToCart}
             disabled={isAdding || !firstVariantId}
-            className="w-full mt-2 py-2.5 text-xs font-semibold uppercase tracking-widest text-white transition-colors duration-200 disabled:opacity-50 disabled:cursor-not-allowed"
-            style={{
-              background: "var(--color-brand)",
-              border: "none",
-              borderRadius: 0,
-              letterSpacing: "0.1em",
-              cursor: isAdding ? "wait" : "pointer",
-            }}
-            onMouseEnter={(e) => {
-              if (!isAdding)
-                (e.currentTarget as HTMLElement).style.background = "var(--color-brand-hover)"
-            }}
-            onMouseLeave={(e) => {
-              ;(e.currentTarget as HTMLElement).style.background = "var(--color-brand)"
-            }}
+            className={`block w-full mt-2 py-4 text-center text-xs font-semibold uppercase tracking-widest border border-[var(--color-text-primary)] text-[var(--color-text-primary)] bg-transparent hover:bg-[var(--color-text-primary)] hover:text-white transition-colors duration-200 disabled:opacity-50 disabled:cursor-not-allowed ${
+              isAdding ? "cursor-wait" : "cursor-pointer"
+            }`}
           >
             {isAdding ? "Adding…" : "Add to Cart"}
           </button>
         )}
       </div>
-    </article>
+    </section>
   )
 }

@@ -35,7 +35,7 @@
   /* Typography */
   --line-height-body: 30px;
 
-  --product-card-corner-radius: 4px;
+  --product-card-corner-radius: 0;
 }
 
 @layer utilities {

@@ -48,7 +48,7 @@ export default function BrandIntro() {
         <div className="flex flex-col items-center">
           <LocalizedClientLink
             href="/store"
-            className="inline-flex items-center justify-center px-9 py-5 border-2 border-[var(--color-border-dark)] uppercase tracking-wider hover:bg-[var(--color-border-dark)] hover:text-white transition duration-300 ease-in-out"
+            className="inline-flex items-center justify-center px-9 py-5 border-2 border-[var(--color-border-dark)] bg-[var(--color-border-dark)] text-white uppercase tracking-wider hover:bg-transparent hover:text-[var(--color-border-dark)] transition duration-300 ease-in-out"
           >
             Discover
           </LocalizedClientLink>

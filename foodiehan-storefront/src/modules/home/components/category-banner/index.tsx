@@ -30,41 +30,49 @@ const categories = [
 
 export default function CategoryBanner() {
   return (
-    <section className="py-12 small:py-24 content-container">
-      <div className="grid grid-cols-2 gap-6 small:grid-cols-4">
-        {categories.map((cat) => (
-          <LocalizedClientLink key={cat.title} href={cat.href}>
-            <div className="relative overflow-hidden cursor-pointer group aspect-square ">
-              {/* Image — scales on hover, clipped by parent overflow-hidden */}
-              <Image
-                src={cat.image}
-                alt={cat.title}
-                fill
-                className="object-cover transition-transform duration-500 ease-in-out group-hover:scale-105"
-              />
+    <div style={{ backgroundImage: "url('/images/background1.jpg')" }}>
+      <section
+        className="py-12 small:py-24 content-container"
+        style={{
+          backgroundSize: "cover",
+          backgroundPosition: "center",
+        }}
+      >
+        <div className="grid grid-cols-2 gap-6 small:grid-cols-4">
+          {categories.map((cat) => (
+            <LocalizedClientLink key={cat.title} href={cat.href}>
+              <div className="relative overflow-hidden cursor-pointer group aspect-square ">
+                {/* Image — scales on hover, clipped by parent overflow-hidden */}
+                <Image
+                  src={cat.image}
+                  alt={cat.title}
+                  fill
+                  className="object-cover transition-transform duration-500 ease-in-out group-hover:scale-105"
+                />
 
-              {/* 40% black overlay */}
-              <div className="absolute inset-0 bg-black/40" />
+                {/* 40% black overlay */}
+                <div className="absolute inset-0 bg-black/40" />
 
-              {/* Centered text content */}
-              <div className="absolute inset-0 flex flex-col items-center justify-end p-10 text-center text-white">
-                <p className="text-xs font-light tracking-widest opacity-90">
-                  {cat.subtitle}
-                </p>
-                <h3
-                  className="text-3xl font-medium leading-tight"
-                  style={{ fontFamily: "'Rubik', sans-serif" }}
-                >
-                  {cat.title}
-                </h3>
-                <button className="inline-block px-6 py-3 text-xs tracking-widest uppercase bg-[var(--color-surface)] text-[var(--color-text-primary)] mt-4 hover:bg-[var(--color-surface-off)] transition-colors duration-300">
-                  Shop Now
-                </button>
+                {/* Centered text content */}
+                <div className="absolute inset-0 flex flex-col items-center justify-end p-10 text-center text-white">
+                  <p className="text-xs font-light tracking-widest opacity-90">
+                    {cat.subtitle}
+                  </p>
+                  <h3
+                    className="text-3xl font-medium leading-tight"
+                    style={{ fontFamily: "'Rubik', sans-serif" }}
+                  >
+                    {cat.title}
+                  </h3>
+                  <button className="inline-block px-6 py-3 text-xs tracking-widest uppercase bg-[var(--color-surface)] text-[var(--color-text-primary)] mt-4 hover:bg-[var(--color-surface-off)] transition-colors duration-300">
+                    Shop Now
+                  </button>
+                </div>
               </div>
-            </div>
-          </LocalizedClientLink>
-        ))}
-      </div>
-    </section>
+            </LocalizedClientLink>
+          ))}
+        </div>
+      </section>
+    </div>
   )
 }
