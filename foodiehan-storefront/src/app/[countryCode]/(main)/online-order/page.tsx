@@ -6,30 +6,24 @@ import OnlineOrderTemplate from "@modules/store/templates/online-order-template"
 import { notFound } from "next/navigation"
 
 export const metadata: Metadata = {
-  title: "Online Order | FoodieHan",
-  description: "Order fresh artisan baked goods and Asian delights online.",
+  title: "Full Menu | FoodieHan",
+  description:
+    "Browse our full menu of fresh artisan baked goods and Asian delights.",
 }
 
 type Props = {
   params: Promise<{ countryCode: string }>
-  searchParams: Promise<{ category?: string }>
 }
 
 export default async function OnlineOrderPage(props: Props) {
-  const [params, searchParams] = await Promise.all([
-    props.params,
-    props.searchParams,
-  ])
-
-  const { countryCode } = params
-  const activeCategoryHandle = searchParams.category ?? null
+  const { countryCode } = (await props.params)
 
   const region = await getRegion(countryCode)
   if (!region) {
     return notFound()
   }
 
-  // Fetch top-level categories (no parent) for the filter tabs
+  // Fetch top-level categories
   const allCategories = await listCategories({ parent_category_id: "null" })
   const categories = (allCategories ?? []).map((c: any) => ({
     id: c.id,
@@ -37,36 +31,20 @@ export default async function OnlineOrderPage(props: Props) {
     handle: c.handle,
   }))
 
-  // Find category id to filter products when a category tab is active
-  let categoryId: string | undefined
-  if (activeCategoryHandle) {
-    const found = (allCategories ?? []).find(
-      (c: any) => c.handle === activeCategoryHandle
-    )
-    categoryId = found?.id
-  }
-
-  // Fetch products — filtered by category if one is selected
-  const queryParams: Record<string, any> = {
-    limit: 100,
-  }
-  if (categoryId) {
-    queryParams.category_id = [categoryId]
-  }
-
+  // Fetch ALL products (no category filter) — include categories so the
+  // client can group them into sections.
   const {
     response: { products },
   } = await listProducts({
     regionId: region.id,
-    queryParams,
+    queryParams: {
+      limit: 100,
+      fields:
+        "*variants.calculated_price,+variants.inventory_quantity,*variants.images,+metadata,+tags,*categories",
+    },
   })
 
   return (
-    <OnlineOrderTemplate
-      categories={categories}
-      products={products}
-      regionId={region.id}
-      activeCategoryHandle={activeCategoryHandle}
-    />
+    <OnlineOrderTemplate categories={categories} products={products} />
   )
 }
