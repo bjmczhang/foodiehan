@@ -14,10 +14,7 @@ const faqs: FaqItem[] = [
       <>
         You can find detailed ingredient lists and nutritional information on
         each product&apos;s description page. Browse our{" "}
-        <a
-          href="/store"
-          className="text-[var(--color-brand)] hover:underline"
-        >
+        <a href="/store" className="text-[var(--color-brand)] hover:underline">
           product range
         </a>{" "}
         to learn more. If you still have questions, feel free to send us an
@@ -166,7 +163,7 @@ export default function FaqSection() {
   }
 
   return (
-    <div className="max-w-3xl mx-auto">
+    <div className="mx-auto">
       <h2 className="mb-2 text-2xl font-semibold text-center text-[var(--color-text-primary)]">
         Frequently Asked Questions
       </h2>

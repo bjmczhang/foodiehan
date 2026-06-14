@@ -82,7 +82,7 @@ export default function ProductTabs({
       </div>
 
       {/* ── Product grid (4 cols × 2 rows) ── */}
-      <ul className="grid grid-cols-2 small:grid-cols-3 medium:grid-cols-4 gap-x-6 gap-y-8 small:gap-y-12">
+      <ul className="grid grid-cols-2 small:grid-cols-4 gap-x-6 gap-y-8 small:gap-y-12">
         {products.map((product) => (
           <li key={product.id}>
             <OrderProductCard product={product} regionId={regionId} />

@@ -26,7 +26,9 @@ export default function ContactForm() {
   const [errorMessage, setErrorMessage] = useState("")
 
   const handleChange = (
-    e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement | HTMLSelectElement>
+    e: React.ChangeEvent<
+      HTMLInputElement | HTMLTextAreaElement | HTMLSelectElement
+    >
   ) => {
     const { name, value } = e.target
     setFormData((prev) => ({ ...prev, [name]: value }))
@@ -55,14 +57,17 @@ export default function ContactForm() {
     } catch (err) {
       setStatus("error")
       setErrorMessage(
-        err instanceof Error ? err.message : "Something went wrong. Please try again."
+        err instanceof Error
+          ? err.message
+          : "Something went wrong. Please try again."
       )
     }
   }
 
   const inputClasses =
     "w-full px-4 py-3 text-sm border rounded-md transition-colors duration-200 focus:outline-none focus:ring-2 focus:ring-[var(--color-brand)] focus:border-transparent"
-  const labelClasses = "block mb-1.5 text-sm font-medium text-[var(--color-text-primary)]"
+  const labelClasses =
+    "block mb-1.5 text-sm font-medium text-[var(--color-text-primary)]"
 
   if (status === "success") {
     return (
@@ -171,7 +176,7 @@ export default function ContactForm() {
         </div>
 
         {/* Store Location */}
-        <div>
+        {/* <div>
           <label htmlFor="contact-storeLocation" className={labelClasses}>
             Store Location
           </label>
@@ -192,7 +197,7 @@ export default function ContactForm() {
             <option value="chatswood">Chatswood</option>
             <option value="parramatta">Parramatta</option>
           </select>
-        </div>
+        </div> */}
 
         {/* Message */}
         <div>
