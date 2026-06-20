@@ -13,7 +13,7 @@
     "medusa"
   ],
   "scripts": {
-    "build": "medusa build",
+    "build": "medusa build && node -e \"const fs=require('fs');const p=require('path');const s=p.join('.medusa','server','public','admin');const d=p.join('public','admin');if(fs.existsSync(s)){fs.cpSync(s,d,{recursive:true});console.log('Admin assets copied to public/admin')}\"",
     "seed": "medusa exec ./src/scripts/seed.ts",
     "seed:foodiehan": "medusa exec ./src/scripts/seed-foodiehan.ts",
     "start": "medusa start",
