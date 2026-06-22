@@ -3,25 +3,26 @@
 @import "tailwindcss/components";
 @import "tailwindcss/utilities";
 
-/* Design tokens (from Crouton / Baker styleguide) */
+/* Design tokens — Laurent Bakery inspired warm palette */
 :root {
   /* Brand */
-  --color-brand: #f68f1e;
-  --color-brand-hover: #ea8316;
+  --color-brand: #c49a6c;
+  --color-brand-hover: #b0885e;
 
   /* Background / surfaces */
+  --color-bg-primary: #fdfbf7;
   --color-bg-black: #090909;
   --color-bg-darkest: #000000;
-  --color-bg-darker: #232323;
-  --color-bg-dark: #303030;
+  --color-bg-darker: #151010;
+  --color-bg-dark: #1e1810;
   --color-surface: #f0edea;
   --color-surface-off: #e4dbd2;
 
   /* Text */
-  --color-text-primary: #111010;
-  --color-text-secondary: #666666;
-  --color-text-muted: #8d8d8d;
-  --color-text-light: #cccccc;
+  --color-text-primary: #2c2416;
+  --color-text-secondary: #5c5245;
+  --color-text-muted: #8b8075;
+  --color-text-light: #f5f0eb;
   --color-text-faint: #999999;
 
   /* Borders */
@@ -36,6 +37,12 @@
   --line-height-body: 30px;
 
   --product-card-corner-radius: 0;
+}
+
+/* Set page background to warm cream */
+body {
+  background-color: var(--color-bg-primary);
+  color: var(--color-text-primary);
 }
 
 @layer utilities {
@@ -140,6 +147,26 @@
 
   .contrast-btn {
     @apply px-4 py-2 transition-colors duration-200 ease-in border border-black rounded-full hover:bg-black hover:text-white;
+  }
+
+  /* Laurent-style buttons */
+  .btn-brand-filled {
+    @apply inline-flex items-center justify-center px-9 py-3.5 text-sm font-medium text-white uppercase tracking-[0.15em] rounded-full transition-all duration-300 ease-in-out;
+    background-color: var(--color-brand);
+  }
+  .btn-brand-filled:hover {
+    background-color: var(--color-brand-hover);
+  }
+
+  .btn-brand-outline {
+    @apply inline-flex items-center justify-center px-8 py-3 text-sm font-medium uppercase tracking-[0.15em] border rounded-full transition-all duration-300 ease-in-out;
+    color: var(--color-brand);
+    border-color: var(--color-brand);
+    background-color: transparent;
+  }
+  .btn-brand-outline:hover {
+    background-color: var(--color-brand);
+    color: #fff;
   }
 
   .text-xsmall-regular {

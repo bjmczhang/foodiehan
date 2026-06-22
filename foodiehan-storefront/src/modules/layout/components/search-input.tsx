@@ -22,7 +22,7 @@ export default function SearchInput() {
         placeholder="SEARCH"
         value={q}
         onChange={(e) => setQ(e.target.value)}
-        className="text-[var(--color-text-primary)] placeholder:text-[var(--color-text-muted)] bg-transparent border-b border-[var(--color-border)] px-3 py-2 w-48 transition-colors duration-200 focus:outline-none"
+        className="text-current placeholder:text-current/40 bg-transparent border-b border-current/30 px-3 py-2 w-48 transition-colors duration-200 focus:outline-none"
       />
     </form>
   )

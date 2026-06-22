@@ -1,283 +1,76 @@
 "use client"
 
-import React, { useEffect, useRef, useState } from "react"
-import SectionWrapper from "../../../common/components/section-wrapper"
-import LocalizedClientLink from "../../../common/components/localized-client-link"
-
-const slides = [
-  {
-    // image background from public/images
-    image: "/images/hero.jpg",
-    subtitle: "Artisan Collection",
-    title: "Moon Bread",
-  },
-]
-
-const VISIBLE = 1
+import LocalizedClientLink from "@modules/common/components/localized-client-link"
 
 const Hero = () => {
-  const clones = 1
-  const s = slides.length
-  const extendedSlides = [
-    ...slides.slice(-clones),
-    ...slides,
-    ...slides.slice(0, clones),
-  ]
-
-  const containerRef = useRef<HTMLDivElement | null>(null)
-  const trackRef = useRef<HTMLDivElement | null>(null)
-
-  const startX = useRef(0)
-  const currentTranslate = useRef(0)
-  const prevTranslate = useRef(0)
-  const animationRef = useRef<number | null>(null)
-  const isDraggingRef = useRef(false)
-  const isDragEnabledRef = useRef(false)
-  const [isDragEnabled, setIsDragEnabled] = useState(false)
-
-  const initialInternal = clones
-  const [internalIndex, setInternalIndex] = useState(initialInternal)
-  const internalIndexRef = useRef(initialInternal)
-  const isResettingRef = useRef(false)
-
-  const setInternalIndexWrapped = (v: number) => {
-    internalIndexRef.current = v
-    setInternalIndex(v)
-  }
-
-  const setTranslate = (translate: number, withTransition = false) => {
-    if (!trackRef.current) return
-    trackRef.current.style.transition = withTransition
-      ? "transform 500ms cubic-bezier(.58,.3,.005,1)"
-      : "none"
-    trackRef.current.style.transform = `translateX(${translate}px)`
-  }
-
-  const animationLoop = () => {
-    setTranslate(currentTranslate.current)
-    if (isDraggingRef.current) {
-      animationRef.current = requestAnimationFrame(animationLoop)
-    }
-  }
-
-  const pointerDown = (e: React.PointerEvent<HTMLDivElement>) => {
-    if (!isDragEnabledRef.current) return
-
-    isDraggingRef.current = true
-    startX.current = e.clientX
-    containerRef.current?.setPointerCapture(e.pointerId)
-    animationRef.current = requestAnimationFrame(animationLoop)
-  }
-
-  const pointerMove = (e: React.PointerEvent<HTMLDivElement>) => {
-    if (!isDraggingRef.current) return
-    currentTranslate.current =
-      prevTranslate.current + (e.clientX - startX.current)
-  }
-
-  const pointerUp = (e: React.PointerEvent<HTMLDivElement>) => {
-    if (!isDragEnabledRef.current) return
-
-    isDraggingRef.current = false
-    if (animationRef.current) {
-      cancelAnimationFrame(animationRef.current)
-      animationRef.current = null
-    }
-    const width = containerRef.current?.offsetWidth ?? 0
-    const slideWidth = width / VISIBLE
-    const movedBy = currentTranslate.current - prevTranslate.current
-    const threshold = slideWidth / 4
-
-    if (movedBy < -threshold) {
-      setInternalIndexWrapped(internalIndexRef.current + 1)
-    } else if (movedBy > threshold) {
-      setInternalIndexWrapped(internalIndexRef.current - 1)
-    } else {
-      setTranslate(prevTranslate.current, true)
-    }
-
-    try {
-      containerRef.current?.releasePointerCapture(e.pointerId)
-    } catch (_) {}
-  }
-
-  const goNext = () => setInternalIndexWrapped(internalIndexRef.current + 1)
-  const goPrev = () => setInternalIndexWrapped(internalIndexRef.current - 1)
-
-  useEffect(() => {
-    if (typeof window === "undefined") return
-
-    const mq = window.matchMedia?.("(pointer: coarse)")
-    const update = (matches?: boolean) => {
-      const enabled =
-        typeof matches === "boolean" ? matches : mq?.matches ?? false
-      isDragEnabledRef.current = enabled
-      setIsDragEnabled(enabled)
-    }
-
-    update()
-    const handler = (e: MediaQueryListEvent) => update(e.matches)
-    if (mq?.addEventListener) mq.addEventListener("change", handler)
-    else if (mq?.addListener) mq.addListener(handler)
-
-    return () => {
-      if (mq?.removeEventListener) mq.removeEventListener("change", handler)
-      else if (mq?.removeListener) mq.removeListener(handler)
-    }
-  }, [])
-
-  const wrapperClass = `group relative h-[70vh] w-full overflow-hidden bg-white mt-20 ${
-    isDragEnabled ? "cursor-grab active:cursor-grabbing" : ""
-  }`
-
-  useEffect(() => {
-    const update = () => {
-      const width = containerRef.current?.offsetWidth ?? 0
-      const slideWidth = width / VISIBLE
-      prevTranslate.current = -internalIndexRef.current * slideWidth
-      currentTranslate.current = prevTranslate.current
-      setTranslate(prevTranslate.current, !isResettingRef.current)
-      if (isResettingRef.current) isResettingRef.current = false
-    }
-    window.addEventListener("resize", update)
-    update()
-    return () => window.removeEventListener("resize", update)
-  }, [internalIndex])
-
-  useEffect(() => {
-    const node = trackRef.current
-    if (!node) return
-    const handleTransitionEnd = () => {
-      if (internalIndexRef.current >= clones + s) {
-        const corrected = internalIndexRef.current - s
-        isResettingRef.current = true
-        internalIndexRef.current = corrected
-        setInternalIndex(corrected)
-      } else if (internalIndexRef.current < clones) {
-        const corrected = internalIndexRef.current + s
-        isResettingRef.current = true
-        internalIndexRef.current = corrected
-        setInternalIndex(corrected)
-      }
-    }
-    node.addEventListener("transitionend", handleTransitionEnd)
-    return () => node.removeEventListener("transitionend", handleTransitionEnd)
-  }, [clones, s])
-
   return (
-    <SectionWrapper
-      as="div"
-      rootRef={containerRef}
-      padded={false}
-      className={wrapperClass}
-      containerClassName="w-full h-full"
-    >
-      {/* Slide track */}
-      <div
-        ref={trackRef}
-        className="flex h-full select-none will-change-transform"
-        onPointerDown={pointerDown}
-        onPointerMove={pointerMove}
-        onPointerUp={pointerUp}
-        onPointerCancel={pointerUp}
-      >
-        {extendedSlides.map((slide, i) => (
-          <div
-            key={i}
-            className="relative flex flex-shrink-0 w-full h-full overflow-hidden"
-          >
-            {slide.image && (
-              <div className="absolute inset-0 z-0 container-lg">
-                <img
-                  src={slide.image}
-                  alt={slide.title ?? "Hero"}
-                  className="absolute inset-0 object-cover w-full h-full pointer-events-none"
-                  style={{ objectPosition: "50% 25%" }}
-                />
-
-                {/* <video
-                    src={slide.video}
-                    className="absolute inset-0 object-cover w-full h-full pointer-events-none"
-                    autoPlay
-                    loop
-                    muted
-                    playsInline
-                    preload="auto"
-                    style={{ objectPosition: "50% 25%" }}
-                  />
-                <div
-                  className="absolute inset-0 pointer-events-none"
-                  style={{ backgroundColor: "rgba(0,0,0,0.4)" }}
-                /> */}
-              </div>
-            )}
-
-            {/* Constrain left-side content while background covers full slide */}
-            {/* <div className="relative z-20 w-full h-full content-container">
-              <div className="flex items-center h-full">
-                <div className="flex flex-col justify-center w-1/2 gap-y-6">
-                  <span className="text-sm uppercase tracking-[0.2em] text-[var(--color-brand)]">
-                    {slide.subtitle}
-                  </span>
-                  <h1
-                    className="text-6xl font-medium leading-tight text-white small:text-7xl"
-                    style={{ fontFamily: "Rubik, sans-serif" }}
-                  >
-                    {slide.title}
-                  </h1>
-                  <LocalizedClientLink
-                    href="/store"
-                    className="inline-flex items-center justify-center w-fit px-8 py-3 bg-[var(--color-brand)] text-white text-sm uppercase tracking-wider rounded-full shadow-sm hover:bg-[var(--color-brand-hover)] transition duration-300 ease-in-out"
-                  >
-                    Order Now
-                  </LocalizedClientLink>
-                </div>
-              </div>
-            </div> */}
-          </div>
-        ))}
+    <section className="relative h-screen min-h-[600px] w-full overflow-hidden">
+      {/* Background image */}
+      <div className="absolute inset-0 z-0">
+        <img
+          src="/images/hero.jpg"
+          alt="FoodieHan Artisan Bakery"
+          className="absolute inset-0 object-cover w-full h-full"
+          style={{ objectPosition: "50% 35%" }}
+        />
+        {/* Dark overlay for text readability */}
+        <div className="absolute inset-0 bg-black/40" />
       </div>
 
-      {/* Prev arrow */}
-      {/* <button
-        onClick={goPrev}
-        aria-label="Previous slide"
-        className="absolute left-6 top-1/2 -translate-y-1/2 z-10 w-12 h-12 rounded-full border-2 border-[var(--color-brand)] text-[var(--color-brand)] flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity duration-300 hover:bg-[var(--color-brand)] hover:text-white bg-transparent"
-      >
-        <svg
-          width="18"
-          height="18"
-          viewBox="0 0 24 24"
-          fill="none"
-          stroke="currentColor"
-          strokeWidth="2.5"
-          strokeLinecap="round"
-          strokeLinejoin="round"
+      {/* Centered content overlay */}
+      <div className="relative z-10 flex flex-col items-center justify-center h-full px-6 text-center text-white">
+        <h1
+          className="mb-4 text-5xl font-light tracking-wide text-white sm:text-6xl lg:text-7xl"
+          style={{ fontFamily: "'Playfair Display', Georgia, serif" }}
         >
-          <polyline points="15 18 9 12 15 6" />
-        </svg>
-      </button> */}
+          Artisan Bakery
+        </h1>
+        <p
+          className="max-w-xl mb-10 text-base font-light leading-relaxed tracking-wide text-white/80 sm:text-lg"
+          style={{ fontFamily: "'Rubik', sans-serif" }}
+        >
+          Handcrafted breads and pastries made with time-honoured
+          techniques and the finest ingredients
+        </p>
 
-      {/* Next arrow */}
-      {/* <button
-        onClick={goNext}
-        aria-label="Next slide"
-        className="absolute right-6 top-1/2 -translate-y-1/2 z-10 w-12 h-12 rounded-full border-2 border-[var(--color-brand)] text-[var(--color-brand)] flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity duration-300 hover:bg-[var(--color-brand)] hover:text-white bg-transparent"
-      >
-        <svg
-          width="18"
-          height="18"
-          viewBox="0 0 24 24"
-          fill="none"
-          stroke="currentColor"
-          strokeWidth="2.5"
-          strokeLinecap="round"
-          strokeLinejoin="round"
-        >
-          <polyline points="9 6 15 12 9 18" />
-        </svg>
-      </button> */}
-    </SectionWrapper>
+        {/* CTA Buttons */}
+        <div className="flex flex-col gap-4 sm:flex-row">
+          <LocalizedClientLink
+            href="/online-order"
+            className="btn-brand-filled"
+          >
+            View Products
+          </LocalizedClientLink>
+
+          <a
+            href="https://order.laurent.com.au"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="inline-flex items-center justify-center px-9 py-3.5 text-sm font-medium text-white uppercase tracking-[0.15em] border-2 border-white/60 rounded-full transition-all duration-300 ease-in-out hover:bg-white hover:text-[var(--color-text-primary)]"
+          >
+            Order Online
+          </a>
+        </div>
+
+        {/* Scroll indicator */}
+        <div className="absolute bottom-10 left-1/2 -translate-x-1/2 flex flex-col items-center gap-2 text-white/50">
+          <span className="text-xs uppercase tracking-[0.2em]">Scroll</span>
+          <svg
+            width="16"
+            height="16"
+            viewBox="0 0 24 24"
+            fill="none"
+            stroke="currentColor"
+            strokeWidth="1.5"
+            strokeLinecap="round"
+            strokeLinejoin="round"
+            className="animate-bounce"
+          >
+            <polyline points="6 9 12 15 18 9" />
+          </svg>
+        </div>
+      </div>
+    </section>
   )
 }
 

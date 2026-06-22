@@ -1,117 +1,198 @@
-import { listCategories } from "@lib/data/categories"
-import { listCollections } from "@lib/data/collections"
-import { Text, clx } from "@medusajs/ui"
-
 import LocalizedClientLink from "@modules/common/components/localized-client-link"
 import NewsletterForm from "./newsletter-form"
 
 export default async function Footer() {
-  const { collections } = await listCollections({
-    fields: "*products",
-  })
-  const productCategories = await listCategories()
-
   return (
-    <footer className="w-full bg-[var(--color-bg-darker)] text-[var(--color-text-light)]">
-      <div className="py-12 content-container">
-        <div className="max-w-[1100px] mx-auto grid grid-cols-1 small:grid-cols-2 md:grid-cols-4 gap-8">
+    <footer
+      className="w-full text-[var(--color-text-light)]"
+      style={{ backgroundColor: "var(--color-bg-dark)" }}
+    >
+      {/* Main footer columns */}
+      <div className="content-container max-w-[1200px] mx-auto py-16 small:py-20">
+        <div className="grid grid-cols-2 medium:grid-cols-3 large:grid-cols-5 gap-10">
+          {/* Column 1: Customer Care */}
           <div>
-            <LocalizedClientLink
-              href="/"
-              className="text-2xl font-bold text-white uppercase"
+            <h4
+              className="mb-5 text-xs font-semibold tracking-[0.2em] uppercase"
+              style={{ color: "var(--color-text-light)" }}
             >
-              FoodieHan
-            </LocalizedClientLink>
-            <p className="mt-3 text-sm text-[var(--color-text-muted)]">
-              Artisan bakery crafting breads and pastries daily. Fresh
-              ingredients, local suppliers.
-            </p>
-            <p className="mt-4 text-sm text-[var(--color-brand)]">
-              Contact: +61 2 9000 0000
-            </p>
+              Customer Care
+            </h4>
+            <ul className="flex flex-col gap-3">
+              <li>
+                <LocalizedClientLink
+                  href="/contact"
+                  className="text-sm font-light transition-colors duration-200 hover:text-[var(--color-brand)]"
+                >
+                  Contact us
+                </LocalizedClientLink>
+              </li>
+              <li>
+                <LocalizedClientLink
+                  href="/about"
+                  className="text-sm font-light transition-colors duration-200 hover:text-[var(--color-brand)]"
+                >
+                  Careers
+                </LocalizedClientLink>
+              </li>
+              <li>
+                <LocalizedClientLink
+                  href="/contact"
+                  className="text-sm font-light transition-colors duration-200 hover:text-[var(--color-brand)]"
+                >
+                  FAQ
+                </LocalizedClientLink>
+              </li>
+            </ul>
           </div>
 
-          {productCategories && productCategories?.length > 0 && (
-            <div>
-              <h4 className="mb-3 text-sm font-semibold text-white uppercase">
-                Categories
-              </h4>
-              <ul
-                className="grid grid-cols-1 gap-2"
-                data-testid="footer-categories"
-              >
-                {productCategories?.slice(0, 6).map((c) => {
-                  if (c.parent_category) return null
-                  return (
-                    <li key={c.id}>
-                      <LocalizedClientLink
-                        className="hover:text-[var(--color-brand)] text-[var(--color-text-light)]"
-                        href={`/categories/${c.handle}`}
-                      >
-                        {c.name}
-                      </LocalizedClientLink>
-                    </li>
-                  )
-                })}
-              </ul>
-            </div>
-          )}
-
-          {collections && collections.length > 0 && (
-            <div>
-              <h4 className="mb-3 text-sm font-semibold text-white uppercase">
-                Collections
-              </h4>
-              <ul className="grid grid-cols-1 gap-2">
-                {collections?.slice(0, 6).map((c) => (
-                  <li key={c.id}>
-                    <LocalizedClientLink
-                      className="hover:text-[var(--color-brand)] text-[var(--color-text-light)]"
-                      href={`/collections/${c.handle}`}
-                    >
-                      {c.title}
-                    </LocalizedClientLink>
-                  </li>
-                ))}
-              </ul>
-            </div>
-          )}
-
+          {/* Column 2: Services */}
           <div>
-            <h4 className="mb-3 text-sm font-semibold text-white uppercase">
-              Join The Club
+            <h4
+              className="mb-5 text-xs font-semibold tracking-[0.2em] uppercase"
+              style={{ color: "var(--color-text-light)" }}
+            >
+              Services
             </h4>
-            <p className="text-sm text-[var(--color-text-muted)] mb-3">
-              Sign up for new arrivals &amp; special offers.
-            </p>
-            <NewsletterForm />
+            <ul className="flex flex-col gap-3">
+              <li>
+                <LocalizedClientLink
+                  href="/contact"
+                  className="text-sm font-light transition-colors duration-200 hover:text-[var(--color-brand)]"
+                >
+                  Wholesale
+                </LocalizedClientLink>
+              </li>
+              <li>
+                <LocalizedClientLink
+                  href="/contact"
+                  className="text-sm font-light transition-colors duration-200 hover:text-[var(--color-brand)]"
+                >
+                  Catering
+                </LocalizedClientLink>
+              </li>
+            </ul>
+          </div>
+
+          {/* Column 3: Logo (center anchor) */}
+          <div className="flex items-start justify-center">
+            <LocalizedClientLink
+              href="/"
+              className="flex flex-col items-center gap-3"
+            >
+              <img
+                src="/logo.svg"
+                alt="FoodieHan"
+                className="w-auto h-14 brightness-0 invert"
+              />
+              <span className="text-xs font-light tracking-[0.15em] uppercase text-[var(--color-text-muted)]">
+                Artisan Bakery
+              </span>
+            </LocalizedClientLink>
+          </div>
+
+          {/* Column 4: Explore */}
+          <div>
+            <h4
+              className="mb-5 text-xs font-semibold tracking-[0.2em] uppercase"
+              style={{ color: "var(--color-text-light)" }}
+            >
+              Explore
+            </h4>
+            <ul className="flex flex-col gap-3">
+              <li>
+                <LocalizedClientLink
+                  href="/online-order"
+                  className="text-sm font-light transition-colors duration-200 hover:text-[var(--color-brand)]"
+                >
+                  Our Products
+                </LocalizedClientLink>
+              </li>
+              <li>
+                <LocalizedClientLink
+                  href="/online-order"
+                  className="text-sm font-light transition-colors duration-200 hover:text-[var(--color-brand)]"
+                >
+                  Dine in Menu
+                </LocalizedClientLink>
+              </li>
+              <li>
+                <LocalizedClientLink
+                  href="/online-order"
+                  className="text-sm font-light transition-colors duration-200 hover:text-[var(--color-brand)]"
+                >
+                  Order Pickup
+                </LocalizedClientLink>
+              </li>
+            </ul>
+          </div>
+
+          {/* Column 5: Our Socials */}
+          <div>
+            <h4
+              className="mb-5 text-xs font-semibold tracking-[0.2em] uppercase"
+              style={{ color: "var(--color-text-light)" }}
+            >
+              Our Socials
+            </h4>
+            <ul className="flex flex-col gap-3">
+              <li>
+                <a
+                  href="https://www.instagram.com/"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="text-sm font-light transition-colors duration-200 hover:text-[var(--color-brand)]"
+                >
+                  Instagram
+                </a>
+              </li>
+              <li>
+                <a
+                  href="https://www.tiktok.com/"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="text-sm font-light transition-colors duration-200 hover:text-[var(--color-brand)]"
+                >
+                  TikTok
+                </a>
+              </li>
+              <li>
+                <a
+                  href="https://www.facebook.com/"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="text-sm font-light transition-colors duration-200 hover:text-[var(--color-brand)]"
+                >
+                  Facebook
+                </a>
+              </li>
+            </ul>
           </div>
         </div>
       </div>
 
-      <div className="bg-[var(--color-bg-darkest)] py-6">
-        <div className="content-container max-w-[1100px] mx-auto flex items-center justify-between">
-          <Text className="text-sm text-[var(--color-text-faint)]">
-            © {new Date().getFullYear()} FoodieHan. All rights reserved.
-          </Text>
-          <div className="flex gap-4">
+      {/* Copyright bar */}
+      <div
+        className="py-6 border-t"
+        style={{
+          backgroundColor: "var(--color-bg-darker)",
+          borderColor: "rgba(255,255,255,0.06)",
+        }}
+      >
+        <div className="content-container max-w-[1200px] mx-auto flex flex-col small:flex-row items-center justify-between gap-4 text-xs font-light text-[var(--color-text-muted)]">
+          <span>© {new Date().getFullYear()} FoodieHan. All rights reserved.</span>
+          <div className="flex gap-6">
             <a
               href="#"
-              className="text-[var(--color-text-light)] hover:text-[var(--color-brand)]"
+              className="transition-colors duration-200 hover:text-[var(--color-brand)]"
             >
-              Facebook
+              Privacy Policy
             </a>
             <a
               href="#"
-              className="text-[var(--color-text-light)] hover:text-[var(--color-brand)]"
+              className="transition-colors duration-200 hover:text-[var(--color-brand)]"
             >
-              Instagram
-            </a>
-            <a
-              href="#"
-              className="text-[var(--color-text-light)] hover:text-[var(--color-brand)]"
-            >
-              Pinterest
+              Terms of Service
             </a>
           </div>
         </div>

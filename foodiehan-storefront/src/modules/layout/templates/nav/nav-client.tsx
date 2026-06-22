@@ -7,35 +7,28 @@ interface NavClientProps {
 }
 
 export default function NavClient({ children }: NavClientProps) {
-  const [isVisible, setIsVisible] = useState(true)
-  const [lastScrollY, setLastScrollY] = useState(0)
+  const [isScrolled, setIsScrolled] = useState(false)
 
   useEffect(() => {
     const handleScroll = () => {
-      const currentScrollY = window.scrollY
-
-      if (currentScrollY < 10) {
-        setIsVisible(true)
-      } else if (currentScrollY > lastScrollY) {
-        // 向下滚动 - 隐藏
-        setIsVisible(false)
-      } else {
-        // 向上滚动 - 显示
-        setIsVisible(true)
-      }
-
-      setLastScrollY(currentScrollY)
+      // Switch to solid background after scrolling past 80px
+      setIsScrolled(window.scrollY > 80)
     }
+
+    // Check initial scroll position
+    handleScroll()
 
     window.addEventListener("scroll", handleScroll, { passive: true })
     return () => window.removeEventListener("scroll", handleScroll)
-  }, [lastScrollY])
+  }, [])
 
   return (
-    <div className="sticky inset-x-0 top-0 z-50">
+    <div className="fixed inset-x-0 top-0 z-50 transition-colors duration-500">
       <header
-        className={`relative h-auto mx-auto transition-transform duration-300 bg-white tracking-wider ${
-          isVisible ? "translate-y-0" : "-translate-y-full"
+        className={`relative mx-auto transition-all duration-500 ${
+          isScrolled
+            ? "bg-white shadow-sm text-[var(--color-text-primary)]"
+            : "bg-transparent text-white"
         }`}
       >
         {children}
