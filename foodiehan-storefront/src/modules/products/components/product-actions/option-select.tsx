@@ -1,5 +1,4 @@
 import { HttpTypes } from "@medusajs/types"
-import { clx } from "@medusajs/ui"
 import React from "react"
 
 type OptionSelectProps = {
@@ -23,25 +22,36 @@ const OptionSelect: React.FC<OptionSelectProps> = ({
 
   return (
     <div className="flex flex-col gap-y-3">
-      <span className="text-sm">Select {title}</span>
-      <div
-        className="flex flex-wrap justify-between gap-2"
-        data-testid={dataTestId}
+      <span
+        className="text-xs font-medium uppercase tracking-[0.1em]"
+        style={{ color: "var(--color-text-primary)" }}
       >
+        {title}
+      </span>
+      <div className="flex flex-wrap gap-2" data-testid={dataTestId}>
         {filteredOptions.map((v) => {
+          const isSelected = v === current
           return (
             <button
               onClick={() => updateOption(option.id, v)}
               key={v}
-              className={clx(
-                "border-ui-border-base bg-ui-bg-subtle border text-small-regular h-10 rounded-rounded p-2 flex-1 ",
-                {
-                  "border-ui-border-interactive": v === current,
-                  "hover:shadow-elevation-card-rest transition-shadow ease-in-out duration-150":
-                    v !== current,
-                }
-              )}
               disabled={disabled}
+              className="px-5 py-2.5 text-sm font-normal transition-all duration-200 border rounded-full disabled:opacity-40 disabled:cursor-not-allowed"
+              style={{
+                color: isSelected ? "#fff" : "var(--color-text-primary)",
+                backgroundColor: isSelected ? "var(--color-text-primary)" : "transparent",
+                borderColor: isSelected ? "var(--color-text-primary)" : "var(--color-surface-off)",
+              }}
+              onMouseEnter={(e) => {
+                if (!isSelected) {
+                  e.currentTarget.style.borderColor = "var(--color-text-primary)"
+                }
+              }}
+              onMouseLeave={(e) => {
+                if (!isSelected) {
+                  e.currentTarget.style.borderColor = "var(--color-surface-off)"
+                }
+              }}
               data-testid="option-button"
             >
               {v}

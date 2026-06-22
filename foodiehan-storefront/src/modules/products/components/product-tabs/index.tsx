@@ -1,11 +1,7 @@
 "use client"
 
-import Back from "@modules/common/icons/back"
-import FastDelivery from "@modules/common/icons/fast-delivery"
-import Refresh from "@modules/common/icons/refresh"
-
-import Accordion from "./accordion"
 import { HttpTypes } from "@medusajs/types"
+import Accordion from "./accordion"
 
 type ProductTabsProps = {
   product: HttpTypes.StoreProduct
@@ -18,8 +14,12 @@ const ProductTabs = ({ product }: ProductTabsProps) => {
       component: <ProductInfoTab product={product} />,
     },
     {
-      label: "Shipping & Returns",
-      component: <ShippingInfoTab />,
+      label: "Allergen Information",
+      component: <AllergenInfoTab />,
+    },
+    {
+      label: "Pickup & Availability",
+      component: <PickupInfoTab />,
     },
   ]
 
@@ -43,77 +43,65 @@ const ProductTabs = ({ product }: ProductTabsProps) => {
 
 const ProductInfoTab = ({ product }: ProductTabsProps) => {
   return (
-    <div className="text-small-regular py-8">
-      <div className="grid grid-cols-2 gap-x-8">
-        <div className="flex flex-col gap-y-4">
-          <div>
-            <span className="font-semibold">Material</span>
-            <p>{product.material ? product.material : "-"}</p>
-          </div>
-          <div>
-            <span className="font-semibold">Country of origin</span>
-            <p>{product.origin_country ? product.origin_country : "-"}</p>
-          </div>
-          <div>
-            <span className="font-semibold">Type</span>
-            <p>{product.type ? product.type.value : "-"}</p>
-          </div>
-        </div>
-        <div className="flex flex-col gap-y-4">
-          <div>
-            <span className="font-semibold">Weight</span>
-            <p>{product.weight ? `${product.weight} g` : "-"}</p>
-          </div>
-          <div>
-            <span className="font-semibold">Dimensions</span>
-            <p>
-              {product.length && product.width && product.height
-                ? `${product.length}L x ${product.width}W x ${product.height}H`
-                : "-"}
-            </p>
-          </div>
-        </div>
-      </div>
+    <div className="text-sm leading-relaxed py-6 space-y-4" style={{ color: "var(--color-text-secondary)" }}>
+      <p>
+        Our products are handcrafted daily using the finest ingredients. For
+        detailed ingredient lists, please refer to the product label or speak
+        with our team in-store.
+      </p>
+      {product.weight && (
+        <p>
+          <span className="font-medium" style={{ color: "var(--color-text-primary)" }}>Weight: </span>
+          {product.weight}g
+        </p>
+      )}
+      {product.origin_country && (
+        <p>
+          <span className="font-medium" style={{ color: "var(--color-text-primary)" }}>Made in: </span>
+          {product.origin_country}
+        </p>
+      )}
     </div>
   )
 }
 
-const ShippingInfoTab = () => {
+const AllergenInfoTab = () => {
   return (
-    <div className="text-small-regular py-8">
-      <div className="grid grid-cols-1 gap-y-8">
-        <div className="flex items-start gap-x-2">
-          <FastDelivery />
-          <div>
-            <span className="font-semibold">Fast delivery</span>
-            <p className="max-w-sm">
-              Your package will arrive in 3-5 business days at your pick up
-              location or in the comfort of your home.
-            </p>
-          </div>
-        </div>
-        <div className="flex items-start gap-x-2">
-          <Refresh />
-          <div>
-            <span className="font-semibold">Simple exchanges</span>
-            <p className="max-w-sm">
-              Is the fit not quite right? No worries - we&apos;ll exchange your
-              product for a new one.
-            </p>
-          </div>
-        </div>
-        <div className="flex items-start gap-x-2">
-          <Back />
-          <div>
-            <span className="font-semibold">Easy returns</span>
-            <p className="max-w-sm">
-              Just return your product and we&apos;ll refund your money. No
-              questions asked – we&apos;ll do our best to make sure your return
-              is hassle-free.
-            </p>
-          </div>
-        </div>
-      </div>
+    <div className="text-sm leading-relaxed py-6 space-y-4" style={{ color: "var(--color-text-secondary)" }}>
+      <p>
+        <span className="font-medium" style={{ color: "var(--color-text-primary)" }}>Contains: </span>
+        Cereals (Gluten), Egg, Milk, Soy, Tree Nuts, Sulphites.
+      </p>
+      <p>
+        Our bakery handles nuts, flour (gluten), dairy, eggs, and soy on a daily
+        basis. While we take care to prevent cross-contamination, we cannot
+        guarantee that any product is completely free of allergens.
+      </p>
+      <p>
+        If you have a specific allergy or dietary requirement, please speak with
+        our team before placing your order.
+      </p>
+    </div>
+  )
+}
+
+const PickupInfoTab = () => {
+  return (
+    <div className="text-sm leading-relaxed py-6 space-y-4" style={{ color: "var(--color-text-secondary)" }}>
+      <p>
+        <span className="font-medium" style={{ color: "var(--color-text-primary)" }}>Pickup: </span>
+        Orders can be picked up from our Sydney bakery during opening hours.
+        Please allow at least 24 hours for your order to be prepared.
+      </p>
+      <p>
+        <span className="font-medium" style={{ color: "var(--color-text-primary)" }}>Delivery: </span>
+        We offer delivery via Uber Eats and DoorDash across Sydney metro areas.
+        You can also order pickup directly from our online order page.
+      </p>
+      <p>
+        <span className="font-medium" style={{ color: "var(--color-text-primary)" }}>Dine-in: </span>
+        A 10% dine-in surcharge applies to individual items on weekends.
+      </p>
     </div>
   )
 }
