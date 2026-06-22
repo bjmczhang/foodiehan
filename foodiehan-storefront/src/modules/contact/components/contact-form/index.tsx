@@ -182,7 +182,7 @@ export default function ContactForm() {
       </div>
 
       {/* Store Location */}
-      <div>
+      {/* <div>
         <label htmlFor="contact-storeLocation" className={labelClasses}>
           Store Location
         </label>
@@ -209,7 +209,7 @@ export default function ContactForm() {
           <option value="chatswood">Chatswood</option>
           <option value="parramatta">Parramatta</option>
         </select>
-      </div>
+      </div> */}
 
       {/* Message */}
       <div>
