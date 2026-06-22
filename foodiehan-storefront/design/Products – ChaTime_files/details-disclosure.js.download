@@ -1,2 +1,0 @@
-class DetailsDisclosure extends HTMLElement{constructor(){super(),this.mainDetailsToggle=this.querySelector("details"),this.mainDetailsToggle.addEventListener("focusout",this.onFocusOut.bind(this))}onFocusOut(){setTimeout(()=>{this.contains(document.activeElement)||this.close()})}close(){this.mainDetailsToggle.removeAttribute("open"),this.mainDetailsToggle.querySelector("summary").setAttribute("aria-expanded",!1)}}customElements.define("details-disclosure",DetailsDisclosure);
-//# sourceMappingURL=/cdn/shop/t/9/assets/details-disclosure.js.map?v=33873286506536624111727163037
