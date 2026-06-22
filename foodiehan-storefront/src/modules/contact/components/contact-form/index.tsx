@@ -20,6 +20,10 @@ const initialFormData: FormData = {
   message: "",
 }
 
+const inputClasses =
+  "w-full px-0 py-3 text-sm bg-transparent border-0 border-b transition-colors duration-200 focus:outline-none focus:ring-0"
+const labelClasses = "block mb-1 text-xs font-medium uppercase tracking-[0.1em]"
+
 export default function ContactForm() {
   const [formData, setFormData] = useState<FormData>(initialFormData)
   const [status, setStatus] = useState<FormStatus>("idle")
@@ -41,16 +45,7 @@ export default function ContactForm() {
 
     try {
       // TODO: Replace with actual API endpoint when backend is ready
-      // For now, simulate a submission
       await new Promise((resolve) => setTimeout(resolve, 1000))
-
-      // Example API call:
-      // const res = await fetch("/api/contact", {
-      //   method: "POST",
-      //   headers: { "Content-Type": "application/json" },
-      //   body: JSON.stringify(formData),
-      // })
-      // if (!res.ok) throw new Error("Failed to send message")
 
       setStatus("success")
       setFormData(initialFormData)
@@ -64,15 +59,10 @@ export default function ContactForm() {
     }
   }
 
-  const inputClasses =
-    "w-full px-4 py-3 text-sm border rounded-md transition-colors duration-200 focus:outline-none focus:ring-2 focus:ring-[var(--color-brand)] focus:border-transparent"
-  const labelClasses =
-    "block mb-1.5 text-sm font-medium text-[var(--color-text-primary)]"
-
   if (status === "success") {
     return (
-      <div className="flex flex-col items-center justify-center py-12 text-center">
-        <div className="flex items-center justify-center w-16 h-16 mb-4 rounded-full bg-[var(--color-brand)]">
+      <div className="flex flex-col items-center justify-center py-16 text-center">
+        <div className="flex items-center justify-center w-16 h-16 mb-6 rounded-full bg-[var(--color-brand)]">
           <svg
             className="w-8 h-8 text-white"
             fill="none"
@@ -87,7 +77,13 @@ export default function ContactForm() {
             />
           </svg>
         </div>
-        <h3 className="mb-2 text-xl font-semibold text-[var(--color-text-primary)]">
+        <h3
+          className="mb-2 text-2xl font-light"
+          style={{
+            fontFamily: "'Playfair Display', Georgia, serif",
+            color: "var(--color-text-primary)",
+          }}
+        >
           Thank You!
         </h3>
         <p className="text-[var(--color-text-secondary)]">
@@ -104,140 +100,161 @@ export default function ContactForm() {
   }
 
   return (
-    <div>
-      <h2 className="mb-6 text-2xl font-semibold text-[var(--color-text-primary)]">
-        Send Us a Message
-      </h2>
+    <form onSubmit={handleSubmit} className="space-y-8">
+      {/* Name */}
+      <div>
+        <label htmlFor="contact-name" className={labelClasses}>
+          Name
+        </label>
+        <input
+          id="contact-name"
+          type="text"
+          name="name"
+          value={formData.name}
+          onChange={handleChange}
+          required
+          placeholder="Your name"
+          className={inputClasses}
+          style={{
+            color: "var(--color-text-primary)",
+            borderColor: "var(--color-surface-off)",
+          }}
+          onFocus={(e) => {
+            e.currentTarget.style.borderColor = "var(--color-brand)"
+          }}
+          onBlur={(e) => {
+            e.currentTarget.style.borderColor = "var(--color-surface-off)"
+          }}
+        />
+      </div>
 
-      <form onSubmit={handleSubmit} className="space-y-5">
-        {/* Name */}
-        <div>
-          <label htmlFor="contact-name" className={labelClasses}>
-            Name
-          </label>
-          <input
-            id="contact-name"
-            type="text"
-            name="name"
-            value={formData.name}
-            onChange={handleChange}
-            required
-            placeholder="Your name"
-            className={inputClasses}
-            style={{
-              backgroundColor: "var(--color-surface)",
-              borderColor: "var(--color-surface-off)",
-              color: "var(--color-text-primary)",
-            }}
-          />
-        </div>
+      {/* Email */}
+      <div>
+        <label htmlFor="contact-email" className={labelClasses}>
+          Email
+        </label>
+        <input
+          id="contact-email"
+          type="email"
+          name="email"
+          value={formData.email}
+          onChange={handleChange}
+          required
+          placeholder="your@email.com"
+          className={inputClasses}
+          style={{
+            color: "var(--color-text-primary)",
+            borderColor: "var(--color-surface-off)",
+          }}
+          onFocus={(e) => {
+            e.currentTarget.style.borderColor = "var(--color-brand)"
+          }}
+          onBlur={(e) => {
+            e.currentTarget.style.borderColor = "var(--color-surface-off)"
+          }}
+        />
+      </div>
 
-        {/* Email */}
-        <div>
-          <label htmlFor="contact-email" className={labelClasses}>
-            Email
-          </label>
-          <input
-            id="contact-email"
-            type="email"
-            name="email"
-            value={formData.email}
-            onChange={handleChange}
-            required
-            placeholder="your@email.com"
-            className={inputClasses}
-            style={{
-              backgroundColor: "var(--color-surface)",
-              borderColor: "var(--color-surface-off)",
-              color: "var(--color-text-primary)",
-            }}
-          />
-        </div>
+      {/* Phone */}
+      <div>
+        <label htmlFor="contact-phone" className={labelClasses}>
+          Phone
+        </label>
+        <input
+          id="contact-phone"
+          type="tel"
+          name="phone"
+          value={formData.phone}
+          onChange={handleChange}
+          placeholder="+61 4XX XXX XXX"
+          className={inputClasses}
+          style={{
+            color: "var(--color-text-primary)",
+            borderColor: "var(--color-surface-off)",
+          }}
+          onFocus={(e) => {
+            e.currentTarget.style.borderColor = "var(--color-brand)"
+          }}
+          onBlur={(e) => {
+            e.currentTarget.style.borderColor = "var(--color-surface-off)"
+          }}
+        />
+      </div>
 
-        {/* Phone */}
-        <div>
-          <label htmlFor="contact-phone" className={labelClasses}>
-            Phone
-          </label>
-          <input
-            id="contact-phone"
-            type="tel"
-            name="phone"
-            value={formData.phone}
-            onChange={handleChange}
-            placeholder="+61 4XX XXX XXX"
-            className={inputClasses}
-            style={{
-              backgroundColor: "var(--color-surface)",
-              borderColor: "var(--color-surface-off)",
-              color: "var(--color-text-primary)",
-            }}
-          />
-        </div>
+      {/* Store Location */}
+      <div>
+        <label htmlFor="contact-storeLocation" className={labelClasses}>
+          Store Location
+        </label>
+        <select
+          id="contact-storeLocation"
+          name="storeLocation"
+          value={formData.storeLocation}
+          onChange={handleChange}
+          className={inputClasses}
+          style={{
+            color: "var(--color-text-primary)",
+            borderColor: "var(--color-surface-off)",
+            backgroundColor: "transparent",
+          }}
+          onFocus={(e) => {
+            e.currentTarget.style.borderColor = "var(--color-brand)"
+          }}
+          onBlur={(e) => {
+            e.currentTarget.style.borderColor = "var(--color-surface-off)"
+          }}
+        >
+          <option value="">Select a store</option>
+          <option value="sydney">Sydney — Bakery Street</option>
+          <option value="chatswood">Chatswood</option>
+          <option value="parramatta">Parramatta</option>
+        </select>
+      </div>
 
-        {/* Store Location */}
-        {/* <div>
-          <label htmlFor="contact-storeLocation" className={labelClasses}>
-            Store Location
-          </label>
-          <select
-            id="contact-storeLocation"
-            name="storeLocation"
-            value={formData.storeLocation}
-            onChange={handleChange}
-            className={inputClasses}
-            style={{
-              backgroundColor: "var(--color-surface)",
-              borderColor: "var(--color-surface-off)",
-              color: "var(--color-text-primary)",
-            }}
-          >
-            <option value="">Select a store</option>
-            <option value="sydney">Sydney — Bakery Street</option>
-            <option value="chatswood">Chatswood</option>
-            <option value="parramatta">Parramatta</option>
-          </select>
-        </div> */}
+      {/* Message */}
+      <div>
+        <label htmlFor="contact-message" className={labelClasses}>
+          Message
+        </label>
+        <textarea
+          id="contact-message"
+          name="message"
+          value={formData.message}
+          onChange={handleChange}
+          required
+          rows={5}
+          placeholder="How can we help you?"
+          className={inputClasses}
+          style={{
+            color: "var(--color-text-primary)",
+            borderColor: "var(--color-surface-off)",
+            resize: "vertical",
+          }}
+          onFocus={(e) => {
+            e.currentTarget.style.borderColor = "var(--color-brand)"
+          }}
+          onBlur={(e) => {
+            e.currentTarget.style.borderColor = "var(--color-surface-off)"
+          }}
+        />
+      </div>
 
-        {/* Message */}
-        <div>
-          <label htmlFor="contact-message" className={labelClasses}>
-            Message
-          </label>
-          <textarea
-            id="contact-message"
-            name="message"
-            value={formData.message}
-            onChange={handleChange}
-            required
-            rows={5}
-            placeholder="How can we help you?"
-            className={inputClasses}
-            style={{
-              backgroundColor: "var(--color-surface)",
-              borderColor: "var(--color-surface-off)",
-              color: "var(--color-text-primary)",
-              resize: "vertical",
-            }}
-          />
-        </div>
+      {/* Error message */}
+      {status === "error" && (
+        <p className="text-sm text-red-600">{errorMessage}</p>
+      )}
 
-        {/* Error message */}
-        {status === "error" && (
-          <p className="text-sm text-red-600">{errorMessage}</p>
-        )}
-
-        {/* Submit */}
+      {/* Submit */}
+      <div className="pt-2">
         <button
           type="submit"
           disabled={status === "submitting"}
-          className="inline-flex items-center justify-center px-8 py-3 text-sm font-medium tracking-wider text-white uppercase transition duration-300 ease-in-out rounded-full shadow-sm disabled:opacity-50 disabled:cursor-not-allowed"
-          style={{
-            backgroundColor:
-              status === "submitting"
-                ? "var(--color-text-muted)"
-                : "var(--color-brand)",
-          }}
+          className="btn-brand-filled disabled:opacity-50 disabled:cursor-not-allowed"
+          style={
+            status === "submitting"
+              ? { backgroundColor: "var(--color-text-muted)" }
+              : undefined
+          }
         >
           {status === "submitting" ? (
             <>
@@ -266,7 +283,7 @@ export default function ContactForm() {
             "Send"
           )}
         </button>
-      </form>
-    </div>
+      </div>
+    </form>
   )
 }

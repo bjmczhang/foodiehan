@@ -87,8 +87,8 @@ const faqs: FaqItem[] = [
     answer: (
       <>
         We don&apos;t currently offer in-house delivery, but you can find us on{" "}
-        <strong className="font-semibold">Uber Eats</strong> and{" "}
-        <strong className="font-semibold">DoorDash</strong> for delivery across
+        <strong className="font-medium">Uber Eats</strong> and{" "}
+        <strong className="font-medium">DoorDash</strong> for delivery across
         Sydney metro areas. You can also order pickup directly through our{" "}
         <a
           href="/online-order"
@@ -117,10 +117,10 @@ function FaqAccordionItem({
     <div className="border-b border-[var(--color-surface-off)]">
       <button
         onClick={onToggle}
-        className="flex items-center justify-between w-full py-4 text-left transition-colors duration-200 hover:text-[var(--color-brand)]"
+        className="flex items-center justify-between w-full py-5 text-left transition-colors duration-200 group"
         aria-expanded={isOpen}
       >
-        <span className="pr-4 text-base font-medium text-[var(--color-text-primary)]">
+        <span className="pr-4 text-sm font-medium tracking-wide uppercase text-[var(--color-text-primary)] group-hover:text-[var(--color-brand)]">
           {question}
         </span>
         <span
@@ -130,7 +130,7 @@ function FaqAccordionItem({
             color: "var(--color-text-muted)",
           }}
         >
-          <svg width="20" height="20" viewBox="0 0 20 20" fill="none">
+          <svg width="16" height="16" viewBox="0 0 20 20" fill="none">
             <path
               d="M10 4v12M4 10h12"
               stroke="currentColor"
@@ -147,7 +147,7 @@ function FaqAccordionItem({
           opacity: isOpen ? 1 : 0,
         }}
       >
-        <div className="pb-4 leading-relaxed text-[var(--color-text-secondary)]">
+        <div className="pb-5 text-sm leading-relaxed text-[var(--color-text-secondary)]">
           {answer}
         </div>
       </div>
@@ -164,14 +164,20 @@ export default function FaqSection() {
 
   return (
     <div className="mx-auto">
-      <h2 className="mb-2 text-2xl font-semibold text-center text-[var(--color-text-primary)]">
+      <h2
+        className="mb-2 text-3xl font-light text-center"
+        style={{
+          fontFamily: "'Playfair Display', Georgia, serif",
+          color: "var(--color-text-primary)",
+        }}
+      >
         Frequently Asked Questions
       </h2>
-      <p className="mb-8 text-center text-[var(--color-text-muted)]">
+      <p className="mb-10 text-sm text-center text-[var(--color-text-muted)]">
         Maybe we can answer your question here!
       </p>
 
-      <div className="divide-y divide-[var(--color-surface-off)]">
+      <div>
         {faqs.map((faq, index) => (
           <FaqAccordionItem
             key={index}
