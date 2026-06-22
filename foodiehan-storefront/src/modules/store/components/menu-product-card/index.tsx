@@ -34,8 +34,8 @@ export default function MenuProductCard({ product }: MenuProductCardProps) {
   const price = formatPrice(product)
 
   return (
-    <div className="flex flex-col group">
-      {/* ── Image ── */}
+    <div className="flex flex-col">
+      {/* Image — clean, no hover zoom */}
       <a
         href={`/${countryCode}/products/${product.handle}`}
         className="block overflow-hidden mb-3"
@@ -47,7 +47,7 @@ export default function MenuProductCard({ product }: MenuProductCardProps) {
             alt={product.title ?? ""}
             width={500}
             height={500}
-            className="w-full h-full object-cover transition-transform duration-500 ease-in-out group-hover:scale-105"
+            className="w-full h-full object-cover"
             sizes="(max-width: 640px) 50vw, (max-width: 1024px) 33vw, 25vw"
           />
         ) : (
@@ -70,36 +70,36 @@ export default function MenuProductCard({ product }: MenuProductCardProps) {
         )}
       </a>
 
-      {/* ── Product name ── */}
+      {/* Product name */}
       <h3
         style={{
-          fontSize: 14,
-          fontWeight: 500,
+          fontSize: 13,
+          fontWeight: 400,
           color: "var(--color-text-primary)",
-          lineHeight: 1.4,
+          lineHeight: 1.5,
           margin: 0,
         }}
       >
         <a
           href={`/${countryCode}/products/${product.handle}`}
-          className="hover:text-[var(--color-brand)] transition-colors duration-150"
+          className="transition-colors duration-150 hover:text-[var(--color-brand)]"
           style={{ textDecoration: "none", color: "inherit" }}
         >
           {product.title}
         </a>
       </h3>
 
-      {/* ── Price ── */}
+      {/* Price */}
       {price && (
         <p
           style={{
-            fontSize: 13,
-            color: price === "Sold out" ? "#999999" : "#666666",
-            marginTop: 4,
+            fontSize: 12,
+            color: price === "Sold out" ? "#aaaaaa" : "var(--color-text-muted)",
+            marginTop: 2,
             margin: 0,
           }}
         >
-          {price === "Sold out" ? "Sold out" : price}
+          {price === "Sold out" ? "Sold out" : `From ${price}`}
         </p>
       )}
     </div>

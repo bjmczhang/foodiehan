@@ -1,7 +1,6 @@
 "use client"
 
 import { HttpTypes } from "@medusajs/types"
-import { useParams } from "next/navigation"
 import { useEffect, useRef } from "react"
 import MenuProductCard from "@modules/store/components/menu-product-card"
 
@@ -45,7 +44,6 @@ export default function OnlineOrderTemplate({
   categories,
   products,
 }: OnlineOrderTemplateProps) {
-  const { countryCode } = useParams()
   const sectionRefs = useRef<Map<string, HTMLElement | null>>(new Map())
 
   const groupedProducts = groupProductsByCategory(products, categories)
@@ -54,7 +52,6 @@ export default function OnlineOrderTemplate({
   useEffect(() => {
     const hash = window.location.hash?.replace("#", "")
     if (!hash) return
-    // Small delay so the DOM has laid out
     const timer = setTimeout(() => {
       const el = sectionRefs.current.get(hash)
       if (el) {
@@ -67,69 +64,26 @@ export default function OnlineOrderTemplate({
   return (
     <div style={{ background: "#ffffff", minHeight: "100vh" }}>
       {/* ── Page header ───────────────────────────────────── */}
-      <div style={{ padding: "40px 40px 0" }}>
-        <div className="content-container">
-          {/* Breadcrumb */}
-          <nav aria-label="breadcrumbs" style={{ marginBottom: 12 }}>
-            <ol
-              className="flex items-center gap-x-2"
-              style={{ listStyle: "none", padding: 0, margin: 0 }}
-            >
-              <li>
-                <a
-                  href={`/${countryCode}`}
-                  style={{
-                    fontSize: 12,
-                    color: "#666666",
-                    textDecoration: "none",
-                  }}
-                  className="hover:text-[var(--color-brand)] transition-colors"
-                >
-                  Home
-                </a>
-              </li>
-              <li style={{ fontSize: 12, color: "#aaaaaa" }}>/</li>
-              <li>
-                <span
-                  style={{ fontSize: 12, color: "#333333", fontWeight: 600 }}
-                >
-                  Full Menu
-                </span>
-              </li>
-            </ol>
-          </nav>
-
-          <h1
-            style={{
-              fontSize: 36,
-              fontWeight: 700,
-              color: "var(--color-text-primary)",
-              lineHeight: 1.2,
-              margin: "0 0 28px",
-            }}
-          >
-            Full Menu
-          </h1>
-        </div>
+      <div className="py-16 small:py-20">
+        <h1
+          className="text-4xl font-light tracking-wide text-center small:text-5xl"
+          style={{
+            fontFamily: "'Playfair Display', Georgia, serif",
+            color: "var(--color-text-primary)",
+          }}
+        >
+          Full Menu
+        </h1>
       </div>
 
       {/* ── Anchor navigation bar (sticky) ────────────────── */}
       {categories.length > 0 && (
         <nav
-          style={{
-            position: "sticky",
-            top: 0,
-            zIndex: 10,
-            background: "#ffffff",
-            borderBottom: "1px solid #e5e5e5",
-          }}
+          className="sticky top-[72px] z-10 bg-white border-b border-[var(--color-surface-off)]"
         >
           <div
-            className="content-container flex items-center gap-x-2 overflow-x-auto no-scrollbar"
-            style={{
-              paddingTop: 14,
-              paddingBottom: 14,
-            }}
+            className="flex items-center gap-x-8 overflow-x-auto no-scrollbar max-w-[1200px] mx-auto px-6"
+            style={{ paddingTop: 14, paddingBottom: 14 }}
           >
             {categories.map((cat) => (
               <a
@@ -139,24 +93,17 @@ export default function OnlineOrderTemplate({
                   e.preventDefault()
                   const el = sectionRefs.current.get(cat.handle)
                   if (el) {
-                    el.scrollIntoView({ behavior: "smooth", block: "start" })
-                    // Update URL hash without scrolling
+                    // Account for sticky header + nav height
+                    const top = el.getBoundingClientRect().top + window.scrollY - 140
+                    window.scrollTo({ top, behavior: "smooth" })
                     window.history.replaceState(null, "", `#${cat.handle}`)
                   }
                 }}
+                className="flex-shrink-0 text-xs font-medium tracking-[0.12em] uppercase transition-colors duration-200 hover:text-[var(--color-brand)]"
                 style={{
-                  display: "inline-block",
-                  padding: "6px 18px",
-                  fontSize: 13,
-                  fontWeight: 500,
-                  color: "#333333",
+                  color: "var(--color-text-secondary)",
                   textDecoration: "none",
-                  border: "1px solid #cccccc",
-                  borderRadius: 9999,
-                  whiteSpace: "nowrap",
-                  transition: "border-color 0.15s, color 0.15s",
                 }}
-                className="hover:border-[var(--color-brand)] hover:text-[var(--color-brand)]"
               >
                 {cat.name}
               </a>
@@ -166,12 +113,12 @@ export default function OnlineOrderTemplate({
       )}
 
       {/* ── Category sections ─────────────────────────────── */}
-      <div style={{ padding: "40px 40px 80px" }}>
-        <div className="content-container">
+      <div className="pb-20">
+        <div className="max-w-[1200px] mx-auto px-6">
           {categories.length === 0 && (
             <div
               className="flex flex-col items-center justify-center py-24"
-              style={{ color: "#8d8d8d", fontSize: 16, textAlign: "center" }}
+              style={{ color: "var(--color-text-muted)", fontSize: 16, textAlign: "center" }}
             >
               <svg
                 xmlns="http://www.w3.org/2000/svg"
@@ -212,17 +159,14 @@ export default function OnlineOrderTemplate({
                 ref={(el) => {
                   sectionRefs.current.set(cat.handle, el)
                 }}
-                style={{ marginBottom: 64 }}
+                style={{ marginBottom: 72 }}
               >
                 {/* Section heading */}
                 <h2
+                  className="mb-10 text-3xl font-light tracking-wide"
                   style={{
-                    fontSize: 22,
-                    fontWeight: 600,
+                    fontFamily: "'Playfair Display', Georgia, serif",
                     color: "var(--color-text-primary)",
-                    marginBottom: 24,
-                    paddingBottom: 10,
-                    borderBottom: "1px solid #e5e5e5",
                   }}
                 >
                   {cat.name}
@@ -230,17 +174,11 @@ export default function OnlineOrderTemplate({
 
                 {/* Product grid */}
                 {catProducts.length === 0 ? (
-                  <p style={{ fontSize: 14, color: "#999999", padding: "20px 0" }}>
+                  <p style={{ fontSize: 14, color: "var(--color-text-muted)", padding: "20px 0" }}>
                     No products in this category yet.
                   </p>
                 ) : (
-                  <div
-                    className="grid gap-x-6 gap-y-10"
-                    style={{
-                      gridTemplateColumns:
-                        "repeat(auto-fill, minmax(220px, 1fr))",
-                    }}
-                  >
+                  <div className="grid grid-cols-2 small:grid-cols-3 medium:grid-cols-4 gap-x-5 gap-y-10">
                     {catProducts.map((product) => (
                       <MenuProductCard key={product.id} product={product} />
                     ))}
