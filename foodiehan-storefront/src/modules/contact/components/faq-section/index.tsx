@@ -1,6 +1,7 @@
 "use client"
 
 import { useState } from "react"
+import LocalizedClientLink from "@modules/common/components/localized-client-link"
 
 type FaqItem = {
   question: string
@@ -9,93 +10,95 @@ type FaqItem = {
 
 const faqs: FaqItem[] = [
   {
-    question: "Ingredients & nutrition info",
+    question:
+      "Where do I find ingredients and nutrition information for FoodieHan products?",
     answer: (
       <>
         You can find detailed ingredient lists and nutritional information on
         each product&apos;s description page. Browse our{" "}
-        <a href="/store" className="text-[var(--color-brand)] hover:underline">
+        <LocalizedClientLink
+          href="/store"
+          className="text-[#1a1a1a] underline hover:opacity-75"
+        >
           product range
-        </a>{" "}
+        </LocalizedClientLink>{" "}
         to learn more. If you still have questions, feel free to send us an
         enquiry using the form above.
       </>
     ),
   },
   {
-    question: "How do I order a cake?",
+    question: "How do I place a cake order?",
     answer: (
       <>
-        You can place cake orders in-store at our Sydney bakery, or order online
+        You can place cake orders in-store at our bakery, or order online
         through our{" "}
-        <a
+        <LocalizedClientLink
           href="/online-order"
-          className="text-[var(--color-brand)] hover:underline"
+          className="text-[#1a1a1a] underline hover:opacity-75"
         >
           online order page
-        </a>
-        . We offer a range of celebration cakes, custom designs, and Asian-style
-        creations.
+        </LocalizedClientLink>
+        . We offer a range of celebration cakes, artisan creations, and specialty
+        treats.
       </>
     ),
   },
   {
-    question: "How much notice do you need for custom cakes?",
+    question: "What is the processing time for a custom cake order?",
     answer:
-      "We typically require 3 days notice for custom cake orders. For larger events or elaborate designs, we recommend reaching out at least a week in advance so we can discuss your vision and ensure every detail is perfect.",
+      "We typically require 3 days notice for custom cake orders. For larger celebration cakes or elaborate designs, we recommend reaching out at least a week in advance so our pastry chefs can ensure every detail is crafted to perfection.",
   },
   {
-    question: "When is your bread baked?",
+    question: "Are FoodieHan breads baked fresh each day?",
     answer:
-      "Our bread is baked fresh every morning — our ovens run from the early hours to ensure that every loaf, roll, and pastry is at its best when our doors open. We bake throughout the day in smaller batches to keep the shelves full and fresh.",
+      "Yes, all FoodieHan breads and pastries are baked fresh every single morning. Our ovens start in the early hours to ensure you enjoy oven-warm freshness daily.",
   },
   {
-    question: "Is your facility allergen-free?",
+    question: "Do you operate in an allergen free facility?",
     answer:
-      "No — our bakery handles nuts, flour (gluten), dairy, eggs, and soy on a daily basis. While we take care to prevent cross-contamination, we cannot guarantee that any product is completely free of allergens. Please check individual product pages for specific allergen details or speak with our team in-store.",
+      "No — our bakery handles nuts, flour (gluten), dairy, eggs, and sesame on a daily basis. While we follow strict food handling and hygiene practices, we cannot guarantee an entirely allergen-free environment.",
   },
   {
-    question: "Do you offer gift vouchers?",
+    question: "Do you offer FoodieHan Store Gift Vouchers?",
     answer:
-      "Yes! Gift vouchers are available for purchase and redemption in-store. They make the perfect gift for the food lover in your life. Drop by the bakery to pick one up.",
+      "Yes! Gift vouchers are available for purchase and redemption in-store and online. They make the perfect gift for food and pastry lovers.",
   },
   {
-    question: "Do you take bookings or reservations?",
+    question: "Do you take bookings?",
     answer:
-      "We don&apos;t take bookings for regular dining — it&apos;s walk-in only. For function enquiries or private events, please email us at hello@foodiehan.com and we&apos;ll be happy to discuss options.",
+      "We operate on a walk-in basis for general café dining. For larger group bookings, catering enquiries, or special events, please reach out via our contact form.",
   },
   {
-    question: "Are you hiring?",
+    question: "I would like to work at FoodieHan",
     answer: (
       <>
-        We&apos;re always on the lookout for passionate people to join our team.
-        Check out our current openings on{" "}
+        We are always excited to meet passionate bakers, baristas, and front-of-house
+        talent. Please email your CV and a brief introduction to{" "}
         <a
-          href="https://www.seek.com.au"
-          target="_blank"
-          rel="noopener noreferrer"
-          className="text-[var(--color-brand)] hover:underline"
+          href="mailto:careers@foodiehan.com.au"
+          className="text-[#1a1a1a] underline hover:opacity-75"
         >
-          SEEK
-        </a>{" "}
-        or send your CV to hello@foodiehan.com.
+          careers@foodiehan.com.au
+        </a>
+        .
       </>
     ),
   },
   {
-    question: "Do you offer delivery?",
+    question: "Do you deliver?",
     answer: (
       <>
-        We don&apos;t currently offer in-house delivery, but you can find us on{" "}
-        <strong className="font-medium">Uber Eats</strong> and{" "}
-        <strong className="font-medium">DoorDash</strong> for delivery across
-        Sydney metro areas. You can also order pickup directly through our{" "}
-        <a
+        We offer local pickup and partner with major delivery platforms like{" "}
+        <span className="font-medium text-[#1a1a1a]">Uber Eats</span> and{" "}
+        <span className="font-medium text-[#1a1a1a]">DoorDash</span> for delivery
+        in select areas. You can also place orders for pickup via our{" "}
+        <LocalizedClientLink
           href="/online-order"
-          className="text-[var(--color-brand)] hover:underline"
+          className="text-[#1a1a1a] underline hover:opacity-75"
         >
           online order page
-        </a>
+        </LocalizedClientLink>
         .
       </>
     ),
@@ -114,30 +117,17 @@ function FaqAccordionItem({
   onToggle: () => void
 }) {
   return (
-    <div className="border-b border-[var(--color-surface-off)]">
+    <div className="border-b border-[#e5e5e5]">
       <button
         onClick={onToggle}
-        className="flex items-center justify-between w-full py-5 text-left transition-colors duration-200 group"
+        className="flex items-center justify-between w-full py-4 small:py-5 text-left transition-colors duration-200 group"
         aria-expanded={isOpen}
       >
-        <span className="pr-4 text-sm font-medium tracking-wide uppercase text-[var(--color-text-primary)] group-hover:text-[var(--color-brand)]">
+        <span className="pr-6 text-sm small:text-base font-normal text-[#1a1a1a]">
           {question}
         </span>
-        <span
-          className="flex-shrink-0 transition-transform duration-300"
-          style={{
-            transform: isOpen ? "rotate(45deg)" : "rotate(0deg)",
-            color: "var(--color-text-muted)",
-          }}
-        >
-          <svg width="16" height="16" viewBox="0 0 20 20" fill="none">
-            <path
-              d="M10 4v12M4 10h12"
-              stroke="currentColor"
-              strokeWidth="1.5"
-              strokeLinecap="round"
-            />
-          </svg>
+        <span className="flex-shrink-0 text-xl font-light text-[#666666] select-none w-5 text-center leading-none">
+          {isOpen ? "−" : "+"}
         </span>
       </button>
       <div
@@ -147,7 +137,7 @@ function FaqAccordionItem({
           opacity: isOpen ? 1 : 0,
         }}
       >
-        <div className="pb-5 text-sm leading-relaxed text-[var(--color-text-secondary)]">
+        <div className="pb-5 pt-1 text-sm leading-relaxed text-[#555555]">
           {answer}
         </div>
       </div>
@@ -163,21 +153,17 @@ export default function FaqSection() {
   }
 
   return (
-    <div className="mx-auto">
+    <div className="w-full">
       <h2
-        className="mb-2 text-3xl font-light text-center"
+        className="mb-10 text-2xl small:text-3xl font-light text-center text-[#1a1a1a]"
         style={{
           fontFamily: "'Playfair Display', Georgia, serif",
-          color: "var(--color-text-primary)",
         }}
       >
-        Frequently Asked Questions
-      </h2>
-      <p className="mb-10 text-sm text-center text-[var(--color-text-muted)]">
         Maybe we can answer your question here!
-      </p>
+      </h2>
 
-      <div>
+      <div className="border-t border-[#e5e5e5]">
         {faqs.map((faq, index) => (
           <FaqAccordionItem
             key={index}
@@ -191,3 +177,4 @@ export default function FaqSection() {
     </div>
   )
 }
+
