@@ -21,14 +21,11 @@ const OptionSelect: React.FC<OptionSelectProps> = ({
   const filteredOptions = (option.values ?? []).map((v) => v.value)
 
   return (
-    <div className="flex flex-col gap-y-3">
-      <span
-        className="text-xs font-medium uppercase tracking-[0.1em]"
-        style={{ color: "var(--color-text-primary)" }}
-      >
+    <div className="flex flex-col gap-y-2.5 mb-6">
+      <span className="text-xs font-normal text-[#1a1a1a] tracking-wide">
         {title}
       </span>
-      <div className="flex flex-wrap gap-2" data-testid={dataTestId}>
+      <div className="flex flex-wrap gap-2.5" data-testid={dataTestId}>
         {filteredOptions.map((v) => {
           const isSelected = v === current
           return (
@@ -36,22 +33,11 @@ const OptionSelect: React.FC<OptionSelectProps> = ({
               onClick={() => updateOption(option.id, v)}
               key={v}
               disabled={disabled}
-              className="px-5 py-2.5 text-sm font-normal transition-all duration-200 border rounded-full disabled:opacity-40 disabled:cursor-not-allowed"
-              style={{
-                color: isSelected ? "#fff" : "var(--color-text-primary)",
-                backgroundColor: isSelected ? "var(--color-text-primary)" : "transparent",
-                borderColor: isSelected ? "var(--color-text-primary)" : "var(--color-surface-off)",
-              }}
-              onMouseEnter={(e) => {
-                if (!isSelected) {
-                  e.currentTarget.style.borderColor = "var(--color-text-primary)"
-                }
-              }}
-              onMouseLeave={(e) => {
-                if (!isSelected) {
-                  e.currentTarget.style.borderColor = "var(--color-surface-off)"
-                }
-              }}
+              className={`px-5 py-2 text-xs sm:text-[13px] font-normal transition-all duration-200 border rounded-[2px] disabled:opacity-40 disabled:cursor-not-allowed ${
+                isSelected
+                  ? "bg-black text-white border-black"
+                  : "bg-white text-[#1a1a1a] border-[#d0d0d0] hover:border-black"
+              }`}
               data-testid="option-button"
             >
               {v}

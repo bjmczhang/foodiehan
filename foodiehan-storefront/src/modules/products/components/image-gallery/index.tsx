@@ -35,15 +35,15 @@ const ImageGallery = ({ images }: ImageGalleryProps) => {
   const activeUrl = sanitizeImageUrl(images[activeIndex]?.url)
 
   return (
-    <div className="w-full">
+    <div className="w-full flex flex-col">
       {/* Main image */}
-      <div className="relative overflow-hidden mb-4" style={{ aspectRatio: "1/1" }}>
+      <div className="relative w-full aspect-square bg-white flex items-center justify-center overflow-hidden mb-6">
         {activeUrl && (
           <Image
             src={activeUrl}
             alt={`Product image ${activeIndex + 1}`}
             fill
-            className="object-cover"
+            className="object-contain p-4 sm:p-8 transition-all duration-300"
             sizes="(max-width: 1024px) 100vw, 55vw"
             priority={activeIndex === 0}
           />
@@ -55,18 +55,36 @@ const ImageGallery = ({ images }: ImageGalleryProps) => {
             <button
               onClick={goPrev}
               aria-label="Previous image"
-              className="absolute left-3 top-1/2 -translate-y-1/2 w-9 h-9 flex items-center justify-center bg-white/80 hover:bg-white rounded-full shadow-sm transition-colors duration-200"
+              className="absolute left-2 sm:left-4 top-1/2 -translate-y-1/2 w-8 h-8 sm:w-10 sm:h-10 flex items-center justify-center bg-white/70 hover:bg-white text-[#333] hover:text-black rounded-full transition-all duration-200"
             >
-              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+              <svg
+                width="18"
+                height="18"
+                viewBox="0 0 24 24"
+                fill="none"
+                stroke="currentColor"
+                strokeWidth="1.5"
+                strokeLinecap="round"
+                strokeLinejoin="round"
+              >
                 <polyline points="15 18 9 12 15 6" />
               </svg>
             </button>
             <button
               onClick={goNext}
               aria-label="Next image"
-              className="absolute right-3 top-1/2 -translate-y-1/2 w-9 h-9 flex items-center justify-center bg-white/80 hover:bg-white rounded-full shadow-sm transition-colors duration-200"
+              className="absolute right-2 sm:right-4 top-1/2 -translate-y-1/2 w-8 h-8 sm:w-10 sm:h-10 flex items-center justify-center bg-white/70 hover:bg-white text-[#333] hover:text-black rounded-full transition-all duration-200"
             >
-              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+              <svg
+                width="18"
+                height="18"
+                viewBox="0 0 24 24"
+                fill="none"
+                stroke="currentColor"
+                strokeWidth="1.5"
+                strokeLinecap="round"
+                strokeLinejoin="round"
+              >
                 <polyline points="9 6 15 12 9 18" />
               </svg>
             </button>
@@ -76,35 +94,35 @@ const ImageGallery = ({ images }: ImageGalleryProps) => {
 
       {/* Thumbnail strip */}
       {images.length > 1 && (
-        <div className="flex gap-2 overflow-x-auto no-scrollbar">
+        <div className="flex items-center gap-3 overflow-x-auto no-scrollbar pt-2 pb-4">
           {images.map((image, index) => {
             const thumbUrl = sanitizeImageUrl(image.url)
+            const isActive = index === activeIndex
             return (
-              <button
-                key={image.id}
-                onClick={() => setActiveIndex(index)}
-                className="relative flex-shrink-0 overflow-hidden transition-opacity duration-200"
-                style={{
-                  width: 64,
-                  height: 64,
-                  opacity: index === activeIndex ? 1 : 0.5,
-                  outline:
-                    index === activeIndex
-                      ? "1px solid var(--color-brand)"
-                      : "1px solid transparent",
-                  outlineOffset: 2,
-                }}
-              >
-                {thumbUrl && (
-                  <Image
-                    src={thumbUrl}
-                    alt={`Thumbnail ${index + 1}`}
-                    fill
-                    className="object-cover"
-                    sizes="64px"
-                  />
-                )}
-              </button>
+              <div key={image.id} className="flex flex-col items-center flex-shrink-0">
+                <button
+                  onClick={() => setActiveIndex(index)}
+                  className={`relative w-16 h-16 sm:w-20 sm:h-20 bg-white overflow-hidden transition-all duration-200 ${
+                    isActive ? "opacity-100" : "opacity-60 hover:opacity-100"
+                  }`}
+                >
+                  {thumbUrl && (
+                    <Image
+                      src={thumbUrl}
+                      alt={`Thumbnail ${index + 1}`}
+                      fill
+                      className="object-contain p-1"
+                      sizes="80px"
+                    />
+                  )}
+                </button>
+                {/* Active underline bar matching Image 1 */}
+                <div
+                  className={`h-[2px] w-full mt-1.5 transition-all duration-200 ${
+                    isActive ? "bg-black" : "bg-transparent"
+                  }`}
+                />
+              </div>
             )
           })}
         </div>

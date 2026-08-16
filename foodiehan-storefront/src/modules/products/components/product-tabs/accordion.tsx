@@ -47,36 +47,31 @@ const Item: React.FC<AccordionItemProps> = ({
     <AccordionPrimitive.Item
       {...props}
       className={clx(
-        "border-grey-20 group border-t last:mb-0 last:border-b",
-        "py-3",
+        "border-t border-[#e8e8e8] last:border-b py-3.5 group",
         className
       )}
     >
-      <AccordionPrimitive.Header className="px-1">
-        <div className="flex flex-col">
-          <div className="flex w-full items-center justify-between">
-            <div className="flex items-center gap-4">
-              <Text className="text-ui-fg-subtle text-sm">{title}</Text>
-            </div>
-            <AccordionPrimitive.Trigger>
-              {customTrigger || <MorphingTrigger />}
-            </AccordionPrimitive.Trigger>
-          </div>
-          {subtitle && (
-            <Text as="span" size="small" className="mt-1">
-              {subtitle}
-            </Text>
-          )}
-        </div>
+      <AccordionPrimitive.Header className="px-0">
+        <AccordionPrimitive.Trigger className="w-full flex items-center justify-between text-left py-1 group focus:outline-none">
+          <span className="text-sm font-normal text-[#1a1a1a] tracking-wide group-hover:text-black transition-colors">
+            {title}
+          </span>
+          {customTrigger || <MorphingTrigger />}
+        </AccordionPrimitive.Trigger>
+        {subtitle && (
+          <Text as="span" size="small" className="mt-1 text-[#888]">
+            {subtitle}
+          </Text>
+        )}
       </AccordionPrimitive.Header>
       <AccordionPrimitive.Content
         forceMount={forceMountContent}
         className={clx(
-          "radix-state-closed:animate-accordion-close radix-state-open:animate-accordion-open radix-state-closed:pointer-events-none px-1"
+          "radix-state-closed:animate-accordion-close radix-state-open:animate-accordion-open radix-state-closed:pointer-events-none overflow-hidden transition-all"
         )}
       >
-        <div className="inter-base-regular group-radix-state-closed:animate-accordion-close">
-          {description && <Text>{description}</Text>}
+        <div className="pt-2 pb-3 text-sm text-[#555555] font-light leading-relaxed">
+          {description && <p className="mb-2">{description}</p>}
           <div className="w-full">{children}</div>
         </div>
       </AccordionPrimitive.Content>
@@ -88,11 +83,36 @@ Accordion.Item = Item
 
 const MorphingTrigger = () => {
   return (
-    <div className="text-grey-90 hover:bg-grey-5 active:bg-grey-5 active:text-violet-60 focus:border-violet-60 disabled:text-grey-30 bg-transparent disabled:bg-transparent rounded-rounded group relative p-[6px]">
-      <div className="h-5 w-5">
-        <span className="bg-grey-50 rounded-circle group-radix-state-open:rotate-90 absolute inset-y-[31.75%] left-[48%] right-1/2 w-[1.5px] duration-300" />
-        <span className="bg-grey-50 rounded-circle group-radix-state-open:rotate-90 group-radix-state-open:left-1/2 group-radix-state-open:right-1/2 absolute inset-x-[31.75%] top-[48%] bottom-1/2 h-[1.5px] duration-300" />
-      </div>
+    <div className="flex items-center justify-center w-6 h-6 text-[#1a1a1a]">
+      <svg
+        width="12"
+        height="12"
+        viewBox="0 0 12 12"
+        fill="none"
+        className="transition-transform duration-200"
+      >
+        {/* Horizontal line */}
+        <line
+          x1="1"
+          y1="6"
+          x2="11"
+          y2="6"
+          stroke="currentColor"
+          strokeWidth="1.2"
+          strokeLinecap="round"
+        />
+        {/* Vertical line (hides on open) */}
+        <line
+          x1="6"
+          y1="1"
+          x2="6"
+          y2="11"
+          stroke="currentColor"
+          strokeWidth="1.2"
+          strokeLinecap="round"
+          className="group-radix-state-open:opacity-0 transition-opacity duration-200"
+        />
+      </svg>
     </div>
   )
 }

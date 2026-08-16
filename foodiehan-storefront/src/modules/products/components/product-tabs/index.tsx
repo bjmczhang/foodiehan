@@ -10,7 +10,7 @@ type ProductTabsProps = {
 const ProductTabs = ({ product }: ProductTabsProps) => {
   const tabs = [
     {
-      label: "Product Information",
+      label: "Sizing Information",
       component: <ProductInfoTab product={product} />,
     },
     {
@@ -18,13 +18,13 @@ const ProductTabs = ({ product }: ProductTabsProps) => {
       component: <AllergenInfoTab />,
     },
     {
-      label: "Pickup & Availability",
+      label: "Pricing & Availability",
       component: <PickupInfoTab />,
     },
   ]
 
   return (
-    <div className="w-full">
+    <div className="w-full mb-8">
       <Accordion type="multiple">
         {tabs.map((tab, i) => (
           <Accordion.Item

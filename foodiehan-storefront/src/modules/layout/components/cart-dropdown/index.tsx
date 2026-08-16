@@ -205,13 +205,12 @@ const CartDropdown = ({
                     </span>
                   </div>
                   <LocalizedClientLink href="/cart" passHref>
-                    <Button
-                      className="w-full"
-                      size="large"
+                    <button
+                      className="w-full bg-black text-white hover:bg-neutral-800 uppercase text-xs tracking-[0.2em] font-medium py-3 rounded-[2px] transition-colors"
                       data-testid="go-to-cart-button"
                     >
                       Go to cart
-                    </Button>
+                    </button>
                   </LocalizedClientLink>
                 </div>
               </>

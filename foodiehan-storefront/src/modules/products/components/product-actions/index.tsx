@@ -131,10 +131,10 @@ export default function ProductActions({
 
   return (
     <>
-      <div className="flex flex-col gap-y-5" ref={actionsRef}>
+      <div className="flex flex-col pt-2" ref={actionsRef}>
         {/* Variant selector */}
         {(product.variants?.length ?? 0) > 1 && (
-          <div className="flex flex-col gap-y-5">
+          <div className="flex flex-col">
             {(product.options || []).map((option) => {
               return (
                 <div key={option.id}>
@@ -149,31 +149,32 @@ export default function ProductActions({
                 </div>
               )
             })}
-            <Divider />
           </div>
         )}
 
         {/* CTA Button */}
-        <button
-          onClick={handleAddToCart}
-          disabled={
-            !inStock ||
-            !selectedVariant ||
-            !!disabled ||
-            isAdding ||
-            !isValidVariant
-          }
-          className="btn-brand-filled w-full disabled:opacity-50 disabled:cursor-not-allowed"
-          data-testid="add-product-button"
-        >
-          {!selectedVariant && !options
-            ? "Select variant"
-            : !inStock || !isValidVariant
-            ? "Out of stock"
-            : isAdding
-            ? "Adding..."
-            : "Order Now"}
-        </button>
+        <div>
+          <button
+            onClick={handleAddToCart}
+            disabled={
+              !inStock ||
+              !selectedVariant ||
+              !!disabled ||
+              isAdding ||
+              !isValidVariant
+            }
+            className="w-full sm:w-auto min-w-[200px] inline-flex items-center justify-center bg-black text-white hover:bg-neutral-800 disabled:bg-neutral-300 disabled:text-neutral-500 disabled:cursor-not-allowed uppercase text-xs tracking-[0.2em] font-medium py-3.5 px-10 rounded-[2px] transition-colors duration-200"
+            data-testid="add-product-button"
+          >
+            {!selectedVariant && !options
+              ? "Select variant"
+              : !inStock || !isValidVariant
+              ? "Out of stock"
+              : isAdding
+              ? "Adding..."
+              : "Order Now"}
+          </button>
+        </div>
 
         <MobileActions
           product={product}
