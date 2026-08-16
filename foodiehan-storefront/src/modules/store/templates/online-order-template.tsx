@@ -102,7 +102,7 @@ export default function OnlineOrderTemplate({
       {/* ── Sub-navigation / Category Filter Bar (Sticky) ────────── */}
       {categories.length > 0 && (
         <nav className="sticky top-[72px] z-30 bg-white/95 backdrop-blur-md border-b border-[#f0f0f0] transition-all">
-          <div className="max-w-[1440px] mx-auto px-6 flex items-center justify-center overflow-x-auto no-scrollbar gap-x-6 sm:gap-x-10 py-4">
+          <div className="content-container max-w-[1440px] mx-auto px-6 flex items-center justify-center overflow-x-auto no-scrollbar gap-x-6 sm:gap-x-10 py-4">
             {categories.map((cat) => {
               const isActive = activeCategory === cat.handle
               return (
@@ -128,7 +128,7 @@ export default function OnlineOrderTemplate({
       )}
 
       {/* ── Category sections ─────────────────────────────── */}
-      <div className="pt-8 pb-28 max-w-[1440px] mx-auto px-6 sm:px-12">
+      <div className="content-container max-w-[1440px] mx-auto px-6 pt-8 pb-28">
         {categories.length === 0 && (
           <div className="flex flex-col items-center justify-center py-24 text-[#888888]">
             <p>No categories found.</p>
@@ -176,4 +176,6 @@ export default function OnlineOrderTemplate({
     </div>
   )
 }
+
+
 

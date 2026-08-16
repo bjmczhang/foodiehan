@@ -8,7 +8,8 @@ export default async function Footer() {
       style={{ backgroundColor: "var(--color-bg-dark)" }}
     >
       {/* Main footer columns */}
-      <div className="content-container max-w-[1200px] mx-auto py-16 small:py-20">
+      <div className="content-container max-w-[1440px] mx-auto py-16 small:py-20">
+
         <div className="grid grid-cols-2 medium:grid-cols-3 large:grid-cols-5 gap-10">
           {/* Column 1: Customer Care */}
           <div>
@@ -179,7 +180,8 @@ export default async function Footer() {
           borderColor: "rgba(255,255,255,0.06)",
         }}
       >
-        <div className="content-container max-w-[1200px] mx-auto flex flex-col small:flex-row items-center justify-between gap-4 text-xs font-light text-[var(--color-text-muted)]">
+        <div className="content-container max-w-[1440px] mx-auto flex flex-col small:flex-row items-center justify-between gap-4 text-xs font-light text-[var(--color-text-muted)]">
+
           <span>© {new Date().getFullYear()} FoodieHan. All rights reserved.</span>
           <div className="flex gap-6">
             <a

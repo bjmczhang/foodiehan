@@ -21,8 +21,10 @@ export default async function Nav() {
 
   return (
     <NavClient>
-      <nav className="w-full h-[72px] px-6 lg:px-12 max-w-[1600px] mx-auto flex items-center justify-between relative">
+      <nav className="w-full h-[72px] px-6 max-w-[1440px] mx-auto flex items-center justify-between relative">
         {/* Left Section: Mobile Menu & Desktop Nav Links */}
+
+
         <div className="flex items-center gap-x-4 flex-1 justify-start">
           <div className="small:hidden">
             <SideMenu
