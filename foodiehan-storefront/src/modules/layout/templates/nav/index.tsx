@@ -88,7 +88,7 @@ export default async function Nav() {
                   View Products
                 </LocalizedClientLink>
                 <a
-                  href="https://order.laurent.com.au"
+                  href="https://www.foodiehan.com.au/au/online-order"
                   target="_blank"
                   rel="noopener noreferrer"
                   className="block py-2 text-xs font-light tracking-wider uppercase transition-colors duration-200 hover:text-[var(--color-brand)] whitespace-nowrap"

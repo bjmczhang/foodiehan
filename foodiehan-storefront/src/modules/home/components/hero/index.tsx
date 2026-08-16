@@ -29,8 +29,8 @@ const Hero = () => {
           className="max-w-xl mb-10 text-base font-light leading-relaxed tracking-wide text-white/80 sm:text-lg"
           style={{ fontFamily: "'Rubik', sans-serif" }}
         >
-          Handcrafted breads and pastries made with time-honoured
-          techniques and the finest ingredients
+          Handcrafted breads and pastries made with time-honoured techniques and
+          the finest ingredients
         </p>
 
         {/* CTA Buttons */}
@@ -43,7 +43,7 @@ const Hero = () => {
           </LocalizedClientLink>
 
           <a
-            href="https://order.laurent.com.au"
+            href="https://www.foodiehan.com.au/au/online-order"
             target="_blank"
             rel="noopener noreferrer"
             className="inline-flex items-center justify-center px-9 py-3.5 text-sm font-medium text-white uppercase tracking-[0.15em] border-2 border-white/60 rounded-full transition-all duration-300 ease-in-out hover:bg-white hover:text-[var(--color-text-primary)]"
