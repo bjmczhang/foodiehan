@@ -1,6 +1,7 @@
 "use client"
 
 import { useEffect, useState, ReactNode } from "react"
+import { usePathname } from "next/navigation"
 
 interface NavClientProps {
   children: ReactNode
@@ -8,26 +9,30 @@ interface NavClientProps {
 
 export default function NavClient({ children }: NavClientProps) {
   const [isScrolled, setIsScrolled] = useState(false)
+  const pathname = usePathname()
+
+  // Check if current route is homepage: "/", "/au", "/au/", etc.
+  const isHomePage = !pathname || pathname === "/" || /^\/[a-z]{2}\/?$/i.test(pathname)
 
   useEffect(() => {
     const handleScroll = () => {
-      // Switch to solid background after scrolling past 80px
-      setIsScrolled(window.scrollY > 80)
+      setIsScrolled(window.scrollY > 40)
     }
 
-    // Check initial scroll position
     handleScroll()
 
     window.addEventListener("scroll", handleScroll, { passive: true })
     return () => window.removeEventListener("scroll", handleScroll)
   }, [])
 
+  const isSolid = !isHomePage || isScrolled
+
   return (
-    <div className="fixed inset-x-0 top-0 z-50 transition-colors duration-500">
+    <div className="fixed inset-x-0 top-0 z-50 transition-colors duration-300">
       <header
-        className={`relative mx-auto transition-all duration-500 ${
-          isScrolled
-            ? "bg-white shadow-sm text-[var(--color-text-primary)]"
+        className={`relative mx-auto transition-all duration-300 ${
+          isSolid
+            ? "bg-white text-[#1a1a1a] border-b border-[#ededed] shadow-[0_1px_3px_rgba(0,0,0,0.03)]"
             : "bg-transparent text-white"
         }`}
       >
@@ -36,3 +41,4 @@ export default function NavClient({ children }: NavClientProps) {
     </div>
   )
 }
+
