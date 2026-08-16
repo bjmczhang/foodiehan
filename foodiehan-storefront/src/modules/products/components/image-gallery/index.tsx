@@ -3,6 +3,7 @@
 import { HttpTypes } from "@medusajs/types"
 import Image from "next/image"
 import { useState } from "react"
+import { sanitizeImageUrl } from "@lib/util/sanitize-image-url"
 
 type ImageGalleryProps = {
   images: HttpTypes.StoreProductImage[]
@@ -31,13 +32,15 @@ const ImageGallery = ({ images }: ImageGalleryProps) => {
     setActiveIndex((prev) => (prev === images.length - 1 ? 0 : prev + 1))
   }
 
+  const activeUrl = sanitizeImageUrl(images[activeIndex]?.url)
+
   return (
     <div className="w-full">
       {/* Main image */}
       <div className="relative overflow-hidden mb-4" style={{ aspectRatio: "1/1" }}>
-        {images[activeIndex]?.url && (
+        {activeUrl && (
           <Image
-            src={images[activeIndex].url}
+            src={activeUrl}
             alt={`Product image ${activeIndex + 1}`}
             fill
             className="object-cover"
@@ -74,30 +77,36 @@ const ImageGallery = ({ images }: ImageGalleryProps) => {
       {/* Thumbnail strip */}
       {images.length > 1 && (
         <div className="flex gap-2 overflow-x-auto no-scrollbar">
-          {images.map((image, index) => (
-            <button
-              key={image.id}
-              onClick={() => setActiveIndex(index)}
-              className="relative flex-shrink-0 overflow-hidden transition-opacity duration-200"
-              style={{
-                width: 64,
-                height: 64,
-                opacity: index === activeIndex ? 1 : 0.5,
-                outline: index === activeIndex ? "1px solid var(--color-brand)" : "1px solid transparent",
-                outlineOffset: 2,
-              }}
-            >
-              {image.url && (
-                <Image
-                  src={image.url}
-                  alt={`Thumbnail ${index + 1}`}
-                  fill
-                  className="object-cover"
-                  sizes="64px"
-                />
-              )}
-            </button>
-          ))}
+          {images.map((image, index) => {
+            const thumbUrl = sanitizeImageUrl(image.url)
+            return (
+              <button
+                key={image.id}
+                onClick={() => setActiveIndex(index)}
+                className="relative flex-shrink-0 overflow-hidden transition-opacity duration-200"
+                style={{
+                  width: 64,
+                  height: 64,
+                  opacity: index === activeIndex ? 1 : 0.5,
+                  outline:
+                    index === activeIndex
+                      ? "1px solid var(--color-brand)"
+                      : "1px solid transparent",
+                  outlineOffset: 2,
+                }}
+              >
+                {thumbUrl && (
+                  <Image
+                    src={thumbUrl}
+                    alt={`Thumbnail ${index + 1}`}
+                    fill
+                    className="object-cover"
+                    sizes="64px"
+                  />
+                )}
+              </button>
+            )
+          })}
         </div>
       )}
     </div>

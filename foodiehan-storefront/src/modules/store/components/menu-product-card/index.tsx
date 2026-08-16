@@ -3,6 +3,7 @@
 import { HttpTypes } from "@medusajs/types"
 import Image from "next/image"
 import { useParams } from "next/navigation"
+import { sanitizeImageUrl } from "@lib/util/sanitize-image-url"
 
 type MenuProductCardProps = {
   product: HttpTypes.StoreProduct
@@ -32,6 +33,7 @@ export default function MenuProductCard({ product }: MenuProductCardProps) {
   const { countryCode } = useParams()
 
   const price = formatPrice(product)
+  const thumbnail = sanitizeImageUrl(product.thumbnail)
 
   return (
     <div className="flex flex-col">
@@ -41,9 +43,9 @@ export default function MenuProductCard({ product }: MenuProductCardProps) {
         className="block overflow-hidden mb-3"
         style={{ aspectRatio: "1 / 1" }}
       >
-        {product.thumbnail ? (
+        {thumbnail ? (
           <Image
-            src={product.thumbnail}
+            src={thumbnail}
             alt={product.title ?? ""}
             width={500}
             height={500}

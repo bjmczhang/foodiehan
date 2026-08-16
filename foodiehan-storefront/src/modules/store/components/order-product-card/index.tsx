@@ -5,6 +5,7 @@ import { HttpTypes } from "@medusajs/types"
 import Image from "next/image"
 import { useParams, useRouter } from "next/navigation"
 import { useState } from "react"
+import { sanitizeImageUrl } from "@lib/util/sanitize-image-url"
 
 type OrderProductCardProps = {
   product: HttpTypes.StoreProduct & { category_label?: string }
@@ -130,9 +131,9 @@ export default function OrderProductCard({
           tabIndex={-1}
           aria-hidden="true"
         >
-          {product.thumbnail ? (
+          {sanitizeImageUrl(product.thumbnail) ? (
             <Image
-              src={product.thumbnail}
+              src={sanitizeImageUrl(product.thumbnail)!}
               alt={product.title ?? ""}
               fill
               className="object-cover transition-transform duration-500 ease-in-out group-hover:scale-105"

@@ -8,6 +8,18 @@ checkEnvVariables()
 const S3_HOSTNAME = process.env.MEDUSA_CLOUD_S3_HOSTNAME
 const S3_PATHNAME = process.env.MEDUSA_CLOUD_S3_PATHNAME
 
+let backendPattern = []
+if (process.env.MEDUSA_BACKEND_URL) {
+  try {
+    const parsed = new URL(process.env.MEDUSA_BACKEND_URL)
+    backendPattern.push({
+      protocol: parsed.protocol.replace(":", ""),
+      hostname: parsed.hostname,
+      port: parsed.port || undefined,
+    })
+  } catch {}
+}
+
 /**
  * @type {import('next').NextConfig}
  */
@@ -31,6 +43,10 @@ const nextConfig = {
         hostname: "localhost",
       },
       {
+        protocol: "http",
+        hostname: "127.0.0.1",
+      },
+      {
         protocol: "https",
         hostname: "images.unsplash.com",
       },
@@ -46,6 +62,7 @@ const nextConfig = {
         protocol: "https",
         hostname: "medusa-server-testing.s3.us-east-1.amazonaws.com",
       },
+      ...backendPattern,
       ...(S3_HOSTNAME && S3_PATHNAME
         ? [
             {
