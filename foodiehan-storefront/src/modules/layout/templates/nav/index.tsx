@@ -36,19 +36,18 @@ export default async function Nav() {
           <NavLinks />
         </div>
 
-        {/* Center Section: Centered Brand Wordmark */}
+        {/* Center Section: Centered Brand Logo */}
         <div className="flex items-center justify-center absolute left-1/2 -translate-x-1/2 pointer-events-auto">
           <LocalizedClientLink
             href="/"
-            className="flex items-center justify-center text-current hover:opacity-85 transition-opacity"
+            className="flex items-center justify-center hover:opacity-85 transition-opacity py-1"
             data-testid="nav-store-link"
           >
-            <span
-              className="text-xl small:text-2xl font-normal tracking-[0.28em] uppercase"
-              style={{ fontFamily: "'Playfair Display', Georgia, serif" }}
-            >
-              FoodieHan
-            </span>
+            <img
+              src="/logo.svg"
+              alt="FoodieHan"
+              className="w-auto h-11 small:h-12 object-contain transition-all duration-300 group-[.is-transparent]/nav:brightness-0 group-[.is-transparent]/nav:invert"
+            />
           </LocalizedClientLink>
         </div>
 

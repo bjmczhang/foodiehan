@@ -45,16 +45,6 @@ export default function NavLinks() {
         <LocalizedClientLink
           href="/contact"
           className="transition-colors duration-200 hover:text-[var(--color-brand)] text-current"
-          data-testid="nav-locations-link"
-        >
-          Locations
-        </LocalizedClientLink>
-      </div>
-
-      <div className="relative py-1">
-        <LocalizedClientLink
-          href="/contact"
-          className="transition-colors duration-200 hover:text-[var(--color-brand)] text-current"
           data-testid="nav-contact-link"
         >
           Contact Us
@@ -62,16 +52,6 @@ export default function NavLinks() {
         {isContactActive && (
           <span className="absolute bottom-0 left-0 w-full h-[1.5px] bg-current transition-all duration-200" />
         )}
-      </div>
-
-      <div className="relative py-1">
-        <LocalizedClientLink
-          href="/contact"
-          className="transition-colors duration-200 hover:text-[var(--color-brand)] text-current"
-          data-testid="nav-wholesale-link"
-        >
-          Wholesale
-        </LocalizedClientLink>
       </div>
     </div>
   )

@@ -1,0 +1,646 @@
+[
+  {
+    "handle": "shanghai-butter-tteok-상하이-버터떡",
+    "title": "Shanghai Butter Tteok 상하이 버터떡",
+    "price": "$5.00",
+    "desc": "Chewy, sweet and buttery treat, packed with subtle scent of french butter & a touch of Australian honey with each bite. Did we mention it's GLUTEN FREE?",
+    "thumbnail": "https://cdn.shopify.com/s/files/1/0650/6538/6146/files/FullSizeRender_58b18810-bbd9-43b3-a575-051d3652bb96.jpg?v=1776939851",
+    "images": [
+      "https://cdn.shopify.com/s/files/1/0650/6538/6146/files/FullSizeRender_58b18810-bbd9-43b3-a575-051d3652bb96.jpg?v=1776939851"
+    ]
+  },
+  {
+    "handle": "dubai-chewy-cookie-두쫀쿠",
+    "title": "Dubai Chewy Cookie 두바이 쫀득 쿠키",
+    "price": "$8.00",
+    "desc": "",
+    "thumbnail": "https://cdn.shopify.com/s/files/1/0650/6538/6146/files/Screenshot_2026-04-28_at_21.36.56.png?v=1777376246",
+    "images": [
+      "https://cdn.shopify.com/s/files/1/0650/6538/6146/files/Screenshot_2026-04-28_at_21.36.56.png?v=1777376246"
+    ]
+  },
+  {
+    "handle": "salted-butter-bun",
+    "title": "Salted Butter Bun 플레인 소금빵",
+    "price": "$3.30",
+    "desc": "Soft shokupan dough, layered with butter, rolled into little scrolls, and topped with pink salt.\n\n부드러운 쇼쿠판 도우에 버터를 바르고 돌돌 말아 핑크 솔트를 뿌려 구웠어요.",
+    "thumbnail": "https://cdn.shopify.com/s/files/1/0650/6538/6146/files/Screenshot_2026-04-28_at_21.55.45.png?v=1777377408",
+    "images": [
+      "https://cdn.shopify.com/s/files/1/0650/6538/6146/files/Screenshot_2026-04-28_at_21.55.45.png?v=1777377408",
+      "https://cdn.shopify.com/s/files/1/0650/6538/6146/files/Frame213.png?v=1739409717",
+      "https://cdn.shopify.com/s/files/1/0650/6538/6146/files/Frame215.png?v=1739409718"
+    ]
+  },
+  {
+    "handle": "purple-sweet-potato-bun-보라-고구마빵",
+    "title": "Purple Sweet Potato Bun 자색 고구마빵",
+    "price": "$4.40",
+    "desc": "A chewy, rice-cake like bun filled with smooth and rich sweet potato paste.\n\n쫄깃한 떡처럼 부드러운 번 안에 부드럽고 고소한 으깨진 고구마 앙금이 가득 들어 있습니다.",
+    "thumbnail": "https://cdn.shopify.com/s/files/1/0650/6538/6146/files/Frame_212.png?v=1739408989",
+    "images": [
+      "https://cdn.shopify.com/s/files/1/0650/6538/6146/files/Frame_212.png?v=1739408989",
+      "https://cdn.shopify.com/s/files/1/0650/6538/6146/files/Frame_214.png?v=1739408989"
+    ]
+  },
+  {
+    "handle": "sticky-rice-doughnut-찹쌀-도넛츠",
+    "title": "Sticky Rice Doughnut 찹쌀 도넛츠 1 Each",
+    "price": "$2.50",
+    "desc": "A chewy glutinous rice doughnut stuffed with Korean red bean paste.\n\n쫀득한 찹쌀 도넛 속에 달콤한 팥앙금을 가득 채웠어요.",
+    "thumbnail": "https://cdn.shopify.com/s/files/1/0650/6538/6146/files/StickyRiceDoughnut.png?v=1736755624",
+    "images": [
+      "https://cdn.shopify.com/s/files/1/0650/6538/6146/files/StickyRiceDoughnut.png?v=1736755624"
+    ]
+  },
+  {
+    "handle": "pistachio-cream-bun-피스타치오-빵",
+    "title": "Pistachio Cream Bun 피스타치오 크림빵",
+    "price": "$3.90",
+    "desc": "Manna's sweet and smooth butter cream, with a twist of a hearty pistachio flavour, complimented by pleasant hint of cocoa with tiny nibbles of dark chocolate, sandwiched inside our very own milk bun.\n\n달콤하고 부드러운 버터 크림에 풍성한 피스타치오 풍미가 가미된 만나의 달콤하고 부드러운 버터 크림에 코코아의 은은한 풍미와 함께 작은 다크 초콜릿 조각을 넣어 자체 개발한 밀크 번 안에 샌드했습니다.",
+    "thumbnail": "https://cdn.shopify.com/s/files/1/0650/6538/6146/files/Frame278.png?v=1740962898",
+    "images": [
+      "https://cdn.shopify.com/s/files/1/0650/6538/6146/files/Frame278.png?v=1740962898"
+    ]
+  },
+  {
+    "handle": "red-bean-bun-단팥빵",
+    "title": "Red Bean Bun 단팥빵",
+    "price": "$3.80",
+    "desc": "A soft and simple milk bun filled with smooth Korean red bean paste.\n\n부드러운 밀크번 속에 달콤한 한국식 팥앙금이 가득 들어 있어요.",
+    "thumbnail": "https://cdn.shopify.com/s/files/1/0650/6538/6146/files/RedBeanBun.png?v=1736760429",
+    "images": [
+      "https://cdn.shopify.com/s/files/1/0650/6538/6146/files/RedBeanBun.png?v=1736760429"
+    ]
+  },
+  {
+    "handle": "sweet-rice-twister-doughnut-찹쌀꽈배기",
+    "title": "Sweet Rice Twister Doughnut 찹쌀 꽈배기",
+    "price": "$3.40",
+    "desc": "A twisted doughnut coated in chewy clusters of sweet sticky rice crumble and sugar.\n\n쫀득한 찹쌀 크럼블과 설탕을 입힌 달콤한 꽈배기 도넛이에요.",
+    "thumbnail": "https://cdn.shopify.com/s/files/1/0650/6538/6146/files/StickyRiceTwisterDoughnut.png?v=1736756787",
+    "images": [
+      "https://cdn.shopify.com/s/files/1/0650/6538/6146/files/StickyRiceTwisterDoughnut.png?v=1736756787"
+    ]
+  },
+  {
+    "handle": "red-bean-salted-butter-bun-앙버터-소금빵",
+    "title": "Salted Red Bean Butter Bun 앙버터 소금빵",
+    "price": "$4.20",
+    "desc": "Manna Bakery's Salted Butter Bun, loaded with red bean paste and a thin block of salted butter for a creamy and hearty kick.\n\n만나 베이커리의 소금빵에 달콤한 팥앙금과 얇은 소금 버터 블록이 들어가 있어 고소하고 풍부한 맛을 선사합니다.",
+    "thumbnail": "https://cdn.shopify.com/s/files/1/0650/6538/6146/files/Frame150.png?v=1739314794",
+    "images": [
+      "https://cdn.shopify.com/s/files/1/0650/6538/6146/files/Frame150.png?v=1739314794",
+      "https://cdn.shopify.com/s/files/1/0650/6538/6146/files/Frame_158.png?v=1739314817"
+    ]
+  },
+  {
+    "handle": "peanut-crust-bun",
+    "title": "Peanut Crust Bun 소보로빵",
+    "price": "$3.50",
+    "desc": "A soft milk bun generously topped with crunchy, sweet peanut crumbles.\n\n부드러운 밀크번 위에 고소하고 달콤한 땅콩 크럼블을 듬뿍 올렸어요.",
+    "thumbnail": "https://cdn.shopify.com/s/files/1/0650/6538/6146/files/Peanut_Crust_Bun_9028479a-82a9-4964-9c87-aeb555c0a7cd.png?v=1736756599",
+    "images": [
+      "https://cdn.shopify.com/s/files/1/0650/6538/6146/files/Peanut_Crust_Bun_9028479a-82a9-4964-9c87-aeb555c0a7cd.png?v=1736756599"
+    ]
+  },
+  {
+    "handle": "matcha-salted-butter-bun-녹차-소금빵",
+    "title": "Matcha Salted Butter Bun 녹차 소금빵",
+    "price": "$3.50",
+    "desc": "Manna's simple Salted Butter Bun with a subtle Matcha twist, delivering pleasant and comforting scent of matcha.\n\n담백하고 부드러운 만나 소금빵속 은은하고 향긋한 녹차의 향이 담겨져 있습니다.",
+    "thumbnail": "https://cdn.shopify.com/s/files/1/0650/6538/6146/files/Screenshot_2026-04-28_at_21.41.56_153ef8cc-48b0-4ba3-ba44-83d8e9e0e809.png?v=1777377300",
+    "images": [
+      "https://cdn.shopify.com/s/files/1/0650/6538/6146/files/Screenshot_2026-04-28_at_21.41.56_153ef8cc-48b0-4ba3-ba44-83d8e9e0e809.png?v=1777377300",
+      "https://cdn.shopify.com/s/files/1/0650/6538/6146/files/Screenshot_2025-05-08_at_13.49.48.png?v=1746676244"
+    ]
+  },
+  {
+    "handle": "garlic-bread-마늘빵",
+    "title": "Garlic Bread 마늘빵",
+    "price": "$6.50",
+    "desc": "A soft white roll filled with creamy, sweet garlic cheese and glazed with garlic syrup.\n\n부드러운 흰 빵 속에 달콤하고 고소한 갈릭크림치즈를 넣고 갈릭 시럽을 더해 완성했어요.",
+    "thumbnail": "https://cdn.shopify.com/s/files/1/0650/6538/6146/files/Frame_208.png?v=1739315521",
+    "images": [
+      "https://cdn.shopify.com/s/files/1/0650/6538/6146/files/Frame_208.png?v=1739315521",
+      "https://cdn.shopify.com/s/files/1/0650/6538/6146/files/Frame_206.png?v=1739315521"
+    ]
+  },
+  {
+    "handle": "peanut-butter-cream-bun-땅콩-버터크림-빵",
+    "title": "Peanut Butter Cream Bun 땅콩크림빵",
+    "price": "$3.80",
+    "desc": "Smooth, creamy buttercream blended with peanut butter, sandwiched between soft milk buns.\n\n부드러운 밀크번 사이에 고소한 땅콩버터와 진한 버터크림을 듬뿍 넣었어요.",
+    "thumbnail": "https://cdn.shopify.com/s/files/1/0650/6538/6146/files/PeanutButterCreamBun.png?v=1736756976",
+    "images": [
+      "https://cdn.shopify.com/s/files/1/0650/6538/6146/files/PeanutButterCreamBun.png?v=1736756976"
+    ]
+  },
+  {
+    "handle": "mocha-bun-모카번",
+    "title": "Mocha Bun 오리지널 모카번",
+    "price": "$3.90",
+    "desc": "A soft milk bun with a hidden block of salted butter, topped with a crisp coffee crust.\n\n짭짤한 버터 조각을 넣고 고소한 커피 크러스트를 올린 부드러운 우유빵이에요.",
+    "thumbnail": "https://cdn.shopify.com/s/files/1/0650/6538/6146/files/Frame_181.png?v=1739409484",
+    "images": [
+      "https://cdn.shopify.com/s/files/1/0650/6538/6146/files/Frame_181.png?v=1739409484"
+    ]
+  },
+  {
+    "handle": "croquette-고로케",
+    "title": "Croquette 고로케",
+    "price": "$4.80",
+    "desc": "A crispy, deep-fried milk bun stuffed with stir-fried veggies, minced meat, mashed eggs, and potatoes.\n\n바삭하게 튀긴 밀크번 속에 볶은 야채, 다진 고기, 부드러운 감자와 달걀이 듬뿍 들어 있어요.",
+    "thumbnail": "https://cdn.shopify.com/s/files/1/0650/6538/6146/files/Croquette.png?v=1736760264",
+    "images": [
+      "https://cdn.shopify.com/s/files/1/0650/6538/6146/files/Croquette.png?v=1736760264"
+    ]
+  },
+  {
+    "handle": "butter-cream-bun",
+    "title": "Butter Cream Bun 버터크림빵",
+    "price": "$3.50",
+    "desc": "Silky buttercream sandwiched between soft and lightly buttery milk buns.\n\n부드러운 우유빵 사이에 고소하고 달콤한 버터크림을 채운 담백한 디저트예요.",
+    "thumbnail": "https://cdn.shopify.com/s/files/1/0650/6538/6146/files/Butter_Cream_Bun_227bffa6-b805-4db7-86e0-800ffc7b86ec.png?v=1736756905",
+    "images": [
+      "https://cdn.shopify.com/s/files/1/0650/6538/6146/files/Butter_Cream_Bun_227bffa6-b805-4db7-86e0-800ffc7b86ec.png?v=1736756905"
+    ]
+  },
+  {
+    "handle": "fresh-cream-red-bean-bun-생크림-단팥빵",
+    "title": "Fresh Cream Red Bean Bun 생크림 단팥빵",
+    "price": "$5.30",
+    "desc": "Manna’s famous red bean bun, now with an extra creamy burst of fresh milk cream.\n\n만나의 대표 팥빵에 부드럽고 신선한 우유 생크림을 가득 채웠어요.",
+    "thumbnail": "https://cdn.shopify.com/s/files/1/0650/6538/6146/files/FreshCreamRedBeanBun.png?v=1736760541",
+    "images": [
+      "https://cdn.shopify.com/s/files/1/0650/6538/6146/files/FreshCreamRedBeanBun.png?v=1736760541"
+    ]
+  },
+  {
+    "handle": "sticky-rice-sticks-찹쌀-스틱",
+    "title": "Sticky Rice Sticks 찹쌀스틱",
+    "price": "$4.00",
+    "desc": "Chewy glutinous rice bars, lightly coated in sugar, served as a pair.\n\n쫀득한 찹쌀바에 달콤한 설탕을 더해 두 개 한 세트로 준비했어요.",
+    "thumbnail": "https://cdn.shopify.com/s/files/1/0650/6538/6146/files/StickyRiceStick.png?v=1736755761",
+    "images": [
+      "https://cdn.shopify.com/s/files/1/0650/6538/6146/files/StickyRiceStick.png?v=1736755761"
+    ]
+  },
+  {
+    "handle": "custard-bun-슈크림-빵",
+    "title": "Custard Bun 슈크림빵",
+    "price": "$4.50",
+    "desc": "A light and airy milk bun filled with a rich, creamy custard centre.\n\n부드러운 우유빵 속에 진한 커스터드를 가득 채웠어요.",
+    "thumbnail": "https://cdn.shopify.com/s/files/1/0650/6538/6146/files/Frame_196.png?v=1739409660",
+    "images": [
+      "https://cdn.shopify.com/s/files/1/0650/6538/6146/files/Frame_196.png?v=1739409660",
+      "https://cdn.shopify.com/s/files/1/0650/6538/6146/files/Frame_197.png?v=1739409660"
+    ]
+  },
+  {
+    "handle": "mocha-cream-loaf-모카크림-빵",
+    "title": "Mocha Cream Loaf 모카크림빵",
+    "price": "$7.50",
+    "desc": "Manna’s mocha bread with walnuts, sultanas, and rich mocha cream, finished with a dusting of powdered sugar and nutty crust.\n\n만나의 모카빵에 호두, 건포도, 진한 모카크림을 채우고 고소한 크러스트와 슈가 파우더를 더했어요.",
+    "thumbnail": "https://cdn.shopify.com/s/files/1/0650/6538/6146/files/Frame_202.png?v=1739408267",
+    "images": [
+      "https://cdn.shopify.com/s/files/1/0650/6538/6146/files/Frame_202.png?v=1739408267",
+      "https://cdn.shopify.com/s/files/1/0650/6538/6146/files/Frame_203.png?v=1739408294"
+    ]
+  },
+  {
+    "handle": "pizza-slice-피자빵",
+    "title": "Pizza Slice 피자빵",
+    "price": "$4.90",
+    "desc": "Manna’s milk bun meets juicy sausage slices, topped with mixed vegetables, mozzarella, and drizzled with mayo & tomato sauce.\n\n부드러운 밀크번 위에 소시지 조각, 각종 채소, 모차렐라 치즈를 듬뿍 올리고 마요네즈와 토마토 소스를 더했어요.",
+    "thumbnail": "https://cdn.shopify.com/s/files/1/0650/6538/6146/files/Frame_153.png?v=1739409109",
+    "images": [
+      "https://cdn.shopify.com/s/files/1/0650/6538/6146/files/Frame_153.png?v=1739409109"
+    ]
+  },
+  {
+    "handle": "walnut-cream-cheese-roll-호두-크림치즈-빵",
+    "title": "Walnut Cream Cheese Roll 호두 크림치즈빵",
+    "price": "$9.00",
+    "desc": "Nutty and hearty walnut bread filled with roasted walnuts and creamy, tangy cream cheese.\n\n고소한 호두가 가득한 빵 속에 진한 크림치즈를 채워 풍미를 더했어요.",
+    "thumbnail": "https://cdn.shopify.com/s/files/1/0650/6538/6146/files/CreamCheeseWalnutBread.png?v=1736757659",
+    "images": [
+      "https://cdn.shopify.com/s/files/1/0650/6538/6146/files/CreamCheeseWalnutBread.png?v=1736757659"
+    ]
+  },
+  {
+    "handle": "castella-twister-doughnut-카스테라-꽈배기",
+    "title": "Castella Twister Doughnut 카스테라 꽈배기",
+    "price": "$3.80",
+    "desc": "A twisted doughnut covered in a delicate layer of Manna’s special choux cream and castella crumbs.\n\n만나 베이커리만의 슈크림과 카스텔라 크럼블을 입힌 바삭한 꽈배기 도넛이에요.",
+    "thumbnail": "https://cdn.shopify.com/s/files/1/0650/6538/6146/files/CastellaTwisterDoughnut.png?v=1736756836",
+    "images": [
+      "https://cdn.shopify.com/s/files/1/0650/6538/6146/files/CastellaTwisterDoughnut.png?v=1736756836"
+    ]
+  },
+  {
+    "handle": "injeolmi-twister-doughnut-인절미-꽈배기",
+    "title": "Injeolmi Twister Doughnut 인절미 꽈배기",
+    "price": "$4.30",
+    "desc": "Sweet Sticky Rice Twister Doughnut, loaded with black sesame seeds, then smothered and... smothered again in sweet and hearty soy bean powder.\n\n달콤한 찹쌀 트위스터 도넛에 검은깨를 가득 넣은 후 달콤하고 풍성한 콩가루로 다시 한 번 감싸줍니다.",
+    "thumbnail": "https://cdn.shopify.com/s/files/1/0650/6538/6146/files/InjeolmiTwisterDoughnut.png?v=1739410672",
+    "images": [
+      "https://cdn.shopify.com/s/files/1/0650/6538/6146/files/InjeolmiTwisterDoughnut.png?v=1739410672"
+    ]
+  },
+  {
+    "handle": "fried-sausage-roll-소세지빵",
+    "title": "Fried Sausage Roll 소세지빵",
+    "price": "$4.20",
+    "desc": "A deep-fried milk bun spiral wrapped around a whole sausage.\n\n통소시지를 감아 바삭하게 튀긴 밀크번 트위스트예요.",
+    "thumbnail": "https://cdn.shopify.com/s/files/1/0650/6538/6146/files/FriedSausageRoll.png?v=1736756389",
+    "images": [
+      "https://cdn.shopify.com/s/files/1/0650/6538/6146/files/FriedSausageRoll.png?v=1736756389"
+    ]
+  },
+  {
+    "handle": "shokupan-우유식빵",
+    "title": "Shokupan 우유식빵",
+    "price": "$8.00",
+    "desc": "Japanese-style shokupan milk loaf, made without eggs but rich in smooth, milky flavor.\n\n계란 없이 우유로만 반죽해 더욱 부드럽고 크리미한 맛이 나는 일본식 쇼쿠판 식빵이에요.",
+    "thumbnail": "https://cdn.shopify.com/s/files/1/0650/6538/6146/files/Frame_100.png?v=1738114843",
+    "images": [
+      "https://cdn.shopify.com/s/files/1/0650/6538/6146/files/Frame_100.png?v=1738114843"
+    ]
+  },
+  {
+    "handle": "sweet-potato-croffle-고구마-크로플",
+    "title": "Sweet Potato Croffle 고구마 크로플",
+    "price": "$5.80",
+    "desc": "A classic buttery croissant, pressed into a crispy waffle shape and filled with Manna’s special rich and velvety sweet potato paste.\n\n버터 풍미 가득한 클래식 크루아상을 와플 모양으로 눌러 바삭하게 구워내고, 만나만의 진하고 부드러운 고구마 페이스트를 듬뿍 채웠어요.",
+    "thumbnail": "https://cdn.shopify.com/s/files/1/0650/6538/6146/files/12.png?v=1738115690",
+    "images": [
+      "https://cdn.shopify.com/s/files/1/0650/6538/6146/files/12.png?v=1738115690"
+    ]
+  },
+  {
+    "handle": "baby-choux-베이비-슈",
+    "title": "Baby Choux 베이비슈",
+    "price": "$6.00",
+    "desc": "A box of delicate choux pastries, filled with Manna’s signature choux cream.\n\n만나 베이커리의 특별한 슈크림과 생크림을 가득 채운 슈 페이스트리 한 박스예요.",
+    "thumbnail": "https://cdn.shopify.com/s/files/1/0650/6538/6146/files/BabyChoux.png?v=1736760999",
+    "images": [
+      "https://cdn.shopify.com/s/files/1/0650/6538/6146/files/BabyChoux.png?v=1736760999"
+    ]
+  },
+  {
+    "handle": "potato-bun",
+    "title": "Potato Bun 감자빵",
+    "price": "$4.00",
+    "desc": "Chewy tapioca dough, baked to perfection with creamy mashed potatoes, blended with rich cream cheese and a hint of salt and pepper for a delicious savory kick.\n\n쫄깃한 타피오카 도우에 부드러운 매쉬드 포테이토와 진한 크림치즈를 더하고, 소금과 후추로 감칠맛을 살려 맛있게 구워냈어요.",
+    "thumbnail": "https://cdn.shopify.com/s/files/1/0650/6538/6146/files/Frame_199.png?v=1739409637",
+    "images": [
+      "https://cdn.shopify.com/s/files/1/0650/6538/6146/files/Frame_199.png?v=1739409637",
+      "https://cdn.shopify.com/s/files/1/0650/6538/6146/files/Frame_200.png?v=1739409637",
+      "https://cdn.shopify.com/s/files/1/0650/6538/6146/files/Frame_201.png?v=1739409638"
+    ]
+  },
+  {
+    "handle": "chocolate-custard-bun-초코크림-빵",
+    "title": "Chocolate Custard Bun 초코크림빵",
+    "price": "$4.20",
+    "desc": "A soft milk bun roll filled with rich, dark chocolate custard cream.\n\n부드러운 밀크번 롤 속에 진하고 달콤한 다크 초콜릿 커스터드를 가득 채웠어요.",
+    "thumbnail": "https://cdn.shopify.com/s/files/1/0650/6538/6146/files/ChocolateCustardBun.png?v=1736757111",
+    "images": [
+      "https://cdn.shopify.com/s/files/1/0650/6538/6146/files/ChocolateCustardBun.png?v=1736757111"
+    ]
+  },
+  {
+    "handle": "hot-dog-핫도그",
+    "title": "Hot Dog 핫도그",
+    "price": "$4.60",
+    "desc": "A skinless Footy Frank hot dog in a soft milk bun, layered with caramelized onions, tomato sauce, and melted cheese.\n\n부드러운 밀크번 속에 프랑크 소시지와 달콤한 카라멜라이즈드 어니언을 넣고, 토마토 소스와 치즈로 마무리했어요.",
+    "thumbnail": "https://cdn.shopify.com/s/files/1/0650/6538/6146/files/m23.png?v=1738113826",
+    "images": [
+      "https://cdn.shopify.com/s/files/1/0650/6538/6146/files/m23.png?v=1738113826"
+    ]
+  },
+  {
+    "handle": "chestnut-cake-밤만주",
+    "title": "Chestnut Cake 밤만주",
+    "price": "$3.50",
+    "desc": "A special pastry made with condensed milk, filled with smooth white bean paste and coated in white sesame seeds.\n\n달콤한 연유로 만든 빵에 부드러운 백앙금을 가득 넣고 고소한 흰깨로 감싸 구워냈어요.",
+    "thumbnail": "https://cdn.shopify.com/s/files/1/0650/6538/6146/files/ChestnutCake.png?v=1736757742",
+    "images": [
+      "https://cdn.shopify.com/s/files/1/0650/6538/6146/files/ChestnutCake.png?v=1736757742"
+    ]
+  },
+  {
+    "handle": "rice-bean-라이스빈",
+    "title": "Rice Bean 영양찰떡",
+    "price": "$6.20",
+    "desc": "A flourless sticky rice bread packed with sweet beans, chestnuts, walnuts, and sesame seeds.\n\n밀가루 없이 찹쌀로 만든 빵에 달콤한 콩, 밤, 호두, 참깨를 넣어 고소함을 더했어요.",
+    "thumbnail": "https://cdn.shopify.com/s/files/1/0650/6538/6146/files/RiceBean.png?v=1738116079",
+    "images": [
+      "https://cdn.shopify.com/s/files/1/0650/6538/6146/files/RiceBean.png?v=1738116079"
+    ]
+  },
+  {
+    "handle": "sweet-potato-bun-고구마빵",
+    "title": "Sweet Potato Bun 고구마빵",
+    "price": "$3.20",
+    "desc": "Manna’s fluffy milk bun with sweet and smooth sweet potato paste with small chunks of hearty sweet potatoes.\n\n마나의 폭신폭신한 밀크번 속에 달콤하고 부드러운 고구마 페이스트와 작은 고구마 덩어리들이 가득 들어 있어요.",
+    "thumbnail": "https://cdn.shopify.com/s/files/1/0650/6538/6146/files/Frame_152.png?v=1739409066",
+    "images": [
+      "https://cdn.shopify.com/s/files/1/0650/6538/6146/files/Frame_152.png?v=1739409066",
+      "https://cdn.shopify.com/s/files/1/0650/6538/6146/files/Frame_163.png?v=1739409066"
+    ]
+  },
+  {
+    "handle": "red-bean-doughnut-팥-도넛츠",
+    "title": "Red Bean Doughnut 팥도넛츠",
+    "price": "$3.90",
+    "desc": "A deep-fried red bean bun, dusted with sugar for a sweet, crispy finish.\n\n달콤한 팥빵을 바삭하게 튀긴 후, 설탕을 솔솔 뿌려 마무리했어요.",
+    "thumbnail": "https://cdn.shopify.com/s/files/1/0650/6538/6146/files/RedBeanPasteDoughnut.png?v=1736760352",
+    "images": [
+      "https://cdn.shopify.com/s/files/1/0650/6538/6146/files/RedBeanPasteDoughnut.png?v=1736760352"
+    ]
+  },
+  {
+    "handle": "injeolmi-red-bean-bun-인절미-단팥빵",
+    "title": "Injeolmi Red Bean Bun 인절미 단팥빵",
+    "price": "$6.00",
+    "desc": "A soft and fluffy red bean bun, filled with soybean fresh cream and red bean paste, then dusted with soybean powder.\n\n부드러운 팥빵 속에 고소한 두유크림과 팥앙금을 가득 채우고, 콩가루를 뿌려 마무리했어요.",
+    "thumbnail": "https://cdn.shopify.com/s/files/1/0650/6538/6146/files/Frame205.png?v=1739409687",
+    "images": [
+      "https://cdn.shopify.com/s/files/1/0650/6538/6146/files/Frame205.png?v=1739409687",
+      "https://cdn.shopify.com/s/files/1/0650/6538/6146/files/Frame207.png?v=1739409687"
+    ]
+  },
+  {
+    "handle": "ham-cheese-roll-햄치즈빵",
+    "title": "Garlic Ham Cheese Roll 마늘 햄치즈빵",
+    "price": "$3.80",
+    "desc": "A ham and cheese bun with a touch of sweet garlic butter, glazed with garlic syrup, and topped with mozzarella and mayo.\n\n햄과 치즈를 넣은 빵에 달콤한 갈릭버터를 바르고, 마요네즈와 모차렐라 치즈를 올려 구웠어요.",
+    "thumbnail": "https://cdn.shopify.com/s/files/1/0650/6538/6146/files/Frame_184.png?v=1739315548",
+    "images": [
+      "https://cdn.shopify.com/s/files/1/0650/6538/6146/files/Frame_184.png?v=1739315548",
+      "https://cdn.shopify.com/s/files/1/0650/6538/6146/files/Frame_185.png?v=1739315547"
+    ]
+  },
+  {
+    "handle": "onion-bagel-양파-베이글",
+    "title": "Onion Bagel 양파 베이글",
+    "price": "$4.50",
+    "desc": "A hearty walnut bread with smooth caramelized onion cream cheese, plus chunks of walnuts and caramelized onions.\n\n고소한 호두빵 속에 부드러운 카라멜라이즈드 어니언 크림치즈와 호두 조각, 달콤한 양파가 듬뿍 들어 있어요.",
+    "thumbnail": "https://cdn.shopify.com/s/files/1/0650/6538/6146/files/Frame_157.png?v=1739409286",
+    "images": [
+      "https://cdn.shopify.com/s/files/1/0650/6538/6146/files/Frame_157.png?v=1739409286",
+      "https://cdn.shopify.com/s/files/1/0650/6538/6146/files/Frame_165.png?v=1739409286"
+    ]
+  },
+  {
+    "handle": "cream-red-bean-bun-크림-단팥빵",
+    "title": "Cream Red Bean Bun 버터크림 단팥빵",
+    "price": "$4.40",
+    "desc": "Manna’s signature red bean bun, now with an extra (but not-so-little) dollop of buttercream.\n\n만나의 시그니처 팥빵에 달콤하고 풍부한 버터크림을 듬뿍 추가했어요.",
+    "thumbnail": "https://cdn.shopify.com/s/files/1/0650/6538/6146/files/CreamRedBeanBun.png?v=1736760488",
+    "images": [
+      "https://cdn.shopify.com/s/files/1/0650/6538/6146/files/CreamRedBeanBun.png?v=1736760488"
+    ]
+  },
+  {
+    "handle": "mini-milk-bun-모닝빵-pack-of-8",
+    "title": "Mini Milk Bun 모닝빵 pack of 8",
+    "price": "$6.50",
+    "desc": "A pack of 8 mini rolls made from Manna’s special milk bun dough—perfect for sharing.\n\n만나 베이커리만의 특별한 밀크번으로 만든 미니 롤 8개가 한 팩으로 구성되어 있어요.",
+    "thumbnail": "https://cdn.shopify.com/s/files/1/0650/6538/6146/files/MiniMilkBuns.png?v=1736761044",
+    "images": [
+      "https://cdn.shopify.com/s/files/1/0650/6538/6146/files/MiniMilkBuns.png?v=1736761044"
+    ]
+  },
+  {
+    "handle": "mammoth-bread-맘모스빵-수정필요",
+    "title": "Red Bean Mammoth Bread 팥 맘모스빵",
+    "price": "$13.00",
+    "desc": "Crunchy peanut crumble-covered layers filled with ㅁ a layer of red bean, strawberry jam, buttercream, walnuts, and sultanas.\n\n고소한 땅콩 크럼블을 덮은 빵 속에 팥 앙금, 딸기잼, 버터크림, 호두, 건포도를 가득 넣었어요.",
+    "thumbnail": "https://cdn.shopify.com/s/files/1/0650/6538/6146/files/Frame_155.png?v=1739409169",
+    "images": [
+      "https://cdn.shopify.com/s/files/1/0650/6538/6146/files/Frame_155.png?v=1739409169",
+      "https://cdn.shopify.com/s/files/1/0650/6538/6146/files/Frame_164.png?v=1739409169",
+      "https://cdn.shopify.com/s/files/1/0650/6538/6146/files/Frame172.png?v=1739409767"
+    ]
+  },
+  {
+    "handle": "chestnut-white-loaf-밤식빵",
+    "title": "Chestnut White Loaf 밤식빵",
+    "price": "$14.00",
+    "desc": "A soft and moist white loaf filled with lightly sweet chestnut pieces.\n\n은은한 단맛이 감도는 밤 조각이 듬뿍 들어간 촉촉한 화이트 식빵이에요.",
+    "thumbnail": "https://cdn.shopify.com/s/files/1/0650/6538/6146/files/ChestnutWhiteLoaf.png?v=1738113963",
+    "images": [
+      "https://cdn.shopify.com/s/files/1/0650/6538/6146/files/ChestnutWhiteLoaf.png?v=1738113963"
+    ]
+  },
+  {
+    "handle": "sweet-rice-white-loaf-with-beans-팥배기-찹쌀식빵",
+    "title": "Sweet Rice White Loaf with Beans 팥배기 찹쌀식빵",
+    "price": "$6.50",
+    "desc": "A white loaf bread filled with soft sweet rice chunks and mixed sweet beans.\n\n달콤한 찹쌀 조각과 다양한 단콩이 들어간 부드러운 화이트 식빵이에요.",
+    "thumbnail": "https://cdn.shopify.com/s/files/1/0650/6538/6146/files/SweetRiceWhiteLoafwithBeans.png?v=1738116135",
+    "images": [
+      "https://cdn.shopify.com/s/files/1/0650/6538/6146/files/SweetRiceWhiteLoafwithBeans.png?v=1738116135"
+    ]
+  },
+  {
+    "handle": "green-pea-paste-bun-완두앙금빵",
+    "title": "Green Pea Paste Bun 완두앙금빵",
+    "price": "$3.90",
+    "desc": "Milk bun filled with a smooth green pea paste that’s milder and less sweet than red bean paste.\n\n달콤함이 은은한 녹두앙금을 가득 채운 밀크번이에요.",
+    "thumbnail": "https://cdn.shopify.com/s/files/1/0650/6538/6146/files/Frame_187.png?v=1739409536",
+    "images": [
+      "https://cdn.shopify.com/s/files/1/0650/6538/6146/files/Frame_187.png?v=1739409536",
+      "https://cdn.shopify.com/s/files/1/0650/6538/6146/files/Frame_188.png?v=1739409536"
+    ]
+  },
+  {
+    "handle": "fried-soboro-튀김-소보로",
+    "title": "Fried Soboro 튀김 소보로",
+    "price": "$4.80",
+    "desc": "Only at Manna Bakery, milk bun with mashed sweet potato paste inside, coated with crumbles then fried.\n\n만나 베이커리에서만 맛볼 수 있는 우유빵 안에 으깬 고구마 페이스트를 넣고 크럼블을 입혀 튀겨낸 우유빵입니다.",
+    "thumbnail": "https://cdn.shopify.com/s/files/1/0650/6538/6146/files/Frame_190.png?v=1739409569",
+    "images": [
+      "https://cdn.shopify.com/s/files/1/0650/6538/6146/files/Frame_190.png?v=1739409569",
+      "https://cdn.shopify.com/s/files/1/0650/6538/6146/files/Frame_191.png?v=1739409569"
+    ]
+  },
+  {
+    "handle": "castella",
+    "title": "Castella 카스테라",
+    "price": "$5.00",
+    "desc": "A light, fluffy sponge cake with a touch of lemon and flecks of lemon zest.\n\n은은한 레몬 향과 상큼한 레몬 제스트가 더해진 촉촉한 스펀지 케이크예요.",
+    "thumbnail": "https://cdn.shopify.com/s/files/1/0650/6538/6146/files/Screenshot_2024-11-26_at_1.45.21_pm-removebg-preview.png?v=1732594097",
+    "images": [
+      "https://cdn.shopify.com/s/files/1/0650/6538/6146/files/Screenshot_2024-11-26_at_1.45.21_pm-removebg-preview.png?v=1732594097"
+    ]
+  },
+  {
+    "handle": "condensed-milk-loaf-연유빵",
+    "title": "Condensed Milk Loaf 연유빵",
+    "price": "$6.80",
+    "desc": "A rich and sweet loaf, coated with condensed milk for a buttery, melt-in-your-mouth finish.\n\n달콤한 연유를 듬뿍 입혀 더욱 부드럽고 고소한 맛이 나는 식빵이에요.",
+    "thumbnail": "https://cdn.shopify.com/s/files/1/0650/6538/6146/files/Frame220.png?v=1739409736",
+    "images": [
+      "https://cdn.shopify.com/s/files/1/0650/6538/6146/files/Frame220.png?v=1739409736",
+      "https://cdn.shopify.com/s/files/1/0650/6538/6146/files/Frame221.png?v=1739409737"
+    ]
+  },
+  {
+    "handle": "mocha-loaf-모카빵",
+    "title": "Mocha Loaf 모카빵",
+    "price": "$7.00",
+    "desc": "A deep, aromatic coffee bread packed with walnuts, sultanas, and a delicate swirl of white bean paste.\n\n진한 커피향이 가득한 빵 속에 호두, 건포도, 그리고 은은한 단맛의 백앙금을 더했어요.",
+    "thumbnail": "https://cdn.shopify.com/s/files/1/0650/6538/6146/files/Frame_154.png?v=1739409141",
+    "images": [
+      "https://cdn.shopify.com/s/files/1/0650/6538/6146/files/Frame_154.png?v=1739409141",
+      "https://cdn.shopify.com/s/files/1/0650/6538/6146/files/Frame_161.png?v=1739409141"
+    ]
+  },
+  {
+    "handle": "turtle-bread-거북이-빵",
+    "title": "Turtle Bread 거북이빵",
+    "price": "$13.00",
+    "desc": "A soft and shareable cream bread, filled with roasted walnuts and sweet sultanas, topped with peanut crumble and a drizzle of custard for the perfect finishing touch.\n\n고소한 구운 호두와 달콤한 건포도를 넣은 부드러운 크림빵, 위에는 땅콩 크럼블과 커스터드 드리즐로 맛을 더했어요.",
+    "thumbnail": "https://cdn.shopify.com/s/files/1/0650/6538/6146/files/Frame_156.png?v=1739315451",
+    "images": [
+      "https://cdn.shopify.com/s/files/1/0650/6538/6146/files/Frame_156.png?v=1739315451",
+      "https://cdn.shopify.com/s/files/1/0650/6538/6146/files/Frame_162.png?v=1739315451",
+      "https://cdn.shopify.com/s/files/1/0650/6538/6146/files/Frame_170.png?v=1739315450"
+    ]
+  },
+  {
+    "handle": "simon-castella-시몬-카스테라-6-set",
+    "title": "Simon Castella 시몬 카스테라",
+    "price": "$6.50",
+    "desc": "A cup-style castella, slightly more moist and buttery than the traditional version, with a subtle hint of lemon.\n\n전통 카스텔라보다 촉촉하고 버터리한 맛이 강한 컵 카스텔라로, 은은한 레몬 향이 더해졌어요.",
+    "thumbnail": "https://cdn.shopify.com/s/files/1/0650/6538/6146/files/GenoiseCupcakes.png?v=1736755904",
+    "images": [
+      "https://cdn.shopify.com/s/files/1/0650/6538/6146/files/GenoiseCupcakes.png?v=1736755904"
+    ]
+  },
+  {
+    "handle": "croffle-크로플",
+    "title": "Plain Croffle 플레인 크로플",
+    "price": "$4.70",
+    "desc": "A classic, buttery croissant pressed into a crisp waffle shape.\n\n버터리한 크루아상을 바삭한 와플 모양으로 눌러 구웠어요.",
+    "thumbnail": "https://cdn.shopify.com/s/files/1/0650/6538/6146/files/PlainCroffle.png?v=1736757319",
+    "images": [
+      "https://cdn.shopify.com/s/files/1/0650/6538/6146/files/PlainCroffle.png?v=1736757319"
+    ]
+  },
+  {
+    "handle": "garlic-baguette-마늘-바게트",
+    "title": "Garlic Baguette 마늘 바게트",
+    "price": "$4.50",
+    "desc": "Baguette slices generously spread with Manna’s sweet and slightly salty garlic butter.\n\n만나 베이커리만의 달콤짭짤한 갈릭버터를 듬뿍 바른 바게트 슬라이스예요.",
+    "thumbnail": "https://cdn.shopify.com/s/files/1/0650/6538/6146/files/GarlicBaguette.png?v=1736760880",
+    "images": [
+      "https://cdn.shopify.com/s/files/1/0650/6538/6146/files/GarlicBaguette.png?v=1736760880"
+    ]
+  },
+  {
+    "handle": "royal-cream-cheese-loaf-로얄-크림치즈-빵",
+    "title": "Royal Cream Cheese Loaf 로얄 크림치즈빵",
+    "price": "$6.50",
+    "desc": "A mini milk loaf swirled with rich, sweet cream cheese infused with coffee aroma.\n\n진한 커피 향이 배어 있는 달콤한 크림치즈를 넣어 만든 미니 우유식빵이에요.",
+    "thumbnail": "https://cdn.shopify.com/s/files/1/0650/6538/6146/files/Frame_175.png?v=1739409593",
+    "images": [
+      "https://cdn.shopify.com/s/files/1/0650/6538/6146/files/Frame_175.png?v=1739409593",
+      "https://cdn.shopify.com/s/files/1/0650/6538/6146/files/Frame_176.png?v=1739409594"
+    ]
+  },
+  {
+    "handle": "cream-peanut-crust-bun",
+    "title": "Cream Peanut Crust Bun 크림 소보로빵",
+    "price": "$4.40",
+    "desc": "Our peanut crumble bun, now with a rich & creamy butter cream filling.\n\n고소한 땅콩 크럼블 밀크번 속에 진한 버터크림을 채웠어요.",
+    "thumbnail": "https://cdn.shopify.com/s/files/1/0650/6538/6146/files/Screenshot_2024-11-26_at_3.06.16_pm-removebg-preview.png?v=1732593995",
+    "images": [
+      "https://cdn.shopify.com/s/files/1/0650/6538/6146/files/Screenshot_2024-11-26_at_3.06.16_pm-removebg-preview.png?v=1732593995"
+    ]
+  },
+  {
+    "handle": "red-bean-croffle",
+    "title": "Red bean Croffle 팥 크로플",
+    "price": "$5.80",
+    "desc": "A classic buttery croissant, pressed into a waffle shape and filled with sweet Korean red bean paste.\n\n버터 풍미 가득한 크루아상을 와플처럼 눌러 구운 뒤, 달콤한 팥앙금을 채웠어요.",
+    "thumbnail": "https://cdn.shopify.com/s/files/1/0650/6538/6146/files/RedBeanCroffle.png?v=1736757356",
+    "images": [
+      "https://cdn.shopify.com/s/files/1/0650/6538/6146/files/RedBeanCroffle.png?v=1736757356"
+    ]
+  },
+  {
+    "handle": "바닐라-휘낭시앙",
+    "title": "Original Financiers 오리지널 휘낭시아",
+    "price": "$4.90",
+    "desc": "Small, almond-flavored French cakes with a light, moist texture, with a sweet taste of honey.\n\n작고 부드러운 아몬드 맛의 프랑스식 케이크로, 촉촉하고 가벼운 식감에 달콤한 꿀 맛이 어우러져 있습니다.",
+    "thumbnail": "https://cdn.shopify.com/s/files/1/0650/6538/6146/files/Frame217.png?v=1739315063",
+    "images": [
+      "https://cdn.shopify.com/s/files/1/0650/6538/6146/files/Frame217.png?v=1739315063",
+      "https://cdn.shopify.com/s/files/1/0650/6538/6146/files/Frame218.png?v=1739315063"
+    ]
+  },
+  {
+    "handle": "cream-cheese-mocha-bun",
+    "title": "Cream Cheese Mocha Bun 크림치즈 모카번",
+    "price": "$4.30",
+    "desc": "Manna’s signature mocha bun with a rich twist—filled with Philadelphia cream cheese.\n\n만나의 시그니처 모카빵에 부드러운 필라델피아 크림치즈를 더해 더욱 풍미를 살렸어요.",
+    "thumbnail": "https://cdn.shopify.com/s/files/1/0650/6538/6146/files/Frame178.png?v=1739409449",
+    "images": [
+      "https://cdn.shopify.com/s/files/1/0650/6538/6146/files/Frame178.png?v=1739409449",
+      "https://cdn.shopify.com/s/files/1/0650/6538/6146/files/Frame179.png?v=1739409449"
+    ]
+  },
+  {
+    "handle": "chocolate-financiers-초코-휘낭시앙",
+    "title": "Chocolate Financiers 초콜릿 휘낭시아",
+    "price": "$4.90",
+    "desc": "Small, almond-flavored French cakes with a light, moist texture, with a sweet taste of honey. Simliar to our Financiers, but with a cocoa twist. \n\n작고 부드러운 아몬드 맛의 프랑스식 케이크로, 촉촉하고 가벼운 식감에 달콤한 꿀 맛이 어우러져 있습니다. 저희의 피나시에는 비슷하지만, 코코아가 더해져 더욱 풍부한 맛을 자랑합니다.",
+    "thumbnail": "https://cdn.shopify.com/s/files/1/0650/6538/6146/files/Frame245.png?v=1739315141",
+    "images": [
+      "https://cdn.shopify.com/s/files/1/0650/6538/6146/files/Frame245.png?v=1739315141",
+      "https://cdn.shopify.com/s/files/1/0650/6538/6146/files/Frame218_79b692fa-d462-4b47-a442-e8341885c79d.png?v=1739315141"
+    ]
+  },
+  {
+    "handle": "mochi-bread-모찌빵",
+    "title": "Mochi Bread 모찌빵",
+    "price": "$4.50",
+    "desc": "A fluffy milk bun, with a chewy, sweet mochi inside.",
+    "thumbnail": "https://cdn.shopify.com/s/files/1/0650/6538/6146/files/Event_Poster_8.png?v=1769134259",
+    "images": [
+      "https://cdn.shopify.com/s/files/1/0650/6538/6146/files/Event_Poster_8.png?v=1769134259"
+    ]
+  },
+  {
+    "handle": "black-sesame-bread-깨찰빵",
+    "title": "Black Sesame Bread 깨찰빵",
+    "price": "$1.50",
+    "desc": "",
+    "thumbnail": null,
+    "images": []
+  },
+  {
+    "handle": "mochi-모찌",
+    "title": "Mochi 모찌",
+    "price": "$3.00",
+    "desc": "A soft, chewy bun made with sticky rice flour, filled with smooth red bean paste.",
+    "thumbnail": "https://cdn.shopify.com/s/files/1/0650/6538/6146/files/Event_Poster_6.png?v=1769133917",
+    "images": [
+      "https://cdn.shopify.com/s/files/1/0650/6538/6146/files/Event_Poster_6.png?v=1769133917"
+    ]
+  },
+  {
+    "handle": "biscoff-crust-cream-bun-비스코프-소보로-크림빵",
+    "title": "Biscoff Crust Cream Bun 비스코프 소보로빵",
+    "price": "$4.90",
+    "desc": "",
+    "thumbnail": "https://cdn.shopify.com/s/files/1/0650/6538/6146/files/ChatGPTImageFeb2_2026_08_17_41PM.png?v=1770023982",
+    "images": [
+      "https://cdn.shopify.com/s/files/1/0650/6538/6146/files/ChatGPTImageFeb2_2026_08_17_41PM.png?v=1770023982"
+    ]
+  }
+]
