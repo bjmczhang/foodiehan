@@ -3,6 +3,7 @@
 import { HttpTypes } from "@medusajs/types"
 import Image from "next/image"
 import { useParams } from "next/navigation"
+import { convertToLocale } from "@lib/util/money"
 import { sanitizeImageUrl } from "@lib/util/sanitize-image-url"
 
 type MenuProductCardProps = {
@@ -25,10 +26,11 @@ function formatPrice(
   if (!inStock) return { text: "Sold out", isSoldOut: true }
 
   const code = variant.calculated_price.currency_code?.toUpperCase() ?? "AUD"
-  const formatted = new Intl.NumberFormat("en-AU", {
-    style: "currency",
-    currency: code,
-  }).format(amount / 100)
+  const formatted = convertToLocale({
+    amount,
+    currency_code: code,
+    locale: "en-AU",
+  })
 
   return { text: formatted, isSoldOut: false }
 }
@@ -107,4 +109,3 @@ export default function MenuProductCard({ product }: MenuProductCardProps) {
     </div>
   )
 }
-

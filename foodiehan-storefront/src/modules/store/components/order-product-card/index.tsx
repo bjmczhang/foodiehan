@@ -5,6 +5,7 @@ import { HttpTypes } from "@medusajs/types"
 import Image from "next/image"
 import { useParams, useRouter } from "next/navigation"
 import { useState } from "react"
+import { convertToLocale } from "@lib/util/money"
 import { sanitizeImageUrl } from "@lib/util/sanitize-image-url"
 
 type OrderProductCardProps = {
@@ -25,7 +26,7 @@ function getFirstVariantPrice(product: HttpTypes.StoreProduct): {
   })
 
   const variant = variants[0] as any
-  if (!variant?.calculated_price?.calculated_amount) {
+  if (variant?.calculated_price?.calculated_amount == null) {
     return {
       calculated: null,
       original: null,
@@ -34,11 +35,8 @@ function getFirstVariantPrice(product: HttpTypes.StoreProduct): {
     }
   }
   const code = variant.calculated_price.currency_code?.toUpperCase() ?? "AUD"
-  const fmt = (n: number) =>
-    new Intl.NumberFormat("en-AU", {
-      style: "currency",
-      currency: code,
-    }).format(n / 100)
+  const fmt = (amount: number) =>
+    convertToLocale({ amount, currency_code: code, locale: "en-AU" })
   const calc = variant.calculated_price.calculated_amount
   const orig = variant.calculated_price.original_amount
   return {
