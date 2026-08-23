@@ -1,18 +1,19 @@
-import type { ExecArgs } from "@medusajs/framework/types"
-import { ContainerRegistrationKeys } from "@medusajs/framework/utils"
+import type { ExecArgs } from "@medusajs/framework/types";
+import { ContainerRegistrationKeys } from "@medusajs/framework/utils";
+import { adjustedProductPrice } from "./utils/product-price-adjustment";
 
 const COLLECTION_URL =
-  "https://www.mannabakery.au/collections/all-breads/products.json?limit=250"
-const SOURCE_NAME = "Manna Bakery"
+  "https://www.mannabakery.au/collections/all-breads/products.json?limit=250";
+const SOURCE_NAME = "Manna Bakery";
 
 type SourceProduct = {
-  id: number
-  title: string
-  handle: string
-  body_html?: string | null
-  images?: { position: number; src: string }[]
-  variants?: { price: string }[]
-}
+  id: number;
+  title: string;
+  handle: string;
+  body_html?: string | null;
+  images?: { position: number; src: string }[];
+  variants?: { price: string }[];
+};
 
 function medusaHandle(product: SourceProduct) {
   const asciiHandle = product.handle
@@ -20,9 +21,9 @@ function medusaHandle(product: SourceProduct) {
     .replace(/[^\x00-\x7F]/g, "")
     .toLowerCase()
     .replace(/[^a-z0-9]+/g, "-")
-    .replace(/^-|-$/g, "")
+    .replace(/^-|-$/g, "");
 
-  return asciiHandle || `manna-${product.id}`
+  return asciiHandle || `manna-${product.id}`;
 }
 
 function decodeHtmlEntities(value: string) {
@@ -36,14 +37,14 @@ function decodeHtmlEntities(value: string) {
     ndash: "–",
     mdash: "—",
     quot: '"',
-  }
+  };
 
   return value.replace(/&(#\d+|#x[\da-f]+|[a-z]+);/gi, (entity, code) => {
-    if (code[0] !== "#") return namedEntities[code.toLowerCase()] ?? entity
-    const isHex = code[1].toLowerCase() === "x"
-    const point = Number.parseInt(code.slice(isHex ? 2 : 1), isHex ? 16 : 10)
-    return Number.isFinite(point) ? String.fromCodePoint(point) : entity
-  })
+    if (code[0] !== "#") return namedEntities[code.toLowerCase()] ?? entity;
+    const isHex = code[1].toLowerCase() === "x";
+    const point = Number.parseInt(code.slice(isHex ? 2 : 1), isHex ? 16 : 10);
+    return Number.isFinite(point) ? String.fromCodePoint(point) : entity;
+  });
 }
 
 function htmlToText(html?: string | null) {
@@ -58,16 +59,16 @@ function htmlToText(html?: string | null) {
     .replace(/[\t ]+\n/g, "\n")
     .replace(/\n[\t ]+/g, "\n")
     .replace(/\n{3,}/g, "\n\n")
-    .trim()
+    .trim();
 }
 
 function sortedNumbers(values: number[]) {
-  return values.sort((left, right) => left - right)
+  return values.sort((left, right) => left - right);
 }
 
 export default async function verifyMannaBreadsImport({ container }: ExecArgs) {
-  const logger = container.resolve(ContainerRegistrationKeys.LOGGER)
-  const query = container.resolve(ContainerRegistrationKeys.QUERY)
+  const logger = container.resolve(ContainerRegistrationKeys.LOGGER);
+  const query = container.resolve(ContainerRegistrationKeys.QUERY);
 
   const response = await fetch(COLLECTION_URL, {
     headers: {
@@ -75,10 +76,10 @@ export default async function verifyMannaBreadsImport({ container }: ExecArgs) {
       "user-agent": "foodiehan-medusa-import-verify/1.0",
     },
     signal: AbortSignal.timeout(30_000),
-  })
-  if (!response.ok) throw new Error(`Source returned HTTP ${response.status}`)
-  const payload = (await response.json()) as { products?: SourceProduct[] }
-  const sourceProducts = payload.products ?? []
+  });
+  if (!response.ok) throw new Error(`Source returned HTTP ${response.status}`);
+  const payload = (await response.json()) as { products?: SourceProduct[] };
+  const sourceProducts = payload.products ?? [];
 
   const { data: targetProducts } = await query.graph({
     entity: "product",
@@ -94,43 +95,45 @@ export default async function verifyMannaBreadsImport({ container }: ExecArgs) {
       "variants.price_set.prices.amount",
       "variants.price_set.prices.currency_code",
     ],
-  })
+  });
   const targetsByHandle = new Map(
     targetProducts.map((product: any) => [product.handle, product])
-  )
+  );
 
-  const missing: string[] = []
-  const verified: string[] = []
-  const existingUnchanged: string[] = []
-  const mismatches: string[] = []
+  const missing: string[] = [];
+  const verified: string[] = [];
+  const existingUnchanged: string[] = [];
+  const mismatches: string[] = [];
 
   for (const source of sourceProducts) {
-    const handle = medusaHandle(source)
-    const target = targetsByHandle.get(handle) as any
+    const handle = medusaHandle(source);
+    const target = targetsByHandle.get(handle) as any;
     if (!target) {
-      missing.push(handle)
-      continue
+      missing.push(handle);
+      continue;
     }
 
     if (target.metadata?.source !== SOURCE_NAME) {
-      existingUnchanged.push(handle)
-      continue
+      existingUnchanged.push(handle);
+      continue;
     }
 
     const expectedImages = (source.images ?? [])
       .sort((left, right) => left.position - right.position)
-      .map(({ src }) => src)
-    const actualImages = (target.images ?? []).map(({ url }: any) => url)
+      .map(({ src }) => src);
+    const actualImages = (target.images ?? []).map(({ url }: any) => url);
     const expectedPrices = sortedNumbers(
-      (source.variants ?? []).map(({ price }) => Number(price))
-    )
+      (source.variants ?? []).map(({ price }) =>
+        adjustedProductPrice(Number(price))
+      )
+    );
     const actualPrices = sortedNumbers(
       (target.variants ?? []).flatMap((variant: any) =>
         (variant.price_set?.prices ?? [])
           .filter((price: any) => price.currency_code === "aud")
           .map((price: any) => Number(price.amount))
       )
-    )
+    );
     const fields = [
       ["title", target.title, source.title.trim()],
       ["description", target.description ?? "", htmlToText(source.body_html)],
@@ -138,28 +141,30 @@ export default async function verifyMannaBreadsImport({ container }: ExecArgs) {
       ["thumbnail", target.thumbnail ?? "", expectedImages[0] ?? ""],
       ["images", JSON.stringify(actualImages), JSON.stringify(expectedImages)],
       ["prices", JSON.stringify(actualPrices), JSON.stringify(expectedPrices)],
-    ]
+    ];
     const badFields = fields
       .filter(([, actual, expected]) => actual !== expected)
-      .map(([field]) => field)
+      .map(([field]) => field);
 
     if (badFields.length) {
-      mismatches.push(`${handle}: ${badFields.join(", ")}`)
+      mismatches.push(`${handle}: ${badFields.join(", ")}`);
     } else {
-      verified.push(handle)
+      verified.push(handle);
     }
   }
 
-  logger.info(`Verified imported products: ${verified.length}`)
-  logger.info(`Existing products intentionally unchanged: ${existingUnchanged.length}`)
-  logger.info(`Missing products: ${missing.length}`)
-  logger.info(`Imported products with field mismatches: ${mismatches.length}`)
+  logger.info(`Verified imported products: ${verified.length}`);
+  logger.info(
+    `Existing products intentionally unchanged: ${existingUnchanged.length}`
+  );
+  logger.info(`Missing products: ${missing.length}`);
+  logger.info(`Imported products with field mismatches: ${mismatches.length}`);
 
   if (missing.length || mismatches.length) {
     throw new Error(
-      `Verification failed. Missing=[${missing.join(", ")}], mismatches=[${mismatches.join(
-        "; "
-      )}]`
-    )
+      `Verification failed. Missing=[${missing.join(
+        ", "
+      )}], mismatches=[${mismatches.join("; ")}]`
+    );
   }
 }

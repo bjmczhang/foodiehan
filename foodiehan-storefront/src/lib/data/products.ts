@@ -12,7 +12,7 @@ export const listProducts = async ({
   queryParams,
   countryCode,
   regionId,
-  fresh = false,
+  fresh = true,
 }: {
   pageParam?: number
   queryParams?: HttpTypes.FindParams & HttpTypes.StoreProductListParams
