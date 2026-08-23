@@ -3,7 +3,7 @@
 import { HttpTypes } from "@medusajs/types"
 import Image from "next/image"
 import { useParams } from "next/navigation"
-import { convertToLocale } from "@lib/util/money"
+import { getProductPrice } from "@lib/util/get-product-price"
 import { sanitizeImageUrl } from "@lib/util/sanitize-image-url"
 
 type MenuProductCardProps = {
@@ -13,10 +13,6 @@ type MenuProductCardProps = {
 function formatPrice(
   product: HttpTypes.StoreProduct
 ): { text: string; isSoldOut: boolean } | null {
-  const variant = product.variants?.[0] as any
-  const amount = variant?.calculated_price?.calculated_amount
-  if (amount == null) return null
-
   // Check if any variant is in stock
   const variants = product.variants ?? []
   const inStock = variants.some((v: any) => {
@@ -25,14 +21,12 @@ function formatPrice(
   })
   if (!inStock) return { text: "Sold out", isSoldOut: true }
 
-  const code = variant.calculated_price.currency_code?.toUpperCase() ?? "AUD"
-  const formatted = convertToLocale({
-    amount,
-    currency_code: code,
-    locale: "en-AU",
-  })
+  // Keep the "From" price consistent with the product details page by using
+  // the cheapest calculated variant instead of whichever variant comes first.
+  const { cheapestPrice } = getProductPrice({ product })
+  if (!cheapestPrice) return null
 
-  return { text: formatted, isSoldOut: false }
+  return { text: cheapestPrice.calculated_price, isSoldOut: false }
 }
 
 export default function MenuProductCard({ product }: MenuProductCardProps) {
