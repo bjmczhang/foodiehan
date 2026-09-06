@@ -1,8 +1,5 @@
-import { clx } from "@medusajs/ui"
-
 import { getProductPrice } from "@lib/util/get-product-price"
 import { HttpTypes } from "@medusajs/types"
-
 export default function ProductPrice({
   product,
   variant,
@@ -14,44 +11,28 @@ export default function ProductPrice({
     product,
     variantId: variant?.id,
   })
-
-  const selectedPrice = variant ? variantPrice : cheapestPrice
-
-  if (!selectedPrice) {
-    return <div className="block w-32 h-9 bg-gray-100 animate-pulse" />
-  }
-
+  const price = variant ? variantPrice : cheapestPrice
+  if (!price) return <p className="text-sm text-[#73766c]">Price unavailable</p>
   return (
-    <div className="flex flex-col text-ui-fg-base">
+    <div className="flex flex-wrap items-baseline gap-2 text-[#272b24]">
+      {!variant && (product.variants?.length || 0) > 1 && (
+        <span className="text-sm text-[#73766c]">From</span>
+      )}
       <span
-        className={clx("text-xl-semi", {
-          "text-ui-fg-interactive": selectedPrice.price_type === "sale",
-        })}
+        className="text-2xl font-medium"
+        data-testid="product-price"
+        data-value={price.calculated_price_number}
       >
-        {!variant && "From "}
-        <span
-          data-testid="product-price"
-          data-value={selectedPrice.calculated_price_number}
-        >
-          {selectedPrice.calculated_price}
-        </span>
+        {price.calculated_price}
       </span>
-      {selectedPrice.price_type === "sale" && (
-        <>
-          <p>
-            <span className="text-ui-fg-subtle">Original: </span>
-            <span
-              className="line-through"
-              data-testid="original-product-price"
-              data-value={selectedPrice.original_price_number}
-            >
-              {selectedPrice.original_price}
-            </span>
-          </p>
-          <span className="text-ui-fg-interactive">
-            -{selectedPrice.percentage_diff}%
-          </span>
-        </>
+      {price.price_type === "sale" && (
+        <span
+          className="line-through text-sm text-[#73766c]"
+          data-testid="original-product-price"
+          data-value={price.original_price_number}
+        >
+          {price.original_price}
+        </span>
       )}
     </div>
   )

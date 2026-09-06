@@ -95,12 +95,12 @@ const ShippingAddress = ({
   return (
     <>
       {customer && (addressesInRegion?.length || 0) > 0 && (
-        <Container className="mb-6 flex flex-col gap-y-4 p-5">
+        <Container className="mb-6 flex flex-col gap-y-4 rounded-xl border border-[#e2e4dc] bg-[#f8f7f3] p-5 shadow-none">
           <p className="text-small-regular">
-            {`Hi ${customer.first_name}, do you want to use one of your saved addresses?`}
+            Choose one of your saved addresses for a quicker checkout.
           </p>
           <AddressSelect
-            addresses={customer.addresses}
+            addresses={addressesInRegion ?? []}
             addressInput={
               mapKeys(formData, (_, key) =>
                 key.replace("shipping_address.", "")
@@ -110,7 +110,7 @@ const ShippingAddress = ({
           />
         </Container>
       )}
-      <div className="grid grid-cols-2 gap-4">
+      <div className="grid grid-cols-1 gap-4 small:grid-cols-2">
         <Input
           label="First name"
           name="shipping_address.first_name"
@@ -130,7 +130,7 @@ const ShippingAddress = ({
           data-testid="shipping-last-name-input"
         />
         <Input
-          label="Address"
+          label="Street address"
           name="shipping_address.address_1"
           autoComplete="address-line1"
           value={formData["shipping_address.address_1"]}
@@ -139,7 +139,7 @@ const ShippingAddress = ({
           data-testid="shipping-address-input"
         />
         <Input
-          label="Company"
+          label="Company (optional)"
           name="shipping_address.company"
           value={formData["shipping_address.company"]}
           onChange={handleChange}
@@ -182,16 +182,17 @@ const ShippingAddress = ({
           data-testid="shipping-province-input"
         />
       </div>
-      <div className="my-8">
+      <div className="my-6 rounded-xl bg-[#f8f7f3] p-4">
         <Checkbox
-          label="Billing address same as shipping address"
+          label="Use this address for billing"
           name="same_as_billing"
           checked={checked}
           onChange={onChange}
           data-testid="billing-address-checkbox"
         />
       </div>
-      <div className="grid grid-cols-2 gap-4 mb-4">
+      <h3 className="mb-4 text-base font-medium">Contact information</h3>
+      <div className="mb-4 grid grid-cols-1 gap-4 small:grid-cols-2">
         <Input
           label="Email"
           name="email"
@@ -204,7 +205,8 @@ const ShippingAddress = ({
           data-testid="shipping-email-input"
         />
         <Input
-          label="Phone"
+          label="Phone (optional)"
+          type="tel"
           name="shipping_address.phone"
           autoComplete="tel"
           value={formData["shipping_address.phone"]}

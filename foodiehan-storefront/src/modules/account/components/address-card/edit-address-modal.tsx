@@ -28,6 +28,8 @@ const EditAddress: React.FC<EditAddressProps> = ({
   isActive = false,
 }) => {
   const [removing, setRemoving] = useState(false)
+  const [removeError, setRemoveError] = useState<string | null>(null)
+  const [confirmRemove, setConfirmRemove] = useState(false)
   const [successState, setSuccessState] = useState(false)
   const { state, open, close: closeModal } = useToggleState(false)
 
@@ -57,22 +59,40 @@ const EditAddress: React.FC<EditAddressProps> = ({
 
   const removeAddress = async () => {
     setRemoving(true)
-    await deleteCustomerAddress(address.id)
-    setRemoving(false)
+    setRemoveError(null)
+    try {
+      const result = await deleteCustomerAddress(address.id)
+      if (!result.success)
+        setRemoveError(
+          result.error || "We couldn’t remove this address. Please try again."
+        )
+    } catch {
+      setRemoveError("We couldn’t remove this address. Please try again.")
+    } finally {
+      setRemoving(false)
+      setConfirmRemove(false)
+    }
   }
 
   return (
     <>
       <div
         className={clx(
-          "border rounded-rounded p-5 min-h-[220px] h-full w-full flex flex-col justify-between transition-colors",
+          "border border-[#e2e4dc] rounded-2xl bg-white p-6 min-h-[240px] h-full w-full flex flex-col justify-between gap-5 transition-colors",
           {
-            "border-gray-900": isActive,
+            "border-[#323c2b]": isActive,
           }
         )}
         data-testid="address-container"
       >
         <div className="flex flex-col">
+          {(address.is_default_shipping || address.is_default_billing) && (
+            <span className="mb-3 w-fit rounded-full bg-[#edf0e5] px-3 py-1 text-[11px] text-[#46523b]">
+              {address.is_default_shipping
+                ? "Default delivery"
+                : "Default billing"}
+            </span>
+          )}
           <Heading
             className="text-left text-base-semi"
             data-testid="address-name"
@@ -87,7 +107,7 @@ const EditAddress: React.FC<EditAddressProps> = ({
               {address.company}
             </Text>
           )}
-          <Text className="flex flex-col text-left text-base-regular mt-2">
+          <Text className="flex flex-col text-left !text-sm !leading-6 text-[#73766c] mt-2">
             <span data-testid="address-address">
               {address.address_1}
               {address.address_2 && <span>, {address.address_2}</span>}
@@ -101,9 +121,9 @@ const EditAddress: React.FC<EditAddressProps> = ({
             </span>
           </Text>
         </div>
-        <div className="flex items-center gap-x-4">
+        <div className="flex flex-wrap items-center gap-4 border-t border-[#e2e4dc] pt-4">
           <button
-            className="text-small-regular text-ui-fg-base flex items-center gap-x-2"
+            className="text-sm text-[#46523b] flex min-h-9 items-center gap-x-2 hover:underline"
             onClick={open}
             data-testid="address-edit-button"
           >
@@ -111,25 +131,56 @@ const EditAddress: React.FC<EditAddressProps> = ({
             Edit
           </button>
           <button
-            className="text-small-regular text-ui-fg-base flex items-center gap-x-2"
-            onClick={removeAddress}
+            className="text-sm text-[#73766c] flex min-h-9 items-center gap-x-2 hover:text-red-700 disabled:opacity-50"
+            onClick={() => setConfirmRemove(true)}
+            disabled={removing}
             data-testid="address-delete-button"
           >
             {removing ? <Spinner /> : <Trash />}
             Remove
           </button>
         </div>
+        {confirmRemove && (
+          <div className="rounded-xl bg-[#f8f7f3] p-4 text-sm">
+            <p>Remove this saved address?</p>
+            <div className="mt-3 flex items-center gap-4">
+              <button
+                type="button"
+                onClick={removeAddress}
+                disabled={removing}
+                className="text-red-700 disabled:opacity-50"
+              >
+                {removing ? "Removing…" : "Yes, remove"}
+              </button>
+              <button
+                type="button"
+                onClick={() => setConfirmRemove(false)}
+                disabled={removing}
+                className="text-[#73766c]"
+              >
+                Keep address
+              </button>
+            </div>
+          </div>
+        )}
+        {removeError && (
+          <p role="alert" className="text-xs text-red-700">
+            {removeError}
+          </p>
+        )}
       </div>
 
       <Modal isOpen={state} close={close} data-testid="edit-address-modal">
         <Modal.Title>
-          <Heading className="mb-2">Edit address</Heading>
+          <Heading className="mb-2 !font-serif !text-3xl !font-normal">
+            Update your address.
+          </Heading>
         </Modal.Title>
         <form action={formAction}>
           <input type="hidden" name="addressId" value={address.id} />
           <Modal.Body>
-            <div className="grid grid-cols-1 gap-y-2">
-              <div className="grid grid-cols-2 gap-x-2">
+            <div className="grid grid-cols-1 gap-y-3">
+              <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
                 <Input
                   label="First name"
                   name="first_name"
@@ -169,7 +220,7 @@ const EditAddress: React.FC<EditAddressProps> = ({
                 defaultValue={address.address_2 || undefined}
                 data-testid="address-2-input"
               />
-              <div className="grid grid-cols-[144px_1fr] gap-x-2">
+              <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
                 <Input
                   label="Postal code"
                   name="postal_code"
@@ -205,7 +256,8 @@ const EditAddress: React.FC<EditAddressProps> = ({
               <Input
                 label="Phone"
                 name="phone"
-                autoComplete="phone"
+                autoComplete="tel"
+                type="tel"
                 defaultValue={address.phone || undefined}
                 data-testid="phone-input"
               />
@@ -227,7 +279,9 @@ const EditAddress: React.FC<EditAddressProps> = ({
               >
                 Cancel
               </Button>
-              <SubmitButton data-testid="save-button">Save</SubmitButton>
+              <SubmitButton data-testid="save-button">
+                Save address
+              </SubmitButton>
             </div>
           </Modal.Footer>
         </form>

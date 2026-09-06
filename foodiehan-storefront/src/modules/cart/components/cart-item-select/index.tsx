@@ -1,73 +1,31 @@
 "use client"
-
-import { IconBadge, clx } from "@medusajs/ui"
-import {
-  SelectHTMLAttributes,
-  forwardRef,
-  useEffect,
-  useImperativeHandle,
-  useRef,
-  useState,
-} from "react"
-
+import { forwardRef, SelectHTMLAttributes } from "react"
 import ChevronDown from "@modules/common/icons/chevron-down"
-
-type NativeSelectProps = {
-  placeholder?: string
-  errors?: Record<string, unknown>
-  touched?: Record<string, unknown>
-} & Omit<SelectHTMLAttributes<HTMLSelectElement>, "size">
-
+type NativeSelectProps = { placeholder?: string } & Omit<
+  SelectHTMLAttributes<HTMLSelectElement>,
+  "size"
+>
 const CartItemSelect = forwardRef<HTMLSelectElement, NativeSelectProps>(
-  ({ placeholder = "Select...", className, children, ...props }, ref) => {
-    const innerRef = useRef<HTMLSelectElement>(null)
-    const [isPlaceholder, setIsPlaceholder] = useState(false)
-
-    useImperativeHandle<HTMLSelectElement | null, HTMLSelectElement | null>(
-      ref,
-      () => innerRef.current
-    )
-
-    useEffect(() => {
-      if (innerRef.current && innerRef.current.value === "") {
-        setIsPlaceholder(true)
-      } else {
-        setIsPlaceholder(false)
-      }
-    }, [innerRef.current?.value])
-
-    return (
-      <div>
-        <IconBadge
-          onFocus={() => innerRef.current?.focus()}
-          onBlur={() => innerRef.current?.blur()}
-          className={clx(
-            "relative flex items-center txt-compact-small border text-ui-fg-base group",
-            className,
-            {
-              "text-ui-fg-subtle": isPlaceholder,
-            }
-          )}
-        >
-          <select
-            ref={innerRef}
-            {...props}
-            className="appearance-none bg-transparent border-none px-4 transition-colors duration-150 focus:border-gray-700 outline-none w-16 h-16 items-center justify-center"
-          >
-            <option disabled value="">
-              {placeholder}
-            </option>
-            {children}
-          </select>
-          <span className="absolute flex pointer-events-none justify-end w-8 group-hover:animate-pulse">
-            <ChevronDown />
-          </span>
-        </IconBadge>
-      </div>
-    )
-  }
+  ({ placeholder = "Qty", className = "", children, ...props }, ref) => (
+    <div className="relative inline-flex items-center">
+      <select
+        ref={ref}
+        {...props}
+        className={
+          "h-10 min-w-[76px] appearance-none rounded-full border border-[#d8dccf] bg-white py-2 pl-4 pr-9 text-sm focus:outline-none focus:ring-2 focus:ring-[#788468] disabled:opacity-50 " +
+          className
+        }
+      >
+        <option disabled value="">
+          {placeholder}
+        </option>
+        {children}
+      </select>
+      <span className="pointer-events-none absolute right-3">
+        <ChevronDown size={14} />
+      </span>
+    </div>
+  )
 )
-
 CartItemSelect.displayName = "CartItemSelect"
-
 export default CartItemSelect

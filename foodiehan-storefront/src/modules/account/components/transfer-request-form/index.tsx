@@ -1,81 +1,70 @@
 "use client"
 
-import { useActionState } from "react"
+import { useActionState, useEffect, useState } from "react"
 import { createTransferRequest } from "@lib/data/orders"
-import { Text, Heading, Input, Button, IconButton, Toaster } from "@medusajs/ui"
+import Input from "@modules/common/components/input"
 import { SubmitButton } from "@modules/checkout/components/submit-button"
-import { CheckCircleMiniSolid, XCircleSolid } from "@medusajs/icons"
-import { useEffect, useState } from "react"
 
 export default function TransferRequestForm() {
   const [showSuccess, setShowSuccess] = useState(false)
-
   const [state, formAction] = useActionState(createTransferRequest, {
     success: false,
     error: null,
     order: null,
   })
-
   useEffect(() => {
-    if (state.success && state.order) {
-      setShowSuccess(true)
-    }
+    if (state.success && state.order) setShowSuccess(true)
   }, [state.success, state.order])
 
   return (
-    <div className="flex flex-col gap-y-4 w-full">
-      <div className="grid sm:grid-cols-2 items-center gap-x-8 gap-y-4 w-full">
-        <div className="flex flex-col gap-y-1">
-          <Heading level="h3" className="text-lg text-neutral-950">
-            Order transfers
-          </Heading>
-          <Text className="text-base-regular text-neutral-500">
-            Can&apos;t find the order you are looking for?
-            <br /> Connect an order to your account.
-          </Text>
+    <section className="rounded-2xl border border-[#e2e4dc] bg-[#edf0e5] p-6">
+      <p className="eyebrow mb-3">Missing an order?</p>
+      <h2 className="font-serif text-2xl">Bring everything together.</h2>
+      <p className="mt-3 max-w-lg text-sm leading-6 text-[#73766c]">
+        Placed an order as a guest? Enter the order ID from your confirmation
+        email to request that it be added to your account.
+      </p>
+      <form
+        action={formAction}
+        className="mt-5 flex flex-col items-start gap-3 sm:flex-row sm:items-center"
+      >
+        <div className="w-full sm:flex-1">
+          <Input label="Order ID" name="order_id" required autoComplete="off" />
         </div>
-        <form
-          action={formAction}
-          className="flex flex-col gap-y-1 sm:items-end"
+        <SubmitButton
+          variant="secondary"
+          className="w-full shrink-0 !rounded-full !h-12 sm:w-auto"
         >
-          <div className="flex flex-col gap-y-2 w-full">
-            <Input className="w-full" name="order_id" placeholder="Order ID" />
-            <SubmitButton
-              variant="secondary"
-              className="w-fit whitespace-nowrap self-end"
-            >
-              Request transfer
-            </SubmitButton>
-          </div>
-        </form>
-      </div>
+          Request transfer
+        </SubmitButton>
+      </form>
       {!state.success && state.error && (
-        <Text className="text-base-regular text-rose-500 text-right">
+        <p role="alert" className="mt-3 text-sm text-red-700">
           {state.error}
-        </Text>
+        </p>
       )}
       {showSuccess && (
-        <div className="flex justify-between p-4 bg-neutral-50 shadow-borders-base w-full self-stretch items-center">
-          <div className="flex gap-x-2 items-center">
-            <CheckCircleMiniSolid className="w-4 h-4 text-emerald-500" />
-            <div className="flex flex-col gap-y-1">
-              <Text className="text-medim-pl text-neutral-950">
-                Transfer for order {state.order?.id} requested
-              </Text>
-              <Text className="text-base-regular text-neutral-600">
-                Transfer request email sent to {state.order?.email}
-              </Text>
-            </div>
+        <div
+          role="status"
+          className="mt-5 flex items-start justify-between gap-4 rounded-xl bg-white p-4"
+        >
+          <div>
+            <p className="text-sm font-medium">Check your inbox.</p>
+            <p className="mt-1 break-words text-xs leading-6 text-[#73766c]">
+              A transfer request for {state.order?.id} was sent to{" "}
+              {state.order?.email}. Follow the link in the email to confirm.
+            </p>
           </div>
-          <IconButton
-            variant="transparent"
-            className="h-fit"
+          <button
+            type="button"
+            className="flex h-8 w-8 shrink-0 items-center justify-center rounded-full hover:bg-[#f0f2e9]"
             onClick={() => setShowSuccess(false)}
+            aria-label="Dismiss transfer confirmation"
           >
-            <XCircleSolid className="w-4 h-4 text-neutral-500" />
-          </IconButton>
+            ×
+          </button>
         </div>
       )}
-    </div>
+    </section>
   )
 }

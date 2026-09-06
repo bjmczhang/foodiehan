@@ -1,6 +1,5 @@
 import LocalizedClientLink from "@modules/common/components/localized-client-link"
 import ChevronDown from "@modules/common/icons/chevron-down"
-import MedusaCTA from "@modules/layout/components/medusa-cta"
 
 export default function CheckoutLayout({
   children,
@@ -8,38 +7,56 @@ export default function CheckoutLayout({
   children: React.ReactNode
 }) {
   return (
-    <div className="relative w-full bg-white small:min-h-screen">
-      <div className="h-16 bg-white border-b ">
-        <nav className="flex items-center justify-between h-full content-container">
+    <div className="min-h-screen bg-[#f8f7f3] text-[#272b24]">
+      <header className="border-b border-[#e2e4dc] bg-white">
+        <nav
+          className="mx-auto grid h-24 max-w-[1280px] grid-cols-3 items-center px-6 small:px-12"
+          aria-label="Checkout navigation"
+        >
           <LocalizedClientLink
             href="/cart"
-            className="flex items-center flex-1 uppercase text-small-semi text-ui-fg-base gap-x-2 basis-0"
+            className="flex items-center gap-2 text-sm text-[#73766c] hover:text-[#323c2b]"
             data-testid="back-to-cart-link"
           >
             <ChevronDown className="rotate-90" size={16} />
-            <span className="hidden mt-px small:block txt-compact-plus text-ui-fg-subtle hover:text-ui-fg-base ">
-              Back to shopping cart
-            </span>
-            <span className="block mt-px small:hidden txt-compact-plus text-ui-fg-subtle hover:text-ui-fg-base">
-              Back
-            </span>
+            <span className="hidden small:inline">Back to cart</span>
+            <span className="small:hidden">Cart</span>
           </LocalizedClientLink>
           <LocalizedClientLink
             href="/"
-            className="uppercase txt-compact-xlarge-plus text-ui-fg-subtle hover:text-ui-fg-base"
+            className="justify-self-center font-serif text-3xl tracking-tight text-[#323c2b]"
             data-testid="store-link"
           >
-            Foodiehan Store
+            foodiehan<span className="text-[#9b865e]">.</span>
           </LocalizedClientLink>
-          <div className="flex-1 basis-0" />
+          <div className="flex items-center justify-end gap-2 text-xs text-[#73766c]">
+            <svg
+              width="15"
+              height="15"
+              viewBox="0 0 24 24"
+              fill="none"
+              stroke="currentColor"
+              strokeWidth="1.5"
+              aria-hidden="true"
+            >
+              <rect x="5" y="10" width="14" height="11" rx="2" />
+              <path d="M8 10V6a4 4 0 0 1 8 0v4" />
+            </svg>
+            <span className="hidden small:inline">Secure checkout</span>
+          </div>
         </nav>
-      </div>
-      <div className="relative" data-testid="checkout-container">
+      </header>
+      <main id="main-content" data-testid="checkout-container">
         {children}
-      </div>
-      <div className="flex items-center justify-center w-full py-4">
-        <MedusaCTA />
-      </div>
+      </main>
+      <footer className="mx-auto flex max-w-[1184px] flex-col items-center justify-between gap-4 border-t border-[#e2e4dc] px-6 py-8 text-xs text-[#73766c] small:flex-row">
+        <p>
+          © {new Date().getFullYear()} Foodiehan. Made for everyday moments.
+        </p>
+        <LocalizedClientLink href="/contact" className="text-link">
+          Need help? Contact us
+        </LocalizedClientLink>
+      </footer>
     </div>
   )
 }

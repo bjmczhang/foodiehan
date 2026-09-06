@@ -1,222 +1,118 @@
+﻿import Image from "next/image"
 import LocalizedClientLink from "@modules/common/components/localized-client-link"
-
-/* ------------------------------------------------------------------ */
-/*  Shared sub-components                                             */
-/* ------------------------------------------------------------------ */
-
-function SectionHeading({ children }: { children: React.ReactNode }) {
-  return (
-    <h2
-      className="mb-6 text-3xl font-light tracking-wide small:text-4xl"
-      style={{
-        fontFamily: "'Playfair Display', Georgia, serif",
-        color: "var(--color-text-primary)",
-      }}
-    >
-      {children}
-    </h2>
-  )
-}
-
-function SectionBody({ children }: { children: React.ReactNode }) {
-  return (
-    <div className="max-w-2xl leading-relaxed space-y-5" style={{ color: "var(--color-text-secondary)", lineHeight: "1.8" }}>
-      {children}
-    </div>
-  )
-}
-
-/** Full-width hero/image banner */
-function FullBleedImage({ src, alt }: { src: string; alt: string }) {
-  return (
-    <section
-      className="relative w-full overflow-hidden"
-      style={{ height: "65vh", maxHeight: "700px" }}
-    >
-      <img
-        src={src}
-        alt={alt}
-        className="absolute inset-0 object-cover w-full h-full"
-      />
-    </section>
-  )
-}
-
-/** Centered text section (full-width image → text, like Laurent's "The Beginning" & "Expansion") */
-function CenteredTextSection({
-  heading,
-  children,
-}: {
-  heading: string
-  children: React.ReactNode
-}) {
-  return (
-    <section className="py-16 small:py-24">
-      <div className="max-w-[750px] mx-auto px-6">
-        <SectionHeading>{heading}</SectionHeading>
-        <SectionBody>{children}</SectionBody>
-      </div>
-    </section>
-  )
-}
-
-/** Two-column image + text section (like Laurent's "The First Store" & "Laurent Today") */
-function SplitSection({
-  heading,
-  image,
-  imagePosition = "left",
-  children,
-}: {
-  heading: string
-  image: { src: string; alt: string }
-  imagePosition?: "left" | "right"
-  children: React.ReactNode
-}) {
-  const imageColumn = (
-    <div className="relative w-full small:w-1/2 min-h-[400px] small:min-h-[600px] overflow-hidden">
-      <img
-        src={image.src}
-        alt={image.alt}
-        className="absolute inset-0 object-cover w-full h-full"
-      />
-    </div>
-  )
-
-  const textColumn = (
-    <div className="flex flex-col justify-center w-full small:w-1/2 px-6 py-16 small:px-16 small:py-20 medium:px-20">
-      <SectionHeading>{heading}</SectionHeading>
-      <SectionBody>{children}</SectionBody>
-    </div>
-  )
-
-  return (
-    <section className="w-full">
-      <div className="flex flex-col small:flex-row">
-        {imagePosition === "left" ? (
-          <>
-            {imageColumn}
-            {textColumn}
-          </>
-        ) : (
-          <>
-            {textColumn}
-            {imageColumn}
-          </>
-        )}
-      </div>
-    </section>
-  )
-}
-
-/* ------------------------------------------------------------------ */
-/*  Page Template                                                     */
-/* ------------------------------------------------------------------ */
 
 export default function AboutTemplate() {
   return (
     <>
-      {/* ── Hero image ─────────────────────────────────────────── */}
-      <FullBleedImage
-        src="/images/hero.jpg"
-        alt="FoodieHan bakery — artisan bread and pastries"
-      />
-
-      {/* ── The Beginning ──────────────────────────────────────── */}
-      <CenteredTextSection heading="The Beginning">
-        <p>
-          FoodieHan began with a simple belief: that the finest baking traditions
-          of France and the bold, vibrant flavours of Asia belong on the same
-          table. Our founder grew up between two culinary worlds — summers spent
-          in his grandmother&apos;s kitchen in Guangdong, where steamed buns and
-          lotus-paste pastries were made by hand each morning, and years training
-          in the artisan bakeries of Paris, where patience, levain, and the
-          perfect crust were everything.
+      <section className="page-shell text-center !pb-12">
+        <p className="eyebrow mb-5">Our story</p>
+        <h1 className="page-title">
+          A little Seoul.
+          <br />
+          <em>A lot of heart.</em>
+        </h1>
+        <p className="page-description mx-auto mt-6">
+          Food brings us together. We’re here for the familiar flavours, the new
+          discoveries, and the everyday moments in between.
         </p>
-        <p>
-          After honing his craft at one of France&apos;s most respected pastry
-          schools, he returned to Australia with a vision: to build a bakery that
-          honoured both traditions. No shortcuts, no added yeast in the
-          sourdough — just naturally leavened bread, hand-shaped pastries, and a
-          menu that tells the story of two cultures through flour, butter, and
-          time.
-        </p>
-      </CenteredTextSection>
-
-      {/* ── The First Store (two-column) ────────────────────────── */}
-      <SplitSection
-        heading="The First Store"
-        image={{ src: "/images/brand1.jpg", alt: "The first FoodieHan bakery storefront" }}
-        imagePosition="left"
-      >
-        <p>
-          In 2015, FoodieHan opened its doors in the heart of Sydney&apos;s inner
-          west — a small corner bakery with big windows, a wood-fired oven, and
-          the smell of fresh bread drifting down the street by 6 am. From day
-          one, the neighbourhood embraced us. Locals became regulars, regulars
-          became friends, and our little bakery became a gathering place where
-          anyone could stop in for a croissant, a mooncake, or a chat.
-        </p>
-        <p>
-          Today that first bakery is still our home — a place where the spirit of
-          craft-baking is celebrated with every loaf that leaves the oven, and
-          where the door is always open.
-        </p>
-      </SplitSection>
-
-      {/* ── Full-width image ──────────────────────────────────── */}
-      <FullBleedImage
-        src="/images/brand2.jpg"
-        alt="Fresh artisan bread and pastries at FoodieHan"
-      />
-
-      {/* ── Expansion ──────────────────────────────────────────── */}
-      <CenteredTextSection heading="Expansion">
-        <p>
-          As word spread and queues grew longer, we expanded — one neighbourhood
-          at a time. Each new FoodieHan location is designed to be more than a
-          bakery: it&apos;s a vibrant community hub where friends meet for coffee,
-          families gather on weekends, and everyone is welcome. We&apos;re proud
-          to bring authentic French techniques and Asian-inspired flavours to more
-          tables than ever — while staying true to the small-batch, handmade ethos
-          that started it all.
-        </p>
-        <div className="mt-8">
-          <LocalizedClientLink
-            href="/contact"
-            className="btn-brand-outline"
-          >
-            See Locations
-          </LocalizedClientLink>
+      </section>
+      <div className="page-shell !py-0">
+        <div className="relative h-[280px] small:h-[470px] rounded-2xl overflow-hidden">
+          <Image
+            src="/images/brand3.jpg"
+            alt="A warm bakery counter filled with breads and pastries"
+            fill
+            priority
+            className="object-cover"
+            sizes="(max-width: 1023px) 100vw, 1280px"
+          />
         </div>
-      </CenteredTextSection>
-
-      {/* ── Laurent Today (two-column) ─────────────────────────── */}
-      <SplitSection
-        heading="FoodieHan Today"
-        image={{ src: "/images/brand4.jpg", alt: "The FoodieHan team at work" }}
-        imagePosition="left"
-      >
-        <p>
-          From that first corner bakery in Sydney, FoodieHan has grown into a
-          team of over 100 passionate bakers, pastry chefs, and front-of-house
-          staff — each one dedicated to the craft of making food that brings
-          people together. Our ovens run from dawn to dusk, and every single item
-          that leaves our kitchen is made fresh that day.
-        </p>
-        <p>
-          We remain a family-run bakery at heart, with our founder still in the
-          kitchen each week, dreaming up new creations and tasting every batch of
-          sourdough. The recipes have grown, the team has grown, but the mission
-          is unchanged: to bake with integrity, to honour the traditions that
-          shaped us, and to share the flavours we love with the community
-          we&apos;re proud to call home.
-        </p>
-        <p>
-          Today, with locations across Sydney and a team that feels more like
-          family, FoodieHan continues to write its story — one loaf, one pastry,
-          one smile at a time.
-        </p>
-      </SplitSection>
+      </div>
+      <section className="page-shell grid small:grid-cols-[1fr_1.3fr] gap-10 small:gap-24">
+        <div>
+          <p className="eyebrow mb-5">What brings us to the table</p>
+          <h2 className="section-heading">
+            Comfort, with
+            <br />a little curiosity.
+          </h2>
+        </div>
+        <div className="page-description space-y-5">
+          <p>
+            A bun filled with sweet red bean. The golden edges of a buttery
+            bake. The bold, familiar flavour of kimchi. At FoodieHan, we believe
+            good food can feel like home and still give you something new to
+            discover.
+          </p>
+          <p>
+            Our selection brings Korean-inspired flavours and bakery favourites
+            together in one place. Sweet or savoury, a little treat for yourself
+            or something to share, there’s a place for it at our table.
+          </p>
+          <p>
+            That’s the spirit of FoodieHan: simple pleasures, thoughtfully
+            chosen, for your every day.
+          </p>
+        </div>
+      </section>
+      <section className="bg-[#eeeee7]">
+        <div className="page-shell">
+          <p className="eyebrow mb-4">The things we care about</p>
+          <h2 className="section-heading mb-12">Good food. Good moments.</h2>
+          <div className="grid sm:grid-cols-3 gap-10">
+            {[
+              {
+                n: "01",
+                title: "Rooted in flavour",
+                text: "Korean favourites and comforting bakes, with flavours that feel both familiar and full of possibility.",
+              },
+              {
+                n: "02",
+                title: "The little details",
+                text: "Soft centres, golden crusts and satisfying textures. Because the small things make a favourite.",
+              },
+              {
+                n: "03",
+                title: "Better together",
+                text: "A morning pause, an afternoon catch-up, or a table full of friends. Good food belongs in good company.",
+              },
+            ].map((item) => (
+              <div key={item.n} className="border-t border-[#cbd0bd] pt-6">
+                <span className="eyebrow">{item.n}</span>
+                <h3 className="text-xl font-serif mt-5 mb-4">{item.title}</h3>
+                <p className="text-sm leading-7 text-[#73766c]">{item.text}</p>
+              </div>
+            ))}
+          </div>
+        </div>
+      </section>
+      <section className="page-shell">
+        <div className="story-grid">
+          <div className="story-copy">
+            <p className="eyebrow mb-5">Come on in</p>
+            <h2 className="section-heading">
+              Find your
+              <br />
+              FoodieHan favourite.
+            </h2>
+            <p className="page-description mt-5 mb-7">
+              Start with something you love. Stay for something you haven’t
+              tried yet.
+            </p>
+            <LocalizedClientLink href="/store" className="button-primary">
+              Explore the shop <span aria-hidden="true">→</span>
+            </LocalizedClientLink>
+          </div>
+          <div className="story-image relative min-h-[350px]">
+            <Image
+              src="/images/hero.jpg"
+              alt="A selection of golden buns and artisan bread"
+              fill
+              sizes="(max-width:639px) 100vw, 50vw"
+              className="object-cover"
+            />
+          </div>
+        </div>
+      </section>
     </>
   )
 }

@@ -60,7 +60,7 @@ module.exports = {
       },
       fontFamily: {
         sans: [
-          "Rubik",
+          "Arial",
           "-apple-system",
           "BlinkMacSystemFont",
           "Segoe UI",
@@ -69,12 +69,7 @@ module.exports = {
           "Ubuntu",
           "sans-serif",
         ],
-        serif: [
-          "Playfair Display",
-          "Georgia",
-          "Times New Roman",
-          "serif",
-        ],
+        serif: ["Georgia", "Times New Roman", "serif"],
       },
       keyframes: {
         ring: {

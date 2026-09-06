@@ -1,58 +1,32 @@
-"use client"
-
-import LocalizedClientLink from "@modules/common/components/localized-client-link"
+﻿"use client"
 import { usePathname } from "next/navigation"
+import LocalizedClientLink from "@modules/common/components/localized-client-link"
 
 export default function NavLinks() {
-  const pathname = usePathname()
-  const isShopActive =
-    pathname?.includes("/online-order") ||
-    pathname?.includes("/store") ||
-    pathname?.includes("/products") ||
-    pathname?.includes("/categories")
-  const isAboutActive = pathname?.includes("/about")
-  const isContactActive = pathname?.includes("/contact")
-
+  const pathname = usePathname().split("/").slice(2).join("/")
   return (
-    <div className="hidden small:flex items-center gap-x-8 text-[13px] font-normal tracking-[0.06em]">
-      <div className="relative py-1">
-        <LocalizedClientLink
-          href="/about"
-          className="transition-colors duration-200 hover:text-[var(--color-brand)] text-current"
-          data-testid="nav-about-link"
-        >
-          About Us
-        </LocalizedClientLink>
-        {isAboutActive && (
-          <span className="absolute bottom-0 left-0 w-full h-[1.5px] bg-current transition-all duration-200" />
-        )}
-      </div>
-
-      <div className="relative py-1">
-        <LocalizedClientLink
-          href="/online-order"
-          className="transition-colors duration-200 hover:text-[var(--color-brand)] text-current"
-          data-testid="nav-shop-link"
-        >
-          Shop
-        </LocalizedClientLink>
-        {isShopActive && (
-          <span className="absolute bottom-0 left-0 w-full h-[1.5px] bg-current transition-all duration-200" />
-        )}
-      </div>
-
-      <div className="relative py-1">
-        <LocalizedClientLink
-          href="/contact"
-          className="transition-colors duration-200 hover:text-[var(--color-brand)] text-current"
-          data-testid="nav-contact-link"
-        >
-          Contact Us
-        </LocalizedClientLink>
-        {isContactActive && (
-          <span className="absolute bottom-0 left-0 w-full h-[1.5px] bg-current transition-all duration-200" />
-        )}
-      </div>
+    <div className="nav-links">
+      {[
+        { label: "About Us", href: "/about" },
+        { label: "Shop", href: "/store" },
+        { label: "Contact Us", href: "/contact" },
+      ].map(({ label, href }) => {
+        const active =
+          pathname === href.slice(1) ||
+          (href === "/store" &&
+            /^(products|categories|collections|search|online-order)/.test(
+              pathname
+            ))
+        return (
+          <LocalizedClientLink
+            key={href}
+            href={href}
+            aria-current={active ? "page" : undefined}
+          >
+            {label}
+          </LocalizedClientLink>
+        )
+      })}
     </div>
   )
 }

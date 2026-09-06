@@ -1,228 +1,167 @@
-"use client"
-
-import { useState } from "react"
-
-type FormData = {
-  name: string
-  email: string
-  phone: string
-  storeLocation: string
-  message: string
-}
-
-type FormStatus = "idle" | "submitting" | "success" | "error"
-
-const initialFormData: FormData = {
-  name: "",
-  email: "",
-  phone: "",
-  storeLocation: "",
-  message: "",
-}
-
-const inputClasses =
-  "w-full px-3.5 py-2.5 small:py-3 text-sm text-[#1a1a1a] bg-white border border-[#d1d5db] focus:border-black focus:outline-none rounded-none transition-colors placeholder:text-[#999999]"
-const labelClasses = "block mb-2 text-xs small:text-sm font-normal text-[#1a1a1a]"
+﻿"use client"
+import { FormEvent, useState } from "react"
 
 export default function ContactForm() {
-  const [formData, setFormData] = useState<FormData>(initialFormData)
-  const [status, setStatus] = useState<FormStatus>("idle")
-  const [errorMessage, setErrorMessage] = useState("")
-
-  const handleChange = (
-    e: React.ChangeEvent<
-      HTMLInputElement | HTMLTextAreaElement | HTMLSelectElement
-    >
-  ) => {
-    const { name, value } = e.target
-    setFormData((prev) => ({ ...prev, [name]: value }))
-  }
-
-  const handleSubmit = async (e: React.FormEvent) => {
-    e.preventDefault()
+  const [status, setStatus] = useState<
+    "idle" | "submitting" | "success" | "error"
+  >("idle")
+  const [error, setError] = useState("")
+  async function submit(event: FormEvent<HTMLFormElement>) {
+    event.preventDefault()
+    const form = event.currentTarget
     setStatus("submitting")
-    setErrorMessage("")
-
+    setError("")
     try {
-      // Backend submission simulation / placeholder
-      await new Promise((resolve) => setTimeout(resolve, 1000))
-
+      const data = Object.fromEntries(new FormData(form).entries())
+      const response = await fetch("/api/contact", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify(data),
+      })
+      const result = await response.json()
+      if (!response.ok)
+        throw new Error(
+          result.message || "Your message could not be sent. Please try again."
+        )
       setStatus("success")
-      setFormData(initialFormData)
-    } catch (err) {
+      form.reset()
+    } catch (error) {
       setStatus("error")
-      setErrorMessage(
-        err instanceof Error
-          ? err.message
-          : "Something went wrong. Please try again."
+      setError(
+        error instanceof Error
+          ? error.message
+          : "Your message could not be sent. Please try again."
       )
     }
   }
-
-  if (status === "success") {
+  if (status === "success")
     return (
-      <div className="flex flex-col items-center justify-center py-16 text-center">
-        <div className="flex items-center justify-center w-14 h-14 mb-5 rounded-full bg-black text-white">
-          <svg
-            className="w-6 h-6"
-            fill="none"
-            stroke="currentColor"
-            viewBox="0 0 24 24"
-          >
-            <path
-              strokeLinecap="round"
-              strokeLinejoin="round"
-              strokeWidth={2}
-              d="M5 13l4 4L19 7"
-            />
-          </svg>
+      <div role="status" className="text-center py-12">
+        <div className="mx-auto mb-5 w-14 h-14 flex items-center justify-center bg-[#eaece1] rounded-full text-2xl text-[#323c2b]">
+          ✓
         </div>
-        <h3
-          className="mb-2 text-2xl font-light text-[#1a1a1a]"
-          style={{
-            fontFamily: "'Playfair Display', Georgia, serif",
-          }}
-        >
-          Thank You!
-        </h3>
-        <p className="text-sm text-[#666666]">
-          Your message has been sent. We&apos;ll get back to you soon.
+        <h3 className="font-serif text-3xl mb-4">Thanks for saying hello.</h3>
+        <p className="page-description">
+          Your message has been received. We’ll reply to the email address you
+          shared.
         </p>
         <button
+          className="button-secondary mt-7"
           onClick={() => setStatus("idle")}
-          className="mt-6 text-xs uppercase tracking-wider font-semibold text-black underline hover:opacity-75"
         >
-          Send another message
+          Send another note
         </button>
       </div>
     )
-  }
-
   return (
-    <form onSubmit={handleSubmit} className="w-full">
-      <div className="grid grid-cols-1 md:grid-cols-2 gap-x-8 gap-y-6">
-        {/* Name */}
-        <div>
-          <label htmlFor="contact-name" className={labelClasses}>
-            Name
-          </label>
-          <input
-            id="contact-name"
-            type="text"
-            name="name"
-            value={formData.name}
-            onChange={handleChange}
-            required
-            className={inputClasses}
-          />
-        </div>
-
-        {/* Email */}
-        <div>
-          <label htmlFor="contact-email" className={labelClasses}>
-            Email
-          </label>
-          <input
-            id="contact-email"
-            type="email"
-            name="email"
-            value={formData.email}
-            onChange={handleChange}
-            required
-            className={inputClasses}
-          />
-        </div>
-
-        {/* Phone */}
-        <div>
-          <label htmlFor="contact-phone" className={labelClasses}>
-            Phone
-          </label>
-          <input
-            id="contact-phone"
-            type="tel"
-            name="phone"
-            value={formData.phone}
-            onChange={handleChange}
-            className={inputClasses}
-          />
-        </div>
-
-        {/* Store Location */}
-        <div>
-          <label htmlFor="contact-storeLocation" className={labelClasses}>
-            Store Location
-          </label>
-          <input
-            id="contact-storeLocation"
-            type="text"
-            name="storeLocation"
-            value={formData.storeLocation}
-            onChange={handleChange}
-            className={inputClasses}
-          />
-        </div>
-
-        {/* Message (Full width) */}
-        <div className="md:col-span-2">
-          <label htmlFor="contact-message" className={labelClasses}>
-            Message
-          </label>
-          <textarea
-            id="contact-message"
-            name="message"
-            value={formData.message}
-            onChange={handleChange}
-            required
-            rows={5}
-            className={`${inputClasses} resize-y min-h-[120px]`}
-          />
-        </div>
-
-        {/* Error message */}
-        {status === "error" && (
-          <div className="md:col-span-2">
-            <p className="text-sm text-red-600">{errorMessage}</p>
-          </div>
-        )}
-
-        {/* Submit Button */}
-        <div className="md:col-span-2 pt-2">
-          <button
-            type="submit"
-            disabled={status === "submitting"}
-            className="px-9 py-3 bg-black hover:bg-neutral-800 text-white text-xs font-semibold tracking-[0.2em] uppercase rounded-none transition-colors duration-200 disabled:opacity-50 disabled:cursor-not-allowed flex items-center justify-center"
-          >
-            {status === "submitting" ? (
-              <>
-                <svg
-                  className="w-4 h-4 mr-2 animate-spin text-white"
-                  fill="none"
-                  viewBox="0 0 24 24"
-                >
-                  <circle
-                    className="opacity-25"
-                    cx="12"
-                    cy="12"
-                    r="10"
-                    stroke="currentColor"
-                    strokeWidth="4"
-                  />
-                  <path
-                    className="opacity-75"
-                    fill="currentColor"
-                    d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4z"
-                  />
-                </svg>
-                SENDING...
-              </>
-            ) : (
-              "SEND"
-            )}
-          </button>
-        </div>
+    <form onSubmit={submit} className="grid sm:grid-cols-2 gap-6">
+      <div>
+        <label htmlFor="contact-name" className="store-label">
+          Your name *
+        </label>
+        <input
+          id="contact-name"
+          name="name"
+          autoComplete="name"
+          required
+          maxLength={100}
+          className="store-input"
+          placeholder="First and last name"
+        />
+      </div>
+      <div>
+        <label htmlFor="contact-email" className="store-label">
+          Email address *
+        </label>
+        <input
+          id="contact-email"
+          name="email"
+          type="email"
+          autoComplete="email"
+          required
+          maxLength={200}
+          className="store-input"
+          placeholder="you@example.com"
+        />
+      </div>
+      <div>
+        <label htmlFor="contact-topic" className="store-label">
+          What’s on your mind? *
+        </label>
+        <select
+          id="contact-topic"
+          name="topic"
+          className="store-input"
+          defaultValue=""
+          required
+        >
+          <option value="" disabled>
+            Select a topic
+          </option>
+          <option>Order enquiry</option>
+          <option>Products & ingredients</option>
+          <option>Partnerships</option>
+          <option>Feedback</option>
+          <option>Something else</option>
+        </select>
+      </div>
+      <div>
+        <label htmlFor="contact-order" className="store-label">
+          Order number <span className="font-normal">(optional)</span>
+        </label>
+        <input
+          id="contact-order"
+          name="order"
+          maxLength={80}
+          className="store-input"
+          placeholder="e.g. 1001"
+        />
+      </div>
+      <div className="sm:col-span-2">
+        <label htmlFor="contact-message" className="store-label">
+          Your message *
+        </label>
+        <textarea
+          id="contact-message"
+          name="message"
+          required
+          minLength={10}
+          maxLength={5000}
+          rows={6}
+          className="store-input resize-y"
+          placeholder="Tell us a little more…"
+        />
+      </div>
+      <div className="hidden" aria-hidden="true">
+        <label htmlFor="contact-website">Website</label>
+        <input
+          id="contact-website"
+          name="website"
+          tabIndex={-1}
+          autoComplete="off"
+        />
+      </div>
+      {status === "error" && (
+        <p
+          role="alert"
+          className="sm:col-span-2 rounded-lg bg-rose-50 p-4 text-sm text-rose-800"
+        >
+          {error}
+        </p>
+      )}
+      <div className="sm:col-span-2 flex flex-col sm:flex-row gap-5 items-start sm:items-center justify-between">
+        <p className="text-xs leading-5 text-[#73766c] max-w-[250px]">
+          We’ll use these details to respond to your enquiry.
+        </p>
+        <button
+          type="submit"
+          className="button-primary shrink-0 disabled:opacity-60"
+          disabled={status === "submitting"}
+        >
+          {status === "submitting" ? "Sending…" : "Send message"}{" "}
+          <span aria-hidden="true">↗</span>
+        </button>
       </div>
     </form>
   )
 }
-

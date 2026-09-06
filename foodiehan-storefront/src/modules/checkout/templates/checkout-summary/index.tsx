@@ -1,30 +1,30 @@
-import { Heading } from "@medusajs/ui"
-
+import { HttpTypes } from "@medusajs/types"
 import ItemsPreviewTemplate from "@modules/cart/templates/preview"
 import DiscountCode from "@modules/checkout/components/discount-code"
 import CartTotals from "@modules/common/components/cart-totals"
-import Divider from "@modules/common/components/divider"
+import LocalizedClientLink from "@modules/common/components/localized-client-link"
 
-const CheckoutSummary = ({ cart }: { cart: any }) => {
-  return (
-    <div className="sticky top-0 flex flex-col-reverse small:flex-col gap-y-8 py-8 small:py-0 ">
-      <div className="w-full bg-white flex flex-col">
-        <Divider className="my-6 small:hidden" />
-        <Heading
-          level="h2"
-          className="flex flex-row text-3xl-regular items-baseline"
-        >
-          In your Cart
-        </Heading>
-        <Divider className="my-6" />
-        <CartTotals totals={cart} />
-        <ItemsPreviewTemplate cart={cart} />
-        <div className="my-6">
-          <DiscountCode cart={cart} />
-        </div>
-      </div>
+const CheckoutSummary = ({ cart }: { cart: HttpTypes.StoreCart }) => (
+  <aside className="surface-panel min-w-0 large:sticky large:top-8">
+    <div className="flex items-center justify-between gap-4">
+      <h2 className="font-serif text-[28px] tracking-tight">Your order</h2>
+      <LocalizedClientLink href="/cart" className="text-link text-xs">
+        Edit cart
+      </LocalizedClientLink>
     </div>
-  )
-}
-
+    <ItemsPreviewTemplate cart={cart} />
+    <div className="border-t border-[#e2e4dc] py-5">
+      <DiscountCode cart={cart} />
+    </div>
+    <div className="border-t border-[#e2e4dc] pt-6">
+      <CartTotals totals={cart} />
+    </div>
+    <div className="mt-6 rounded-xl bg-[#f8f7f3] p-4 text-xs leading-6 text-[#73766c]">
+      Something to ask before you order?{" "}
+      <LocalizedClientLink href="/contact" className="text-link">
+        We are here to help.
+      </LocalizedClientLink>
+    </div>
+  </aside>
+)
 export default CheckoutSummary

@@ -9,7 +9,6 @@ import ErrorMessage from "@modules/checkout/components/error-message"
 import PaymentContainer, {
   StripeCardContainer,
 } from "@modules/checkout/components/payment-container"
-import Divider from "@modules/common/components/divider"
 import { usePathname, useRouter, useSearchParams } from "next/navigation"
 import { useCallback, useEffect, useState } from "react"
 
@@ -41,10 +40,20 @@ const Payment = ({
   const setPaymentMethod = async (method: string) => {
     setError(null)
     setSelectedPaymentMethod(method)
-    if (isStripeLike(method)) {
-      await initiatePaymentSession(cart, {
-        provider_id: method,
-      })
+    setIsLoading(true)
+    try {
+      if (isStripeLike(method)) {
+        await initiatePaymentSession(cart, { provider_id: method })
+      }
+    } catch (error) {
+      setError(
+        error instanceof Error
+          ? error.message
+          : "We couldn't load this payment method. Please try again."
+      )
+      setSelectedPaymentMethod(activeSession?.provider_id ?? "")
+    } finally {
+      setIsLoading(false)
     }
   }
 
@@ -79,7 +88,7 @@ const Payment = ({
       const checkActiveSession =
         activeSession?.provider_id === selectedPaymentMethod
 
-      if (!checkActiveSession) {
+      if (!checkActiveSession && !paidByGiftcard) {
         await initiatePaymentSession(cart, {
           provider_id: selectedPaymentMethod,
         })
@@ -105,18 +114,21 @@ const Payment = ({
   }, [isOpen])
 
   return (
-    <div className="bg-white">
+    <section className="surface-panel">
       <div className="flex flex-row items-center justify-between mb-6">
         <Heading
           level="h2"
           className={clx(
-            "flex flex-row text-3xl-regular gap-x-2 items-baseline",
+            "flex items-center gap-3 font-serif text-[26px] font-normal tracking-tight",
             {
               "opacity-50 pointer-events-none select-none":
                 !isOpen && !paymentReady,
             }
           )}
         >
+          <span className="font-sans text-xs font-medium text-[#73766c]">
+            03
+          </span>{" "}
           Payment
           {!isOpen && paymentReady && <CheckCircleSolid />}
         </Heading>
@@ -124,7 +136,7 @@ const Payment = ({
           <Text>
             <button
               onClick={handleEdit}
-              className="text-ui-fg-interactive hover:text-ui-fg-interactive-hover"
+              className="text-link text-xs"
               data-testid="edit-payment-button"
             >
               Edit
@@ -134,10 +146,16 @@ const Payment = ({
       </div>
       <div>
         <div className={isOpen ? "block" : "hidden"}>
-          {!paidByGiftcard && availablePaymentMethods?.length && (
+          <p className="mb-5 text-sm leading-6 text-[#73766c]">
+            Choose your payment method. You can check everything once more
+            before placing your order.
+          </p>
+          {!paidByGiftcard && availablePaymentMethods?.length > 0 && (
             <>
               <RadioGroup
                 value={selectedPaymentMethod}
+                aria-label="Payment methods"
+                disabled={isLoading}
                 onChange={(value: string) => setPaymentMethod(value)}
               >
                 {availablePaymentMethods.map((paymentMethod) => (
@@ -165,7 +183,7 @@ const Payment = ({
           )}
 
           {paidByGiftcard && (
-            <div className="flex flex-col w-1/3">
+            <div className="flex min-w-0 flex-col">
               <Text className="txt-medium-plus text-ui-fg-base mb-1">
                 Payment method
               </Text>
@@ -185,10 +203,11 @@ const Payment = ({
 
           <Button
             size="large"
-            className="mt-6"
+            className="mt-6 w-full small:w-auto"
             onClick={handleSubmit}
             isLoading={isLoading}
             disabled={
+              isLoading ||
               (isStripeLike(selectedPaymentMethod) && !cardComplete) ||
               (!selectedPaymentMethod && !paidByGiftcard)
             }
@@ -202,8 +221,8 @@ const Payment = ({
 
         <div className={isOpen ? "hidden" : "block"}>
           {cart && paymentReady && activeSession ? (
-            <div className="flex items-start gap-x-1 w-full">
-              <div className="flex flex-col w-1/3">
+            <div className="grid w-full grid-cols-1 gap-5 small:grid-cols-2">
+              <div className="flex min-w-0 flex-col">
                 <Text className="txt-medium-plus text-ui-fg-base mb-1">
                   Payment method
                 </Text>
@@ -215,7 +234,7 @@ const Payment = ({
                     activeSession?.provider_id}
                 </Text>
               </div>
-              <div className="flex flex-col w-1/3">
+              <div className="flex min-w-0 flex-col">
                 <Text className="txt-medium-plus text-ui-fg-base mb-1">
                   Payment details
                 </Text>
@@ -231,13 +250,13 @@ const Payment = ({
                   <Text>
                     {isStripeLike(selectedPaymentMethod) && cardBrand
                       ? cardBrand
-                      : "Another step will appear"}
+                      : "Confirmed when you place your order"}
                   </Text>
                 </div>
               </div>
             </div>
           ) : paidByGiftcard ? (
-            <div className="flex flex-col w-1/3">
+            <div className="flex min-w-0 flex-col">
               <Text className="txt-medium-plus text-ui-fg-base mb-1">
                 Payment method
               </Text>
@@ -251,8 +270,18 @@ const Payment = ({
           ) : null}
         </div>
       </div>
-      <Divider className="mt-8" />
-    </div>
+      {isOpen && !paidByGiftcard && !availablePaymentMethods?.length && (
+        <p className="mt-4 rounded-xl bg-[#f8f7f3] p-4 text-sm leading-6 text-[#73766c]">
+          Payment methods are currently unavailable. Please try again shortly or
+          contact us for help.
+        </p>
+      )}
+      {!isOpen && !paymentReady && (
+        <p className="text-sm text-[#73766c]">
+          Select a delivery option to continue to payment.
+        </p>
+      )}
+    </section>
   )
 }
 

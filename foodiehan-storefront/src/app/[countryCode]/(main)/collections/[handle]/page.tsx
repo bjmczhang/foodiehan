@@ -10,6 +10,7 @@ import { SortOptions } from "@modules/store/components/refinement-list/sort-prod
 type Props = {
   params: Promise<{ handle: string; countryCode: string }>
   searchParams: Promise<{
+    q?: string
     page?: string
     sortBy?: SortOptions
   }>
@@ -60,7 +61,7 @@ export async function generateMetadata(props: Props): Promise<Metadata> {
   }
 
   const metadata = {
-    title: `${collection.title} | Medusa Store`,
+    title: `${collection.title}`,
     description: `${collection.title} collection`,
   } as Metadata
 
@@ -70,7 +71,7 @@ export async function generateMetadata(props: Props): Promise<Metadata> {
 export default async function CollectionPage(props: Props) {
   const searchParams = await props.searchParams
   const params = await props.params
-  const { sortBy, page } = searchParams
+  const { sortBy, page, q } = searchParams
 
   const collection = await getCollectionByHandle(params.handle).then(
     (collection: StoreCollection) => collection
@@ -83,6 +84,7 @@ export default async function CollectionPage(props: Props) {
   return (
     <CollectionTemplate
       collection={collection}
+      q={q}
       page={page}
       sortBy={sortBy}
       countryCode={params.countryCode}

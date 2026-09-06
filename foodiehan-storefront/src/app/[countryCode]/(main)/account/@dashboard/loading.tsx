@@ -1,9 +1,15 @@
-import Spinner from "@modules/common/icons/spinner"
-
-export default function Loading() {
+﻿export default function Loading() {
   return (
-    <div className="flex items-center justify-center w-full h-full text-ui-fg-base">
-      <Spinner size={36} />
+    <div
+      role="status"
+      aria-label="Loading account details"
+      className="space-y-6"
+    >
+      <div className="h-12 w-2/3 rounded bg-[#e7e9df] animate-pulse" />
+      {[0, 1, 2].map((n) => (
+        <div key={n} className="h-32 rounded-2xl bg-[#eeeee7] animate-pulse" />
+      ))}
+      <span className="sr-only">Loading account details…</span>
     </div>
   )
 }

@@ -36,7 +36,7 @@ const AddressSelect = ({
     <Listbox onChange={handleSelect} value={selectedAddress?.id}>
       <div className="relative">
         <Listbox.Button
-          className="relative w-full flex justify-between items-center px-4 py-[10px] text-left bg-white cursor-default focus:outline-none border rounded-rounded focus-visible:ring-2 focus-visible:ring-opacity-75 focus-visible:ring-white focus-visible:ring-offset-gray-300 focus-visible:ring-offset-2 focus-visible:border-gray-300 text-base-regular"
+          className="relative flex min-h-12 w-full items-center justify-between rounded-xl border border-[#d8dccf] bg-white px-4 py-3 text-left text-sm focus:outline-none focus-visible:ring-2 focus-visible:ring-[#788468]"
           data-testid="shipping-address-select"
         >
           {({ open }) => (
@@ -61,7 +61,7 @@ const AddressSelect = ({
           leaveTo="opacity-0"
         >
           <Listbox.Options
-            className="absolute z-20 w-full overflow-auto text-small-regular bg-white border border-top-0 max-h-60 focus:outline-none sm:text-sm"
+            className="absolute z-20 mt-2 max-h-64 w-full overflow-auto rounded-xl border border-[#e2e4dc] bg-white text-sm shadow-lg focus:outline-none"
             data-testid="shipping-address-options"
           >
             {addresses.map((address) => {
@@ -69,7 +69,7 @@ const AddressSelect = ({
                 <Listbox.Option
                   key={address.id}
                   value={address.id}
-                  className="cursor-default select-none relative pl-6 pr-10 hover:bg-gray-50 py-4"
+                  className="relative cursor-pointer select-none px-5 py-4 hover:bg-[#f8f7f3] data-[focus]:bg-[#eeefe7]"
                   data-testid="shipping-address-option"
                 >
                   <div className="flex gap-x-4 items-start">

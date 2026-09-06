@@ -72,7 +72,10 @@ const ProfileBillingAddress: React.FC<MyInformationProps> = ({
       )?.label || billingAddress.country_code?.toUpperCase()
 
     return (
-      <div className="flex flex-col font-semibold" data-testid="current-info">
+      <div
+        className="flex flex-col text-sm leading-6"
+        data-testid="current-info"
+      >
         <span>
           {billingAddress.first_name} {billingAddress.last_name}
         </span>
@@ -100,8 +103,8 @@ const ProfileBillingAddress: React.FC<MyInformationProps> = ({
         clearState={clearState}
         data-testid="account-billing-address-editor"
       >
-        <div className="grid grid-cols-1 gap-y-2">
-          <div className="grid grid-cols-2 gap-x-2">
+        <div className="grid grid-cols-1 gap-y-3">
+          <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
             <Input
               label="First name"
               name="first_name"
@@ -126,8 +129,8 @@ const ProfileBillingAddress: React.FC<MyInformationProps> = ({
           <Input
             label="Phone"
             name="phone"
-            type="phone"
-            autoComplete="phone"
+            type="tel"
+            autoComplete="tel"
             required
             defaultValue={billingAddress?.phone ?? customer?.phone ?? ""}
             data-testid="billing-phone-input"
@@ -145,7 +148,7 @@ const ProfileBillingAddress: React.FC<MyInformationProps> = ({
             defaultValue={billingAddress?.address_2 || undefined}
             data-testid="billing-address-2-input"
           />
-          <div className="grid grid-cols-[144px_1fr] gap-x-2">
+          <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
             <Input
               label="Postal code"
               name="postal_code"
@@ -169,6 +172,7 @@ const ProfileBillingAddress: React.FC<MyInformationProps> = ({
           />
           <NativeSelect
             name="country_code"
+            aria-label="Billing country"
             defaultValue={billingAddress?.country_code || undefined}
             required
             data-testid="billing-country-code-select"

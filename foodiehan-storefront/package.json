@@ -12,6 +12,9 @@
     "build": "next build",
     "start": "next start -p 8000",
     "lint": "next lint",
+    "check:types": "tsc --noEmit --incremental false",
+    "check:prices": "node scripts/verify-pricing.cjs",
+    "check:routes": "node scripts/verify-storefront.cjs",
     "analyze": "ANALYZE=true next build"
   },
   "dependencies": {

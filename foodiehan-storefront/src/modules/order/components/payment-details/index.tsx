@@ -1,63 +1,60 @@
-import { Container, Heading, Text } from "@medusajs/ui"
-
 import { isStripeLike, paymentInfoMap } from "@lib/constants"
-import Divider from "@modules/common/components/divider"
 import { convertToLocale } from "@lib/util/money"
 import { HttpTypes } from "@medusajs/types"
 
-type PaymentDetailsProps = {
-  order: HttpTypes.StoreOrder
-}
-
-const PaymentDetails = ({ order }: PaymentDetailsProps) => {
-  const payment = order.payment_collections?.[0].payments?.[0]
-
+const PaymentDetails = ({ order }: { order: HttpTypes.StoreOrder }) => {
+  const payments =
+    order.payment_collections?.flatMap(
+      (collection) => collection.payments || []
+    ) || []
   return (
-    <div>
-      <Heading level="h2" className="flex flex-row text-3xl-regular my-6">
-        Payment
-      </Heading>
-      <div>
-        {payment && (
-          <div className="flex items-start gap-x-1 w-full">
-            <div className="flex flex-col w-1/3">
-              <Text className="txt-medium-plus text-ui-fg-base mb-1">
-                Payment method
-              </Text>
-              <Text
-                className="txt-medium text-ui-fg-subtle"
-                data-testid="payment-method"
-              >
-                {paymentInfoMap[payment.provider_id].title}
-              </Text>
-            </div>
-            <div className="flex flex-col w-2/3">
-              <Text className="txt-medium-plus text-ui-fg-base mb-1">
-                Payment details
-              </Text>
-              <div className="flex gap-2 txt-medium text-ui-fg-subtle items-center">
-                <Container className="flex items-center h-7 w-fit p-2 bg-ui-button-neutral-hover">
-                  {paymentInfoMap[payment.provider_id].icon}
-                </Container>
-                <Text data-testid="payment-amount">
+    <section className="surface-panel">
+      <h2 className="mb-5 font-serif text-2xl">Payment details.</h2>
+      {payments.length ? (
+        payments.map((payment) => {
+          const info = paymentInfoMap[payment.provider_id]
+          return (
+            <div
+              key={payment.id}
+              className="flex flex-wrap items-center gap-4 border-[#e2e4dc] py-3 first:pt-0 last:pb-0 [&:not(:first-child)]:border-t"
+            >
+              {info?.icon && (
+                <span className="flex h-11 w-14 shrink-0 items-center justify-center rounded-xl border border-[#e2e4dc] bg-[#f8f9f5]">
+                  {info.icon}
+                </span>
+              )}
+              <div className="min-w-0 flex-1">
+                <p className="text-sm font-medium" data-testid="payment-method">
+                  {info?.title || "Payment"}
+                </p>
+                <p
+                  className="mt-1 text-xs leading-6 text-[#73766c]"
+                  data-testid="payment-amount"
+                >
                   {isStripeLike(payment.provider_id) && payment.data?.card_last4
-                    ? `**** **** **** ${payment.data.card_last4}`
-                    : `${convertToLocale({
+                    ? `Card ending in ${payment.data.card_last4}`
+                    : convertToLocale({
                         amount: payment.amount,
                         currency_code: order.currency_code,
-                      })} paid at ${new Date(
-                        payment.created_at ?? ""
-                      ).toLocaleString()}`}
-                </Text>
+                      })}
+                </p>
               </div>
+              <span className="rounded-full bg-[#f0f2e9] px-3 py-1 text-xs capitalize text-[#626956]">
+                {order.payment_status.replaceAll("_", " ")}
+              </span>
             </div>
-          </div>
-        )}
-      </div>
-
-      <Divider className="mt-8" />
-    </div>
+          )
+        })
+      ) : (
+        <p className="text-sm leading-6 text-[#73766c]">
+          Payment status:{" "}
+          <span className="capitalize">
+            {order.payment_status.replaceAll("_", " ")}
+          </span>
+          . Details will appear here when available.
+        </p>
+      )}
+    </section>
   )
 }
-
 export default PaymentDetails

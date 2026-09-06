@@ -11,7 +11,7 @@ type ModalProps = {
   size?: "small" | "medium" | "large"
   search?: boolean
   children: React.ReactNode
-  'data-testid'?: string
+  "data-testid"?: string
 }
 
 const Modal = ({
@@ -20,7 +20,7 @@ const Modal = ({
   size = "medium",
   search = false,
   children,
-  'data-testid': dataTestId
+  "data-testid": dataTestId,
 }: ModalProps) => {
   return (
     <Transition appear show={isOpen} as={Fragment}>
@@ -34,7 +34,7 @@ const Modal = ({
           leaveFrom="opacity-100"
           leaveTo="opacity-0"
         >
-          <div className="fixed inset-0 bg-opacity-75 backdrop-blur-md  h-screen" />
+          <div className="fixed inset-0 bg-black/30 backdrop-blur-sm h-screen" />
         </Transition.Child>
 
         <div className="fixed inset-0 overflow-y-hidden">
@@ -59,13 +59,14 @@ const Modal = ({
               <Dialog.Panel
                 data-testid={dataTestId}
                 className={clx(
-                  "flex flex-col justify-start w-full transform p-5 text-left align-middle transition-all max-h-[75vh] h-fit",
+                  "flex flex-col justify-start w-full transform p-6 sm:p-8 text-left align-middle transition-all max-h-[85dvh] overflow-y-auto h-fit",
                   {
                     "max-w-md": size === "small",
                     "max-w-xl": size === "medium",
                     "max-w-3xl": size === "large",
                     "bg-transparent shadow-none": search,
-                    "bg-white shadow-xl border rounded-rounded": !search,
+                    "bg-white shadow-xl border border-[#e2e4dc] rounded-2xl":
+                      !search,
                   }
                 )}
               >
@@ -86,7 +87,12 @@ const Title: React.FC<{ children: React.ReactNode }> = ({ children }) => {
     <Dialog.Title className="flex items-center justify-between">
       <div className="text-large-semi">{children}</div>
       <div>
-        <button onClick={close} data-testid="close-modal-button">
+        <button
+          onClick={close}
+          data-testid="close-modal-button"
+          aria-label="Close dialog"
+          className="icon-button"
+        >
           <X size={20} />
         </button>
       </div>

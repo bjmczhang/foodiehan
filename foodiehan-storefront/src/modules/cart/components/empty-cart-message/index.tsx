@@ -1,25 +1,32 @@
-import { Heading, Text } from "@medusajs/ui"
-
-import InteractiveLink from "@modules/common/components/interactive-link"
-
-const EmptyCartMessage = () => {
-  return (
-    <div className="py-48 px-2 flex flex-col justify-center items-start" data-testid="empty-cart-message">
-      <Heading
-        level="h1"
-        className="flex flex-row text-3xl-regular gap-x-2 items-baseline"
+import LocalizedClientLink from "@modules/common/components/localized-client-link"
+const EmptyCartMessage = () => (
+  <section
+    className="mx-auto flex min-h-[52vh] max-w-xl flex-col items-center justify-center py-12 text-center"
+    data-testid="empty-cart-message"
+  >
+    <div className="mb-8 flex h-24 w-24 items-center justify-center rounded-full bg-[#eaece3] text-[#323c2b]">
+      <svg
+        width="38"
+        height="38"
+        viewBox="0 0 32 32"
+        fill="none"
+        stroke="currentColor"
+        strokeWidth="1.2"
+        aria-hidden="true"
       >
-        Cart
-      </Heading>
-      <Text className="text-base-regular mt-4 mb-6 max-w-[32rem]">
-        You don&apos;t have anything in your cart. Let&apos;s change that, use
-        the link below to start browsing our products.
-      </Text>
-      <div>
-        <InteractiveLink href="/store">Explore products</InteractiveLink>
-      </div>
+        <path d="M7 10h18l2 18H5l2-18Z" />
+        <path d="M11 11V8a5 5 0 0 1 10 0v3" />
+      </svg>
     </div>
-  )
-}
-
+    <p className="eyebrow mb-4">Good things await</p>
+    <h1 className="page-title">A little room for joy.</h1>
+    <p className="page-description mt-5">
+      Your cart is empty for now. Explore the collection and find something to
+      make your day a little sweeter.
+    </p>
+    <LocalizedClientLink href="/store" className="button-primary mt-8">
+      Explore the shop <span aria-hidden="true">↗</span>
+    </LocalizedClientLink>
+  </section>
+)
 export default EmptyCartMessage

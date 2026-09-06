@@ -1,77 +1,94 @@
-"use client"
-
+﻿import Image from "next/image"
 import LocalizedClientLink from "@modules/common/components/localized-client-link"
+import { ArrowRight } from "@medusajs/icons"
 
-const Hero = () => {
+export default function Hero() {
   return (
-    <section className="relative h-screen min-h-[600px] w-full overflow-hidden">
-      {/* Background image */}
-      <div className="absolute inset-0 z-0">
-        <img
-          src="/images/hero.jpg"
-          alt="FoodieHan Artisan Bakery"
-          className="absolute inset-0 object-cover w-full h-full"
-          style={{ objectPosition: "50% 35%" }}
-        />
-        {/* Dark overlay for text readability */}
-        <div className="absolute inset-0 bg-black/40" />
-      </div>
-
-      {/* Centered content overlay */}
-      <div className="relative z-10 flex flex-col items-center justify-center h-full px-6 text-center text-white">
-        <h1
-          className="mb-4 text-5xl font-light tracking-wide text-white sm:text-6xl lg:text-7xl"
-          style={{ fontFamily: "'Playfair Display', Georgia, serif" }}
-        >
-          Artisan Bakery
-        </h1>
-        <p
-          className="max-w-xl mb-10 text-base font-light leading-relaxed tracking-wide text-white/80 sm:text-lg"
-          style={{ fontFamily: "'Rubik', sans-serif" }}
-        >
-          Handcrafted breads and pastries made with time-honoured techniques and
-          the finest ingredients
-        </p>
-
-        {/* CTA Buttons */}
-        <div className="flex flex-col gap-4 sm:flex-row">
-          <LocalizedClientLink
-            href="/online-order"
-            className="btn-brand-filled"
-          >
-            View Products
+    <>
+      <section className="hero-layout">
+        <div className="hero-copy">
+          <p className="eyebrow">Korean soul. Everyday goodness.</p>
+          <h1 className="hero-title">
+            Good things.
+            <br />
+            Made <em>with care.</em>
+          </h1>
+          <p className="page-description max-w-[340px]">
+            Soft buns, golden bakes and familiar flavours with a little twist.
+            Find a new favourite for your everyday moments.
+          </p>
+          <div className="mt-8 flex flex-wrap items-center gap-7">
+            <LocalizedClientLink href="/store" className="button-primary">
+              Explore the shop <ArrowRight className="w-4 h-4" />
+            </LocalizedClientLink>
+            <LocalizedClientLink href="/about" className="text-link">
+              Our story <span aria-hidden="true">↗</span>
+            </LocalizedClientLink>
+          </div>
+          <p className="mt-12 flex items-center gap-3 text-[11px] text-[#73766c]">
+            <span className="w-2 h-2 rounded-full bg-[#85926b]" /> A little
+            comfort. A lot to love.
+          </p>
+        </div>
+        <div className="hero-photo">
+          <Image
+            src="/images/hero.jpg"
+            alt="Golden buns, artisan bread and Korean-inspired bakes from FoodieHan"
+            fill
+            priority
+            sizes="(max-width: 639px) 100vw, 52vw"
+          />
+          <LocalizedClientLink href="/store" className="hero-photo-label">
+            <span>
+              <span className="eyebrow !text-[9px] block mb-1">
+                Meet your new favourites
+              </span>
+              Small joys, by the dozen.
+            </span>
+            <span
+              className="rounded-full border border-[#b7bba9] p-2"
+              aria-hidden="true"
+            >
+              <ArrowRight className="w-4 h-4" />
+            </span>
           </LocalizedClientLink>
-
-          <a
-            href="https://www.foodiehan.com.au/au/online-order"
-            target="_blank"
-            rel="noopener noreferrer"
-            className="inline-flex items-center justify-center px-9 py-3.5 text-sm font-medium text-white uppercase tracking-[0.15em] border-2 border-white/60 rounded-full transition-all duration-300 ease-in-out hover:bg-white hover:text-[var(--color-text-primary)]"
-          >
-            Order Online
-          </a>
         </div>
-
-        {/* Scroll indicator */}
-        <div className="absolute bottom-10 left-1/2 -translate-x-1/2 flex flex-col items-center gap-2 text-white/50">
-          <span className="text-xs uppercase tracking-[0.2em]">Scroll</span>
+      </section>
+      <div className="values-strip">
+        <div>
+          <span className="text-lg" aria-hidden="true">
+            ✳
+          </span>
+          <span>Inspired by Korean flavours</span>
+        </div>
+        <div>
           <svg
-            width="16"
-            height="16"
-            viewBox="0 0 24 24"
+            width="21"
+            height="21"
             fill="none"
+            viewBox="0 0 24 24"
             stroke="currentColor"
-            strokeWidth="1.5"
-            strokeLinecap="round"
-            strokeLinejoin="round"
-            className="animate-bounce"
+            strokeWidth="1.3"
           >
-            <polyline points="6 9 12 15 18 9" />
+            <path d="M12 20S3 14 3 8.5a4.5 4.5 0 0 1 9-1 4.5 4.5 0 0 1 9 1C21 14 12 20 12 20Z" />
           </svg>
+          <span>Made to be shared</span>
+        </div>
+        <div>
+          <svg
+            width="21"
+            height="21"
+            fill="none"
+            viewBox="0 0 24 24"
+            stroke="currentColor"
+            strokeWidth="1.3"
+          >
+            <path d="M5 8h14l1 13H4L5 8Z" />
+            <path d="M8 8V6a4 4 0 0 1 8 0v2" />
+          </svg>
+          <span>Your favourites, a click away</span>
         </div>
       </div>
-    </section>
+    </>
   )
 }
-
-export default Hero

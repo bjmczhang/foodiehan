@@ -198,12 +198,12 @@ export const addCustomerAddress = async (
 
 export const deleteCustomerAddress = async (
   addressId: string
-): Promise<void> => {
+): Promise<{ success: boolean; error: string | null }> => {
   const headers = {
     ...(await getAuthHeaders()),
   }
 
-  await sdk.store.customer
+  return sdk.store.customer
     .deleteAddress(addressId, headers)
     .then(async () => {
       const customerCacheTag = await getCacheTag("customers")

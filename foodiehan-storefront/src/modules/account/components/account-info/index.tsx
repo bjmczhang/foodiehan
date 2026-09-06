@@ -1,7 +1,5 @@
-import { Disclosure } from "@headlessui/react"
-import { Badge, Button, clx } from "@medusajs/ui"
-import { useEffect } from "react"
-
+import { Button } from "@medusajs/ui"
+import { useEffect, useId } from "react"
 import useToggleState from "@lib/hooks/use-toggle-state"
 import { useFormStatus } from "react-dom"
 
@@ -13,7 +11,7 @@ type AccountInfoProps = {
   errorMessage?: string
   clearState: () => void
   children?: React.ReactNode
-  'data-testid'?: string
+  "data-testid"?: string
 }
 
 const AccountInfo = ({
@@ -22,116 +20,81 @@ const AccountInfo = ({
   isSuccess,
   isError,
   clearState,
-  errorMessage = "An error occurred, please try again",
+  errorMessage = "We couldn’t save your changes. Please try again.",
   children,
-  'data-testid': dataTestid
+  "data-testid": dataTestid,
 }: AccountInfoProps) => {
   const { state, close, toggle } = useToggleState()
-
   const { pending } = useFormStatus()
-
-  const handleToggle = () => {
-    clearState()
-    setTimeout(() => toggle(), 100)
-  }
-
+  const editorId = useId()
   useEffect(() => {
-    if (isSuccess) {
-      close()
-    }
+    if (isSuccess) close()
   }, [isSuccess, close])
 
   return (
-    <div className="text-small-regular" data-testid={dataTestid}>
-      <div className="flex items-end justify-between">
-        <div className="flex flex-col">
-          <span className="uppercase text-ui-fg-base">{label}</span>
-          <div className="flex items-center flex-1 basis-0 justify-end gap-x-4">
+    <div className="surface-panel text-sm" data-testid={dataTestid}>
+      <div className="flex items-start justify-between gap-4">
+        <div className="min-w-0">
+          <h2 className="mb-2 text-xs font-medium uppercase tracking-[0.14em] text-[#73766c]">
+            {label}
+          </h2>
+          <div className="break-words leading-6">
             {typeof currentInfo === "string" ? (
-              <span className="font-semibold" data-testid="current-info">{currentInfo}</span>
+              <span data-testid="current-info">{currentInfo}</span>
             ) : (
               currentInfo
             )}
           </div>
         </div>
-        <div>
-          <Button
-            variant="secondary"
-            className="w-[100px] min-h-[25px] py-1"
-            onClick={handleToggle}
-            type={state ? "reset" : "button"}
-            data-testid="edit-button"
-            data-active={state}
-          >
-            {state ? "Cancel" : "Edit"}
-          </Button>
-        </div>
+        <Button
+          variant="secondary"
+          className="shrink-0 !rounded-full !px-5"
+          onClick={() => {
+            clearState()
+            toggle()
+          }}
+          type={state ? "reset" : "button"}
+          data-testid="edit-button"
+          data-active={state}
+          aria-expanded={state}
+          aria-controls={editorId}
+        >
+          {state ? "Cancel" : "Edit"}
+        </Button>
       </div>
-
-      {/* Success state */}
-      <Disclosure>
-        <Disclosure.Panel
-          static
-          className={clx(
-            "transition-[max-height,opacity] duration-300 ease-in-out overflow-hidden",
-            {
-              "max-h-[1000px] opacity-100": isSuccess,
-              "max-h-0 opacity-0": !isSuccess,
-            }
-          )}
+      {isSuccess && (
+        <p
+          role="status"
+          className="mt-4 rounded-lg bg-[#edf3e6] px-4 py-3 text-[#445a31]"
           data-testid="success-message"
         >
-          <Badge className="p-2 my-4" color="green">
-            <span>{label} updated succesfully</span>
-          </Badge>
-        </Disclosure.Panel>
-      </Disclosure>
-
-      {/* Error state  */}
-      <Disclosure>
-        <Disclosure.Panel
-          static
-          className={clx(
-            "transition-[max-height,opacity] duration-300 ease-in-out overflow-hidden",
-            {
-              "max-h-[1000px] opacity-100": isError,
-              "max-h-0 opacity-0": !isError,
-            }
-          )}
+          {label} updated successfully.
+        </p>
+      )}
+      {isError && (
+        <p
+          role="alert"
+          className="mt-4 rounded-lg bg-red-50 px-4 py-3 text-red-700"
           data-testid="error-message"
         >
-          <Badge className="p-2 my-4" color="red">
-            <span>{errorMessage}</span>
-          </Badge>
-        </Disclosure.Panel>
-      </Disclosure>
-
-      <Disclosure>
-        <Disclosure.Panel
-          static
-          className={clx(
-            "transition-[max-height,opacity] duration-300 ease-in-out overflow-visible",
-            {
-              "max-h-[1000px] opacity-100": state,
-              "max-h-0 opacity-0": !state,
-            }
-          )}
-        >
-          <div className="flex flex-col gap-y-2 py-4">
-            <div>{children}</div>
-            <div className="flex items-center justify-end mt-2">
-              <Button
-                isLoading={pending}
-                className="w-full small:max-w-[140px]"
-                type="submit"
-                data-testid="save-button"
-              >
-                Save changes
-              </Button>
-            </div>
+          {errorMessage}
+        </p>
+      )}
+      {state && (
+        <div id={editorId} className="mt-5 border-t border-[#e2e4dc] pt-5">
+          <div>{children}</div>
+          <div className="mt-5 flex justify-end">
+            <Button
+              isLoading={pending}
+              className="w-full !rounded-full sm:w-auto"
+              type="submit"
+              data-testid="save-button"
+            >
+              Save changes
+            </Button>
           </div>
-        </Disclosure.Panel>
-      </Disclosure>
+        </div>
+      )}
     </div>
   )
 }

@@ -1,9 +1,9 @@
+import { HttpTypes } from "@medusajs/types"
+import LocalizedClientLink from "@modules/common/components/localized-client-link"
 import ItemsTemplate from "./items"
 import Summary from "./summary"
 import EmptyCartMessage from "../components/empty-cart-message"
 import SignInPrompt from "../components/sign-in-prompt"
-import Divider from "@modules/common/components/divider"
-import { HttpTypes } from "@medusajs/types"
 
 const CartTemplate = ({
   cart,
@@ -12,40 +12,55 @@ const CartTemplate = ({
   cart: HttpTypes.StoreCart | null
   customer: HttpTypes.StoreCustomer | null
 }) => {
+  const quantity =
+    cart?.items?.reduce((total, item) => total + item.quantity, 0) ?? 0
   return (
-    <div className="py-12">
-      <div className="content-container" data-testid="cart-container">
-        {cart?.items?.length ? (
-          <div className="grid grid-cols-1 small:grid-cols-[1fr_360px] gap-x-40">
-            <div className="flex flex-col bg-white py-6 gap-y-6">
-              {!customer && (
-                <>
-                  <SignInPrompt />
-                  <Divider />
-                </>
+    <div className="page-shell" data-testid="cart-container">
+      {cart?.items?.length ? (
+        <>
+          <div className="mb-10 flex flex-col gap-5 small:flex-row small:items-end small:justify-between">
+            <div>
+              <p className="eyebrow mb-3">A little something good</p>
+              <h1 className="page-title">
+                Your cart
+                <span className="ml-3 align-top font-sans text-lg text-[#73766c]">
+                  ({quantity})
+                </span>
+              </h1>
+              <p className="page-description mt-4">
+                Your favourites, ready for their next stop.
+              </p>
+            </div>
+            <LocalizedClientLink href="/store" className="text-link text-sm">
+              Continue shopping <span aria-hidden="true">↗</span>
+            </LocalizedClientLink>
+          </div>
+          <div className="grid min-w-0 grid-cols-1 gap-8 large:grid-cols-[minmax(0,1fr)_370px] large:gap-12">
+            <div className="min-w-0 space-y-6">
+              <section className="surface-panel" aria-label="Cart items">
+                <ItemsTemplate cart={cart} />
+              </section>
+              {!customer && <SignInPrompt />}
+            </div>
+            <aside className="min-w-0">
+              {cart.region && (
+                <div className="surface-panel large:sticky large:top-28">
+                  <Summary cart={cart} />
+                </div>
               )}
-              <ItemsTemplate cart={cart} />
-            </div>
-            <div className="relative">
-              <div className="flex flex-col gap-y-8 sticky top-12">
-                {cart && cart.region && (
-                  <>
-                    <div className="bg-white py-6">
-                      <Summary cart={cart as any} />
-                    </div>
-                  </>
-                )}
-              </div>
-            </div>
+              <p className="mt-5 text-center text-xs leading-6 text-[#73766c]">
+                Need a hand with your order?{" "}
+                <LocalizedClientLink href="/contact" className="text-link">
+                  Contact us
+                </LocalizedClientLink>
+              </p>
+            </aside>
           </div>
-        ) : (
-          <div>
-            <EmptyCartMessage />
-          </div>
-        )}
-      </div>
+        </>
+      ) : (
+        <EmptyCartMessage />
+      )}
     </div>
   )
 }
-
 export default CartTemplate

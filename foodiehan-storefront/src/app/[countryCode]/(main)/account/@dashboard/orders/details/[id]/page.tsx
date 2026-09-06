@@ -1,4 +1,5 @@
 import { retrieveOrder } from "@lib/data/orders"
+import { retrieveCustomer } from "@lib/data/customer"
 import OrderDetailsTemplate from "@modules/order/templates/order-details-template"
 import { Metadata } from "next"
 import { notFound } from "next/navigation"
@@ -8,6 +9,7 @@ type Props = {
 }
 
 export async function generateMetadata(props: Props): Promise<Metadata> {
+  if (!(await retrieveCustomer())) return { title: "Sign in | FoodieHan" }
   const params = await props.params
   const order = await retrieveOrder(params.id).catch(() => null)
 
@@ -22,6 +24,7 @@ export async function generateMetadata(props: Props): Promise<Metadata> {
 }
 
 export default async function OrderDetailPage(props: Props) {
+  if (!(await retrieveCustomer())) return null
   const params = await props.params
   const order = await retrieveOrder(params.id).catch(() => null)
 

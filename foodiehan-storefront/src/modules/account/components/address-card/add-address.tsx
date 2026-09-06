@@ -49,22 +49,31 @@ const AddAddress = ({
   return (
     <>
       <button
-        className="border border-ui-border-base rounded-rounded p-5 min-h-[220px] h-full w-full flex flex-col justify-between"
+        className="group border border-dashed border-[#b7bfa9] rounded-2xl p-6 min-h-[240px] h-full w-full flex flex-col items-start justify-between bg-[#f0f2e9] text-[#46523b] transition-colors hover:bg-[#e8ecdf]"
         onClick={open}
         data-testid="add-address-button"
       >
-        <span className="text-base-semi">New address</span>
-        <Plus />
+        <span className="flex h-11 w-11 items-center justify-center rounded-full border border-[#c8cebd]">
+          <Plus />
+        </span>
+        <span className="text-left">
+          <span className="block text-base font-medium">Add a new address</span>
+          <span className="mt-2 block text-xs text-[#73766c]">
+            One less thing to do at checkout.
+          </span>
+        </span>
       </button>
 
       <Modal isOpen={state} close={close} data-testid="add-address-modal">
         <Modal.Title>
-          <Heading className="mb-2">Add address</Heading>
+          <Heading className="mb-2 !font-serif !text-3xl !font-normal">
+            A new delivery spot.
+          </Heading>
         </Modal.Title>
         <form action={formAction}>
           <Modal.Body>
-            <div className="flex flex-col gap-y-2">
-              <div className="grid grid-cols-2 gap-x-2">
+            <div className="flex flex-col gap-y-3">
+              <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
                 <Input
                   label="First name"
                   name="first_name"
@@ -99,7 +108,7 @@ const AddAddress = ({
                 autoComplete="address-line2"
                 data-testid="address-2-input"
               />
-              <div className="grid grid-cols-[144px_1fr] gap-x-2">
+              <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
                 <Input
                   label="Postal code"
                   name="postal_code"
@@ -131,7 +140,8 @@ const AddAddress = ({
               <Input
                 label="Phone"
                 name="phone"
-                autoComplete="phone"
+                autoComplete="tel"
+                type="tel"
                 data-testid="phone-input"
               />
             </div>
@@ -155,7 +165,9 @@ const AddAddress = ({
               >
                 Cancel
               </Button>
-              <SubmitButton data-testid="save-button">Save</SubmitButton>
+              <SubmitButton data-testid="save-button">
+                Save address
+              </SubmitButton>
             </div>
           </Modal.Footer>
         </form>

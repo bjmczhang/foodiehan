@@ -1,50 +1,63 @@
-import { Heading } from "@medusajs/ui"
-import { cookies as nextCookies } from "next/headers"
-
-import CartTotals from "@modules/common/components/cart-totals"
+import { HttpTypes } from "@medusajs/types"
 import Help from "@modules/order/components/help"
 import Items from "@modules/order/components/items"
-import OnboardingCta from "@modules/order/components/onboarding-cta"
 import OrderDetails from "@modules/order/components/order-details"
+import OrderSummary from "@modules/order/components/order-summary"
 import ShippingDetails from "@modules/order/components/shipping-details"
 import PaymentDetails from "@modules/order/components/payment-details"
-import { HttpTypes } from "@medusajs/types"
+import LocalizedClientLink from "@modules/common/components/localized-client-link"
 
-type OrderCompletedTemplateProps = {
-  order: HttpTypes.StoreOrder
-}
-
-export default async function OrderCompletedTemplate({
+export default function OrderCompletedTemplate({
   order,
-}: OrderCompletedTemplateProps) {
-  const cookies = await nextCookies()
-
-  const isOnboarding = cookies.get("_medusa_onboarding")?.value === "true"
-
+}: {
+  order: HttpTypes.StoreOrder
+}) {
   return (
-    <div className="py-6 min-h-[calc(100vh-64px)]">
-      <div className="content-container flex flex-col justify-center items-center gap-y-10 max-w-4xl h-full w-full">
-        {isOnboarding && <OnboardingCta orderId={order.id} />}
-        <div
-          className="flex flex-col gap-4 max-w-4xl h-full bg-white w-full py-10"
-          data-testid="order-complete-container"
-        >
-          <Heading
-            level="h1"
-            className="flex flex-col gap-y-3 text-ui-fg-base text-3xl mb-4"
+    <div className="page-shell">
+      <div className="mx-auto max-w-5xl" data-testid="order-complete-container">
+        <div className="mb-10 flex flex-col items-center text-center">
+          <span
+            className="mb-6 flex h-16 w-16 items-center justify-center rounded-full bg-[#e8eddf] text-2xl text-[#46523b]"
+            aria-hidden="true"
           >
-            <span>Thank you!</span>
-            <span>Your order was placed successfully.</span>
-          </Heading>
-          <OrderDetails order={order} />
-          <Heading level="h2" className="flex flex-row text-3xl-regular">
-            Summary
-          </Heading>
-          <Items order={order} />
-          <CartTotals totals={order} />
-          <ShippingDetails order={order} />
-          <PaymentDetails order={order} />
-          <Help />
+            ✓
+          </span>
+          <p className="eyebrow mb-4">A little something to look forward to</p>
+          <h1 className="page-title">Thank you for your order.</h1>
+          <p className="page-description mt-5 max-w-lg">
+            Good things are on their way. Your order has been placed, and you’ll
+            find all the details below.
+          </p>
+          <div className="mt-7 flex flex-wrap justify-center gap-3">
+            <LocalizedClientLink href="/store" className="button-primary">
+              Keep exploring <span aria-hidden="true">↗</span>
+            </LocalizedClientLink>
+            <LocalizedClientLink
+              href="/account/orders"
+              className="button-secondary"
+            >
+              My orders
+            </LocalizedClientLink>
+          </div>
+        </div>
+        <div className="grid gap-5">
+          <OrderDetails order={order} showStatus />
+          <div className="grid items-start gap-5 small:grid-cols-[minmax(0,1fr)_310px]">
+            <div className="grid gap-5">
+              <section className="surface-panel">
+                <h2 className="mb-5 font-serif text-2xl">
+                  Your new favourites.
+                </h2>
+                <Items order={order} />
+              </section>
+              <ShippingDetails order={order} />
+              <PaymentDetails order={order} />
+            </div>
+            <div className="grid gap-5 small:sticky small:top-28">
+              <OrderSummary order={order} />
+              <Help />
+            </div>
+          </div>
         </div>
       </div>
     </div>

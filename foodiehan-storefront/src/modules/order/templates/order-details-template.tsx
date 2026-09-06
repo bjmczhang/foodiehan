@@ -1,6 +1,3 @@
-"use client"
-
-import { XMark } from "@medusajs/icons"
 import { HttpTypes } from "@medusajs/types"
 import LocalizedClientLink from "@modules/common/components/localized-client-link"
 import Help from "@modules/order/components/help"
@@ -8,39 +5,39 @@ import Items from "@modules/order/components/items"
 import OrderDetails from "@modules/order/components/order-details"
 import OrderSummary from "@modules/order/components/order-summary"
 import ShippingDetails from "@modules/order/components/shipping-details"
-import React from "react"
+import PaymentDetails from "@modules/order/components/payment-details"
 
-type OrderDetailsTemplateProps = {
-  order: HttpTypes.StoreOrder
-}
-
-const OrderDetailsTemplate: React.FC<OrderDetailsTemplateProps> = ({
-  order,
-}) => {
-  return (
-    <div className="flex flex-col justify-center gap-y-4">
-      <div className="flex gap-2 justify-between items-center">
-        <h1 className="text-2xl-semi">Order details</h1>
-        <LocalizedClientLink
-          href="/account/orders"
-          className="flex gap-2 items-center text-ui-fg-subtle hover:text-ui-fg-base"
-          data-testid="back-to-overview-button"
-        >
-          <XMark /> Back to overview
-        </LocalizedClientLink>
-      </div>
-      <div
-        className="flex flex-col gap-4 h-full bg-white w-full"
-        data-testid="order-details-container"
-      >
-        <OrderDetails order={order} showStatus />
-        <Items order={order} />
-        <ShippingDetails order={order} />
-        <OrderSummary order={order} />
-        <Help />
-      </div>
+const OrderDetailsTemplate = ({ order }: { order: HttpTypes.StoreOrder }) => (
+  <div className="flex flex-col gap-6">
+    <LocalizedClientLink
+      href="/account/orders"
+      className="text-link w-fit text-sm"
+      data-testid="back-to-overview-button"
+    >
+      <span aria-hidden="true">←</span> All orders
+    </LocalizedClientLink>
+    <div>
+      <p className="eyebrow mb-3">Every detail, in one place</p>
+      <h1 className="page-title">Your order.</h1>
     </div>
-  )
-}
-
+    <div
+      className="flex w-full flex-col gap-5"
+      data-testid="order-details-container"
+    >
+      <OrderDetails order={order} showStatus />
+      <section className="surface-panel">
+        <h2 className="mb-5 font-serif text-2xl">The good stuff.</h2>
+        <Items order={order} />
+      </section>
+      <div className="grid items-start gap-5 xl:grid-cols-[minmax(0,1fr)_280px]">
+        <div className="grid gap-5">
+          <ShippingDetails order={order} />
+          <PaymentDetails order={order} />
+        </div>
+        <OrderSummary order={order} />
+      </div>
+      <Help />
+    </div>
+  </div>
+)
 export default OrderDetailsTemplate

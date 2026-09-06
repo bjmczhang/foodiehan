@@ -1,201 +1,80 @@
-import LocalizedClientLink from "@modules/common/components/localized-client-link"
-import NewsletterForm from "./newsletter-form"
+﻿import LocalizedClientLink from "@modules/common/components/localized-client-link"
 
-export default async function Footer() {
+export default function Footer() {
   return (
-    <footer
-      className="w-full text-[var(--color-text-light)]"
-      style={{ backgroundColor: "var(--color-bg-dark)" }}
-    >
-      {/* Main footer columns */}
-      <div className="content-container max-w-[1440px] mx-auto py-16 small:py-20">
-
-        <div className="grid grid-cols-2 medium:grid-cols-3 large:grid-cols-5 gap-10">
-          {/* Column 1: Customer Care */}
-          <div>
-            <h4
-              className="mb-5 text-xs font-semibold tracking-[0.2em] uppercase"
-              style={{ color: "var(--color-text-light)" }}
-            >
-              Customer Care
-            </h4>
-            <ul className="flex flex-col gap-3">
-              <li>
-                <LocalizedClientLink
-                  href="/contact"
-                  className="text-sm font-light transition-colors duration-200 hover:text-[var(--color-brand)]"
-                >
-                  Contact us
-                </LocalizedClientLink>
-              </li>
-              <li>
-                <LocalizedClientLink
-                  href="/about"
-                  className="text-sm font-light transition-colors duration-200 hover:text-[var(--color-brand)]"
-                >
-                  Careers
-                </LocalizedClientLink>
-              </li>
-              <li>
-                <LocalizedClientLink
-                  href="/contact"
-                  className="text-sm font-light transition-colors duration-200 hover:text-[var(--color-brand)]"
-                >
-                  FAQ
-                </LocalizedClientLink>
-              </li>
-            </ul>
-          </div>
-
-          {/* Column 2: Services */}
-          <div>
-            <h4
-              className="mb-5 text-xs font-semibold tracking-[0.2em] uppercase"
-              style={{ color: "var(--color-text-light)" }}
-            >
-              Services
-            </h4>
-            <ul className="flex flex-col gap-3">
-              <li>
-                <LocalizedClientLink
-                  href="/contact"
-                  className="text-sm font-light transition-colors duration-200 hover:text-[var(--color-brand)]"
-                >
-                  Wholesale
-                </LocalizedClientLink>
-              </li>
-              <li>
-                <LocalizedClientLink
-                  href="/contact"
-                  className="text-sm font-light transition-colors duration-200 hover:text-[var(--color-brand)]"
-                >
-                  Catering
-                </LocalizedClientLink>
-              </li>
-            </ul>
-          </div>
-
-          {/* Column 3: Logo (center anchor) */}
-          <div className="flex items-start justify-center">
+    <footer className="site-footer">
+      <div className="page-shell !pb-8">
+        <div className="grid grid-cols-2 gap-x-8 gap-y-12 small:grid-cols-[2fr_1fr_1fr_1.3fr] pb-14">
+          <div className="col-span-2 small:col-span-1">
             <LocalizedClientLink
               href="/"
-              className="flex flex-col items-center gap-3"
+              className="font-serif text-5xl tracking-[-.06em]"
             >
-              <img
-                src="/logo.svg"
-                alt="FoodieHan"
-                className="w-auto h-14 brightness-0 invert"
-              />
-              <span className="text-xs font-light tracking-[0.15em] uppercase text-[var(--color-text-muted)]">
-                Artisan Bakery
-              </span>
+              foodie<span className="italic">han</span>
+            </LocalizedClientLink>
+            <p className="mt-5 max-w-[260px] text-sm leading-7 text-[#d0d5c6]">
+              Familiar comforts. A little discovery.
+              <br />
+              Something good for your every day.
+            </p>
+          </div>
+          {[
+            {
+              title: "Explore",
+              links: [
+                ["About Us", "/about"],
+                ["Shop all", "/store"],
+                ["Contact Us", "/contact"],
+              ],
+            },
+            {
+              title: "Your FoodieHan",
+              links: [
+                ["My account", "/account"],
+                ["My orders", "/account/orders"],
+                ["Shopping bag", "/cart"],
+              ],
+            },
+          ].map((section) => (
+            <div key={section.title}>
+              <h3 className="text-[11px] uppercase tracking-[.15em] mb-6">
+                {section.title}
+              </h3>
+              <ul className="space-y-4">
+                {section.links.map(([label, href]) => (
+                  <li key={href}>
+                    <LocalizedClientLink href={href} className="footer-link">
+                      {label}
+                    </LocalizedClientLink>
+                  </li>
+                ))}
+              </ul>
+            </div>
+          ))}
+          <div className="col-span-2 small:col-span-1">
+            <h3 className="text-[11px] uppercase tracking-[.15em] mb-6">
+              Let’s talk
+            </h3>
+            <p className="text-sm leading-7 text-[#d0d5c6]">
+              Questions about an order,
+              <br />
+              or simply saying hello?
+            </p>
+            <LocalizedClientLink
+              href="/contact"
+              className="inline-flex gap-6 mt-5 border-b border-[#839073] pb-2 text-sm"
+            >
+              We’re here to help <span aria-hidden="true">↗</span>
             </LocalizedClientLink>
           </div>
-
-          {/* Column 4: Explore */}
-          <div>
-            <h4
-              className="mb-5 text-xs font-semibold tracking-[0.2em] uppercase"
-              style={{ color: "var(--color-text-light)" }}
-            >
-              Explore
-            </h4>
-            <ul className="flex flex-col gap-3">
-              <li>
-                <LocalizedClientLink
-                  href="/online-order"
-                  className="text-sm font-light transition-colors duration-200 hover:text-[var(--color-brand)]"
-                >
-                  Our Products
-                </LocalizedClientLink>
-              </li>
-              <li>
-                <LocalizedClientLink
-                  href="/online-order"
-                  className="text-sm font-light transition-colors duration-200 hover:text-[var(--color-brand)]"
-                >
-                  Dine in Menu
-                </LocalizedClientLink>
-              </li>
-              <li>
-                <LocalizedClientLink
-                  href="/online-order"
-                  className="text-sm font-light transition-colors duration-200 hover:text-[var(--color-brand)]"
-                >
-                  Order Pickup
-                </LocalizedClientLink>
-              </li>
-            </ul>
-          </div>
-
-          {/* Column 5: Our Socials */}
-          <div>
-            <h4
-              className="mb-5 text-xs font-semibold tracking-[0.2em] uppercase"
-              style={{ color: "var(--color-text-light)" }}
-            >
-              Our Socials
-            </h4>
-            <ul className="flex flex-col gap-3">
-              <li>
-                <a
-                  href="https://www.instagram.com/"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="text-sm font-light transition-colors duration-200 hover:text-[var(--color-brand)]"
-                >
-                  Instagram
-                </a>
-              </li>
-              <li>
-                <a
-                  href="https://www.tiktok.com/"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="text-sm font-light transition-colors duration-200 hover:text-[var(--color-brand)]"
-                >
-                  TikTok
-                </a>
-              </li>
-              <li>
-                <a
-                  href="https://www.facebook.com/"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="text-sm font-light transition-colors duration-200 hover:text-[var(--color-brand)]"
-                >
-                  Facebook
-                </a>
-              </li>
-            </ul>
-          </div>
         </div>
-      </div>
-
-      {/* Copyright bar */}
-      <div
-        className="py-6 border-t"
-        style={{
-          backgroundColor: "var(--color-bg-darker)",
-          borderColor: "rgba(255,255,255,0.06)",
-        }}
-      >
-        <div className="content-container max-w-[1440px] mx-auto flex flex-col small:flex-row items-center justify-between gap-4 text-xs font-light text-[var(--color-text-muted)]">
-
-          <span>© {new Date().getFullYear()} FoodieHan. All rights reserved.</span>
+        <div className="border-t border-white/15 pt-7 flex flex-col gap-4 sm:flex-row sm:justify-between text-[11px] text-[#bac2ae]">
+          <p>© {new Date().getFullYear()} FoodieHan. All rights reserved.</p>
           <div className="flex gap-6">
-            <a
-              href="#"
-              className="transition-colors duration-200 hover:text-[var(--color-brand)]"
-            >
-              Privacy Policy
-            </a>
-            <a
-              href="#"
-              className="transition-colors duration-200 hover:text-[var(--color-brand)]"
-            >
-              Terms of Service
-            </a>
+            <LocalizedClientLink href="/contact#faq">
+              FAQs & order help
+            </LocalizedClientLink>
+            <span>Made for the everyday.</span>
           </div>
         </div>
       </div>

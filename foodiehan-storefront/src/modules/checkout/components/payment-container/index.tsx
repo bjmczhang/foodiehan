@@ -34,10 +34,9 @@ const PaymentContainer: React.FC<PaymentContainerProps> = ({
       value={paymentProviderId}
       disabled={disabled}
       className={clx(
-        "flex flex-col gap-y-2 text-small-regular cursor-pointer py-4 border rounded-rounded px-8 mb-2 hover:shadow-borders-interactive-with-active",
+        "flex flex-col gap-y-2 text-sm cursor-pointer py-4 border border-[#e2e4dc] rounded-xl px-4 mb-3 hover:bg-[#f8f7f3] transition-colors data-[checked]:bg-[#f0f2e9] data-[disabled]:opacity-50 data-[focus]:ring-2 data-[focus]:ring-[#788468]",
         {
-          "border-ui-border-interactive":
-            selectedPaymentOptionId === paymentProviderId,
+          "!border-[#697657]": selectedPaymentOptionId === paymentProviderId,
         }
       )}
     >
@@ -85,9 +84,9 @@ export const StripeCardContainer = ({
       style: {
         base: {
           fontFamily: "Inter, sans-serif",
-          color: "#424270",
+          color: "#272b24",
           "::placeholder": {
-            color: "rgb(107 114 128)",
+            color: "#73766c",
           },
         },
       },
@@ -108,7 +107,7 @@ export const StripeCardContainer = ({
         (stripeReady ? (
           <div className="my-4 transition-all duration-150 ease-in-out">
             <Text className="txt-medium-plus text-ui-fg-base mb-1">
-              Enter your card details:
+              Card details
             </Text>
             <CardElement
               options={useOptions as StripeCardElementOptions}

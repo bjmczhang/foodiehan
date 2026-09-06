@@ -1,48 +1,32 @@
 "use client"
-
-import FilterRadioGroup from "@modules/common/components/filter-radio-group"
-
 export type SortOptions = "price_asc" | "price_desc" | "created_at"
-
 type SortProductsProps = {
   sortBy: SortOptions
   setQueryParams: (name: string, value: SortOptions) => void
   "data-testid"?: string
 }
-
-const sortOptions = [
-  {
-    value: "created_at",
-    label: "Latest Arrivals",
-  },
-  {
-    value: "price_asc",
-    label: "Price: Low -> High",
-  },
-  {
-    value: "price_desc",
-    label: "Price: High -> Low",
-  },
-]
-
-const SortProducts = ({
-  "data-testid": dataTestId,
+export default function SortProducts({
   sortBy,
   setQueryParams,
-}: SortProductsProps) => {
-  const handleChange = (value: SortOptions) => {
-    setQueryParams("sortBy", value)
-  }
-
+  "data-testid": dataTestId,
+}: SortProductsProps) {
   return (
-    <FilterRadioGroup
-      title="Sort by"
-      items={sortOptions}
-      value={sortBy}
-      handleChange={handleChange}
-      data-testid={dataTestId}
-    />
+    <div className="flex items-center gap-3 shrink-0" data-testid={dataTestId}>
+      <label htmlFor="catalog-sort" className="text-sm text-[#73766c]">
+        Sort by
+      </label>
+      <select
+        id="catalog-sort"
+        value={sortBy}
+        onChange={(event) =>
+          setQueryParams("sortBy", event.target.value as SortOptions)
+        }
+        className="rounded-full border border-[#e2e4dc] bg-white text-sm py-3 pl-4 pr-9 cursor-pointer focus:border-[#323c2b] focus:ring-[#323c2b]"
+      >
+        <option value="created_at">Newest arrivals</option>
+        <option value="price_asc">Price: low to high</option>
+        <option value="price_desc">Price: high to low</option>
+      </select>
+    </div>
   )
 }
-
-export default SortProducts

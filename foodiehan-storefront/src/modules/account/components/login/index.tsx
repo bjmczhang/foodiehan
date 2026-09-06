@@ -13,16 +13,14 @@ const Login = ({ setCurrentView }: Props) => {
   const [message, formAction] = useActionState(login, null)
 
   return (
-    <div
-      className="max-w-sm w-full flex flex-col items-center"
-      data-testid="login-page"
-    >
-      <h1 className="text-large-semi uppercase mb-6">Welcome back</h1>
-      <p className="text-center text-base-regular text-ui-fg-base mb-8">
-        Sign in to access an enhanced shopping experience.
+    <div className="w-full flex flex-col" data-testid="login-page">
+      <p className="eyebrow mb-3">Welcome to your account</p>
+      <h1 className="font-serif text-4xl tracking-tight mb-4">Welcome back.</h1>
+      <p className="text-sm leading-6 text-[#73766c] mb-8">
+        Sign in to see your orders and pick up where you left off.
       </p>
       <form className="w-full" action={formAction}>
-        <div className="flex flex-col w-full gap-y-2">
+        <div className="flex flex-col w-full gap-y-4">
           <Input
             label="Email"
             name="email"
@@ -42,18 +40,21 @@ const Login = ({ setCurrentView }: Props) => {
           />
         </div>
         <ErrorMessage error={message} data-testid="login-error-message" />
-        <SubmitButton data-testid="sign-in-button" className="w-full mt-6">
+        <SubmitButton
+          data-testid="sign-in-button"
+          className="w-full mt-6 !rounded-full !h-12"
+        >
           Sign in
         </SubmitButton>
       </form>
-      <span className="text-center text-ui-fg-base text-small-regular mt-6">
-        Not a member?{" "}
+      <span className="text-center text-[#73766c] text-sm mt-6">
+        New to Foodiehan?{" "}
         <button
           onClick={() => setCurrentView(LOGIN_VIEW.REGISTER)}
-          className="underline"
+          className="text-link"
           data-testid="register-button"
         >
-          Join us
+          Create an account
         </button>
         .
       </span>

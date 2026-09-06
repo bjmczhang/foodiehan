@@ -1,58 +1,34 @@
 import { HttpTypes } from "@medusajs/types"
-import { getProductPrice } from "@lib/util/get-product-price"
-
+import LocalizedClientLink from "@modules/common/components/localized-client-link"
 type ProductInfoProps = {
   product: HttpTypes.StoreProduct
   variant?: HttpTypes.StoreProductVariant
 }
-
-const ProductInfo = ({ product, variant }: ProductInfoProps) => {
-  const { cheapestPrice, variantPrice } = getProductPrice({
-    product,
-    variantId: variant?.id,
-  })
-
-  const selectedPrice = variant ? variantPrice : cheapestPrice
-
+export default function ProductInfo({ product }: ProductInfoProps) {
   return (
-    <div id="product-info" className="flex flex-col">
-      {/* Product title */}
+    <div id="product-info">
+      {product.collection ? (
+        <LocalizedClientLink
+          href={`/collections/${product.collection.handle}`}
+          className="eyebrow mb-4 inline-block"
+        >
+          {product.collection.title}
+        </LocalizedClientLink>
+      ) : (
+        <p className="eyebrow mb-4">From the FoodieHan kitchen</p>
+      )}
       <h1
-        className="text-3xl font-normal tracking-wide small:text-4xl text-[#1a1a1a] mb-3"
-        style={{
-          fontFamily: "'Playfair Display', Georgia, serif",
-        }}
+        className="font-serif text-[38px] md:text-5xl leading-[1.08] tracking-[-0.035em] text-[#272b24] mb-5"
         data-testid="product-title"
       >
         {product.title}
       </h1>
-
-      {/* Price */}
-      {selectedPrice && (
-        <div
-          className="flex items-baseline gap-1 mb-6"
-          data-testid="product-price"
-          data-value={selectedPrice.calculated_price_number}
-        >
-          {!variant && (
-            <span className="text-sm font-light text-[#666666]">From </span>
-          )}
-          <span className="text-xl font-normal text-[#1a1a1a]">
-            {selectedPrice.calculated_price}
-          </span>
-        </div>
+      {product.subtitle && (
+        <p className="text-lg text-[#73766c] mb-4">{product.subtitle}</p>
       )}
-
-      {/* Thin horizontal divider */}
-      <div className="w-full border-b border-[#e8e8e8] mb-6" />
-
-      {/* Description */}
       {product.description && (
         <p
-          className="text-sm leading-relaxed text-[#4a4a4a] whitespace-pre-line mb-6 font-light"
-          style={{
-            lineHeight: "1.8",
-          }}
+          className="text-[15px] leading-7 text-[#73766c] whitespace-pre-line"
           data-testid="product-description"
         >
           {product.description}
@@ -61,5 +37,3 @@ const ProductInfo = ({ product, variant }: ProductInfoProps) => {
     </div>
   )
 }
-
-export default ProductInfo
