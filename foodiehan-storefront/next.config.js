@@ -39,6 +39,11 @@ const nextConfig = {
   images: {
     remotePatterns: [
       {
+        protocol: "https",
+        hostname: "www.foodiehan.com.au",
+        pathname: "/images/products/optimized-style-3/**",
+      },
+      {
         protocol: "http",
         hostname: "localhost",
       },

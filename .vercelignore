@@ -1,0 +1,8 @@
+product-images/
+**/node_modules/
+**/.next/
+**/.medusa/
+**/.env*
+**/tsconfig.tsbuildinfo
+.claude/
+.git/

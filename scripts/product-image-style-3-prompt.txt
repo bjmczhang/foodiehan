@@ -1,0 +1,14 @@
+Use case: precise-object-edit. Single square ecommerce product photograph for Foodiehan.
+Image 1 is the EDIT TARGET and sole authority for the actual product. Image 2 is an approved STYLE REFERENCE ONLY; never import its bread or objects into this image.
+Match its natural bakery style: clean warm cream-beige matte seamless tabletop/background, soft warm window light from upper left, gentle realistic shadow toward lower right, restrained warmth, authentic appetizing food texture.
+Preserve Image 1's exact product type, original food colors, silhouette, number of pieces, toppings, cross sections and filling quantities, arrangement and camera viewpoint. Do not beautify by adding or removing ingredients, changing filling ratios, or redesigning food.
+Preserve any actual packaging, labels, text, plates or containers from Image 1 accurately; do not add props.
+Replace the old background and retouch only ugly cutout edges/gray remnants, balance exposure, clarity and illumination.
+Center the entire product composition with consistent approximately 12% margins on all sides, keeping every product piece fully visible; product occupies about 76% of the longer frame dimension.
+Realistic gentle lighting, not glossy plastic, not oversaturated, no orange cast, no added text, watermark or collage. Output one square image.
+
+Each call also names the actual product and reiterates: Match each piece and its exact arrangement from image 1.
+Closeup indices 28, 46 and 92 explicitly preserve cropped food edges rather than inventing additional food.
+Tray/gift-box indices 110-114 reiterate preserving the original overhead view, containers and contents.
+Exact duplicate originals reuse one edited master: 105 from 101, 106/117/122 from 102, 116 from 99, 121 from 100.
+Index 4 uses the user-approved style 3 sample.
