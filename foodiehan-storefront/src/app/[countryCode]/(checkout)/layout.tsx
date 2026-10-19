@@ -1,4 +1,5 @@
 import LocalizedClientLink from "@modules/common/components/localized-client-link"
+import BrandLogo from "@modules/common/components/brand-logo"
 import ChevronDown from "@modules/common/icons/chevron-down"
 
 export default function CheckoutLayout({
@@ -24,10 +25,11 @@ export default function CheckoutLayout({
           </LocalizedClientLink>
           <LocalizedClientLink
             href="/"
-            className="justify-self-center font-serif text-3xl tracking-tight text-[#323c2b]"
+            className="justify-self-center"
             data-testid="store-link"
+            aria-label="FoodieHan home"
           >
-            foodiehan<span className="text-[#9b865e]">.</span>
+            <BrandLogo priority />
           </LocalizedClientLink>
           <div className="flex items-center justify-end gap-2 text-xs text-[#73766c]">
             <svg

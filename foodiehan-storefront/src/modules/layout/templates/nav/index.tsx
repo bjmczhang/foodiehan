@@ -4,6 +4,7 @@ import { listRegions } from "@lib/data/regions"
 import { listLocales } from "@lib/data/locales"
 import { getLocale } from "@lib/data/locale-actions"
 import LocalizedClientLink from "@modules/common/components/localized-client-link"
+import BrandLogo from "@modules/common/components/brand-logo"
 import CartButton from "@modules/layout/components/cart-button"
 import SideMenu from "@modules/layout/components/side-menu"
 import SearchInput from "@modules/layout/components/search-input"
@@ -37,10 +38,7 @@ export default async function Nav() {
           data-testid="nav-store-link"
           aria-label="FoodieHan home"
         >
-          <div className="brand-wordmark">
-            foodie<span>han</span>
-            <span className="brand-caption">BAKED WITH A LITTLE SEOUL</span>
-          </div>
+          <BrandLogo priority />
         </LocalizedClientLink>
         <div className="flex items-center justify-end gap-0 small:gap-2">
           <SearchInput />

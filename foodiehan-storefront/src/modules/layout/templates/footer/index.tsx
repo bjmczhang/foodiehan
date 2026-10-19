@@ -1,4 +1,5 @@
 ﻿import LocalizedClientLink from "@modules/common/components/localized-client-link"
+import BrandLogo from "@modules/common/components/brand-logo"
 
 export default function Footer() {
   return (
@@ -8,9 +9,10 @@ export default function Footer() {
           <div className="col-span-2 small:col-span-1">
             <LocalizedClientLink
               href="/"
-              className="font-serif text-5xl tracking-[-.06em]"
+              className="inline-block"
+              aria-label="FoodieHan home"
             >
-              foodie<span className="italic">han</span>
+              <BrandLogo />
             </LocalizedClientLink>
             <p className="mt-5 max-w-[260px] text-sm leading-7 text-[#d0d5c6]">
               Familiar comforts. A little discovery.

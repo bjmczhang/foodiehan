@@ -6,6 +6,7 @@ import { useToggleState } from "@medusajs/ui"
 import { HttpTypes } from "@medusajs/types"
 import { Locale } from "@lib/data/locales"
 import LocalizedClientLink from "@modules/common/components/localized-client-link"
+import BrandLogo from "@modules/common/components/brand-logo"
 import CountrySelect from "../country-select"
 import LanguageSelect from "../language-select"
 
@@ -50,8 +51,8 @@ export default function SideMenu({
           data-testid="nav-menu-popup"
         >
           <div className="flex items-center justify-between">
-            <DialogTitle className="font-serif text-3xl text-[#323c2b]">
-              foodiehan
+            <DialogTitle>
+              <BrandLogo />
             </DialogTitle>
             <button
               className="icon-button"

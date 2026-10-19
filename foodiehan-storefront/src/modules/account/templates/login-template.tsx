@@ -4,6 +4,7 @@ import { useState } from "react"
 import Register from "@modules/account/components/register"
 import Login from "@modules/account/components/login"
 import LocalizedClientLink from "@modules/common/components/localized-client-link"
+import BrandLogo from "@modules/common/components/brand-logo"
 
 export enum LOGIN_VIEW {
   SIGN_IN = "sign-in",
@@ -17,9 +18,10 @@ const LoginTemplate = () => {
       <div className="relative flex flex-col justify-between gap-10 bg-[#e8ebdf] p-8 small:p-12">
         <LocalizedClientLink
           href="/"
-          className="text-xl font-semibold tracking-tight"
+          className="self-start"
+          aria-label="FoodieHan home"
         >
-          foodiehan<span className="text-[#7c886a]">.</span>
+          <BrandLogo />
         </LocalizedClientLink>
         <div>
           <p className="eyebrow mb-5">Your everyday, made better</p>
