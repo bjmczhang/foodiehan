@@ -25,7 +25,7 @@ const Thumbnail: React.FC<ThumbnailProps> = ({
   return (
     <div
       className={clx(
-        "relative overflow-hidden bg-[#eeeee8] rounded-2xl",
+        "product-image-frame relative overflow-hidden rounded-2xl",
         {
           "aspect-[4/5]": isFeatured,
           "aspect-square": !isFeatured,
@@ -42,7 +42,7 @@ const Thumbnail: React.FC<ThumbnailProps> = ({
         <Image
           src={initialImage}
           alt={alt}
-          className="object-cover object-center transition-transform duration-700 group-hover:scale-105"
+          className="product-image transition-transform duration-700"
           draggable={false}
           quality={80}
           sizes="(max-width: 640px) 45vw, (max-width: 1024px) 40vw, 300px"

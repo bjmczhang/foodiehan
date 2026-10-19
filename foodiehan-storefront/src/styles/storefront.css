@@ -293,6 +293,33 @@ button:disabled {
 .category-tile:hover img {
   transform: scale(1.04);
 }
+.product-image-frame {
+  background: #f2e5d2;
+}
+.product-image {
+  object-fit: contain;
+  object-position: center;
+  transform: scale(0.88);
+  /* Blend the photo edges into the extra space around the product. */
+  mask-image: linear-gradient(
+      to right,
+      transparent,
+      #000 6%,
+      #000 94%,
+      transparent
+    ),
+    linear-gradient(to bottom, transparent, #000 6%, #000 94%, transparent);
+  mask-composite: intersect;
+}
+.group:hover .product-image {
+  transform: scale(0.9);
+}
+.category-tile .category-product-image {
+  transform: scale(0.88);
+}
+.category-tile:hover .category-product-image {
+  transform: scale(0.9);
+}
 .story-grid {
   display: grid;
   grid-template-columns: 1fr 1fr;

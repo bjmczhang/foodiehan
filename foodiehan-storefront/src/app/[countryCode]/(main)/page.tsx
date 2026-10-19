@@ -123,7 +123,7 @@ export default async function Home({
                     alt={item.name}
                     fill
                     sizes="(max-width: 1023px) 45vw, 22vw"
-                    className="object-contain p-6"
+                    className="category-product-image object-contain p-6"
                   />
                 </div>
                 <div className="p-5 pt-0">

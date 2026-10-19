@@ -27,7 +27,7 @@ export default function ImageGallery({
   return (
     <div className="w-full">
       <div
-        className="relative aspect-square rounded-[24px] bg-[#eeeee8] overflow-hidden"
+        className="product-image-frame relative aspect-square rounded-[24px] overflow-hidden"
         role="region"
         aria-label={`${title} images`}
       >
@@ -36,7 +36,7 @@ export default function ImageGallery({
             src={activeUrl}
             alt={`${title}, image ${activeIndex + 1}`}
             fill
-            className="object-cover"
+            className="product-image"
             sizes="(max-width: 1024px) 90vw, 50vw"
             priority
           />
@@ -78,7 +78,7 @@ export default function ImageGallery({
               onClick={() => setActiveIndex(index)}
               aria-label={`View image ${index + 1} of ${title}`}
               aria-pressed={index === activeIndex}
-              className={`relative w-20 h-20 shrink-0 rounded-xl overflow-hidden border-2 ${
+              className={`product-image-frame relative w-20 h-20 shrink-0 rounded-xl overflow-hidden border-2 ${
                 index === activeIndex
                   ? "border-[#323c2b]"
                   : "border-transparent opacity-60 hover:opacity-100"
@@ -88,7 +88,7 @@ export default function ImageGallery({
                 src={url}
                 alt=""
                 fill
-                className="object-cover"
+                className="product-image"
                 sizes="80px"
               />
             </button>
