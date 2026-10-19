@@ -1,7 +1,8 @@
 <?xml version='1.0' encoding='utf-8'?>
 <svg xmlns="http://www.w3.org/2000/svg" version="1.1" id="Layer_1" x="0px" y="0px" viewBox="0 0 540.8 473.2" style="enable-background:new 0 0 540.8 473.2;" xml:space="preserve">
 <style type="text/css">
-	.st0{fill:#060707;}
+	.st0{fill:#323c2b;}
+	.logo-emblem{fill:#78815e;}
 </style>
 <g id="logo-tagline" transform="translate(0 -81)">
 	<g>
@@ -41,11 +42,11 @@
 			<path class="st0" d="M502.6,383.4v41.9h-11.7v-57.1h15.6l22.7,42.6v-42.6h11.6v57.1h-14.9L502.6,383.4z" />
 		</g>
 		<g>
-			<rect x="222.3" y="285" class="st0" width="96.1" height="39.4" />
-			<path class="st0" d="M346.9,0h-15.1v52.7h43.4v49.8H386v23.1H280.6v-23.1h28.1V75.9h-80V52.7h80V0h-92.5v75.9h-63V52.7h39.9V0     h-1.6c0,0-3.7,23.1-48.9,33.7v123v11v123c46.2,11.5,51.3,33.7,51.3,33.7h5.3V285h-44.7v-23.1h44.7V209h-44.3v-31.3h23.1v8.1h62.4     v-25.1h-87V87h110.1v39.2h-23.1v-16h-63.9v27.4h87V209h-41.3v52.9h96.1v-15.2h-45.9v-23.1h45.9V209h-39.1v-71.5H386V209h-44.4     v14.6H386v23.1h-44.4v15.2H386V285h-44.4v39.4h7.7c0,0,3.7-23.1,48.9-33.7v-123v-11v-123C352,22.2,346.9,0,346.9,0z" />
-			<rect x="331.8" y="75.9" class="st0" width="20.3" height="26.6" />
+			<rect x="222.3" y="285" class="logo-emblem" width="96.1" height="39.4" />
+			<path class="logo-emblem" d="M346.9,0h-15.1v52.7h43.4v49.8H386v23.1H280.6v-23.1h28.1V75.9h-80V52.7h80V0h-92.5v75.9h-63V52.7h39.9V0     h-1.6c0,0-3.7,23.1-48.9,33.7v123v11v123c46.2,11.5,51.3,33.7,51.3,33.7h5.3V285h-44.7v-23.1h44.7V209h-44.3v-31.3h23.1v8.1h62.4     v-25.1h-87V87h110.1v39.2h-23.1v-16h-63.9v27.4h87V209h-41.3v52.9h96.1v-15.2h-45.9v-23.1h45.9V209h-39.1v-71.5H386V209h-44.4     v14.6H386v23.1h-44.4v15.2H386V285h-44.4v39.4h7.7c0,0,3.7-23.1,48.9-33.7v-123v-11v-123C352,22.2,346.9,0,346.9,0z" />
+			<rect x="331.8" y="75.9" class="logo-emblem" width="20.3" height="26.6" />
 		</g>
-		<rect x="302.5" y="160.6" class="st0" width="60.4" height="25.2" />
+		<rect x="302.5" y="160.6" class="logo-emblem" width="60.4" height="25.2" />
 	</g>
 </g>
 </svg>
