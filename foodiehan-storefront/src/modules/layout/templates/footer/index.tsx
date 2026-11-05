@@ -1,12 +1,12 @@
-﻿import LocalizedClientLink from "@modules/common/components/localized-client-link"
+import LocalizedClientLink from "@modules/common/components/localized-client-link"
 import BrandLogo from "@modules/common/components/brand-logo"
 
 export default function Footer() {
   return (
     <footer className="site-footer">
       <div className="page-shell !pb-8">
-        <div className="grid grid-cols-2 gap-x-8 gap-y-12 small:grid-cols-[2fr_1fr_1fr_1.3fr] pb-14">
-          <div className="col-span-2 small:col-span-1">
+        <div className="grid grid-cols-2 gap-x-8 gap-y-12 sm:grid-cols-2 medium:grid-cols-[2fr_1fr_1.2fr_1fr_1.3fr] pb-14">
+          <div className="col-span-2 medium:col-span-1">
             <LocalizedClientLink
               href="/"
               className="inline-block"
@@ -17,7 +17,7 @@ export default function Footer() {
             <p className="mt-5 max-w-[260px] text-sm leading-7 text-[#d0d5c6]">
               Familiar comforts. A little discovery.
               <br />
-              Something good for your every day.
+              Artisan bakery &amp; Korean delicacies in Sydney.
             </p>
           </div>
           {[
@@ -27,6 +27,16 @@ export default function Footer() {
                 ["About Us", "/about"],
                 ["Shop all", "/store"],
                 ["Contact Us", "/contact"],
+                ["FAQs & Help", "/contact#faq"],
+              ],
+            },
+            {
+              title: "Policies",
+              links: [
+                ["Shipping & Delivery", "/shipping-policy"],
+                ["Refunds & Returns", "/refund-policy"],
+                ["Privacy Policy", "/privacy"],
+                ["Terms of Service", "/terms"],
               ],
             },
             {
@@ -53,7 +63,7 @@ export default function Footer() {
               </ul>
             </div>
           ))}
-          <div className="col-span-2 small:col-span-1">
+          <div className="col-span-2 medium:col-span-1">
             <h3 className="text-[11px] uppercase tracking-[.15em] mb-6">
               Let’s talk
             </h3>
@@ -70,13 +80,24 @@ export default function Footer() {
             </LocalizedClientLink>
           </div>
         </div>
-        <div className="border-t border-white/15 pt-7 flex flex-col gap-4 sm:flex-row sm:justify-between text-[11px] text-[#bac2ae]">
-          <p>© {new Date().getFullYear()} FoodieHan. All rights reserved.</p>
-          <div className="flex gap-6">
-            <LocalizedClientLink href="/contact#faq">
-              FAQs & order help
+        <div className="border-t border-white/15 pt-7 flex flex-col gap-4 sm:flex-row sm:justify-between items-center text-[11px] text-[#bac2ae]">
+          <p>© {new Date().getFullYear()} FoodieHan. All rights reserved. Sydney, Australia.</p>
+          <div className="flex flex-wrap gap-x-6 gap-y-2">
+            <LocalizedClientLink href="/shipping-policy" className="hover:underline">
+              Shipping Policy
             </LocalizedClientLink>
-            <span>Made for the everyday.</span>
+            <LocalizedClientLink href="/refund-policy" className="hover:underline">
+              Refunds Policy
+            </LocalizedClientLink>
+            <LocalizedClientLink href="/privacy" className="hover:underline">
+              Privacy
+            </LocalizedClientLink>
+            <LocalizedClientLink href="/terms" className="hover:underline">
+              Terms
+            </LocalizedClientLink>
+            <LocalizedClientLink href="/contact#faq" className="hover:underline">
+              FAQs
+            </LocalizedClientLink>
           </div>
         </div>
       </div>

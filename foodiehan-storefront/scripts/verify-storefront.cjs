@@ -1,4 +1,4 @@
-﻿const assert = require("node:assert/strict")
+const assert = require("node:assert/strict")
 const { loadEnvConfig } = require(require.resolve("@next/env", {
   paths: [require.resolve("next/package.json")],
 }))
@@ -26,6 +26,10 @@ async function run() {
     "/search?q=butter",
     "/search?q=zzzznonexistent",
     "/contact",
+    "/terms",
+    "/privacy",
+    "/refund-policy",
+    "/shipping-policy",
     "/account",
     "/account/orders",
     "/account/profile",

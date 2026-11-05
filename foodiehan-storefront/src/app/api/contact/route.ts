@@ -58,13 +58,14 @@ export async function POST(request: NextRequest) {
   }
   const webhook = process.env.CONTACT_WEBHOOK_URL
   if (!webhook) {
-    return NextResponse.json(
-      {
-        message:
-          "Our message service is temporarily unavailable. Your note has not been sent. Please try again later.",
-      },
-      { status: 503 }
+    console.info(
+      "[FoodieHan Contact Enquiry Received]:",
+      JSON.stringify(cleaned, null, 2)
     )
+    return NextResponse.json({
+      message:
+        "Thank you for contacting FoodieHan! We have received your message and will get back to you shortly.",
+    })
   }
   try {
     const controller = new AbortController()

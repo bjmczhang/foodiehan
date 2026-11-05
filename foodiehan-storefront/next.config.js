@@ -44,6 +44,11 @@ const nextConfig = {
         pathname: "/images/products/optimized-style-3/**",
       },
       {
+        protocol: "https",
+        hostname: "foodiehan.com.au",
+        pathname: "/images/products/optimized-style-3/**",
+      },
+      {
         protocol: "http",
         hostname: "localhost",
       },
